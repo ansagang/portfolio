@@ -1,0 +1,112 @@
+{
+    "lang": "en",
+    "title": "English",
+    "res": {
+        "success": "Success",
+        "error": "Error",
+        "info": "Info",
+        "warning": "Warning"
+    },
+    "app": {
+        "meta": {
+            "title": "Angsar Aben",
+            "description": "My portfolio.",
+            "keywords": [
+                "Next.js",
+                "Portfolio"
+            ]
+        },
+        "files": {
+            "cv": "CV Aben Angsar.pdf"
+        },
+        "pages": {
+            "home": {
+                "meta": {
+                    "title": ""
+                },
+                "sections": {},
+                "pages": {}
+            },
+            "notFound": {
+                "meta": {
+                    "title": "Not Found"
+                },
+                "sections": {}
+            },
+            "about": {
+                "meta": {
+                    "title": "About"
+                },
+                "sections": {},
+                "pages": {}
+            },
+            "portfolio": {
+                "meta": {
+                    "title": "Portfolio"
+                }
+            },
+            "contact": {
+                "meta": {
+                    "title": "Contact"
+                }
+            },
+            "blog": {
+                "meta": {
+                    "title": "Blog"
+                }
+            }
+        },
+        "buttons": {
+        },
+        "labels": {
+            "downloadCV": "Download CV",
+            "requestProject": "Request a project"
+        },
+        "global": {
+            "days": {
+                "monday": {
+                    "full": "Monday",
+                    "short": "Mon"
+                },
+                "tuesday": {
+                    "full": "Tuesday",
+                    "short": "Tue"
+                },
+                "wednesday": {
+                    "full": "Wednesday",
+                    "short": "Wed"
+                },
+                "thursday": {
+                    "full": "Thursday",
+                    "short": "Thu"
+                },
+                "friday": {
+                    "full": "Friday",
+                    "short": "Fri"
+                },
+                "saturday": {
+                    "full": "Saturday",
+                    "short": "Sat"
+                },
+                "sunday": {
+                    "full": "Sunday",
+                    "short": "Sun"
+                }
+            },
+            "months": [
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December"
+            ]
+        }
+    }
+}

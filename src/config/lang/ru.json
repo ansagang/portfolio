@@ -1,0 +1,110 @@
+{
+    "lang": "ru",
+    "title": "Русский",
+    "res": {
+        "success": "Успешно",
+        "error": "Ошибка",
+        "info": "Инфо",
+        "warning": "Внимание"
+    },
+    "app": {
+        "meta": {
+            "title": "Ансар Абен",
+            "description": "Мой портфолио.",
+            "keywords": [
+                "Next.js",
+                "Портфолио"
+            ]
+        },
+        "files": {
+            "cv": "CV Aben Angsar ru.docx"
+        },
+        "pages": {
+            "home": {
+                "meta": {
+                    "title": ""
+                },
+                "sections": {}
+            },
+            "notFound": {
+                "meta": {
+                    "title": "Не найдено"
+                }
+            },
+            "about": {
+                "meta": {
+                    "title": "Обо мне"
+                },
+                "sections": {},
+                "pages": {}
+            },
+            "portfolio": {
+                "meta": {
+                    "title": "Портфолио"
+                }
+            },
+            "contact": {
+                "meta": {
+                    "title": "Связаться"
+                }
+            },
+            "blog": {
+                "meta": {
+                    "title": "Блог"
+                }
+            }
+        },
+        "buttons": {
+        },
+        "labels": {
+            "downloadCV": "Скачать резюме",
+            "requestProject": "Запросить проект"
+        },
+        "global": {
+            "days": {
+                "monday": {
+                    "full": "Понедельник",
+                    "short": "Пон"
+                },
+                "tuesday": {
+                    "full": "Вторник",
+                    "short": "Вт"
+                },
+                "wednesday": {
+                    "full": "Среда",
+                    "short": "Ср"
+                },
+                "thursday": {
+                    "full": "Четверг",
+                    "short": "Чт"
+                },
+                "friday": {
+                    "full": "Пятница",
+                    "short": "Пят"
+                },
+                "saturday": {
+                    "full": "Суббота",
+                    "short": "Суб"
+                },
+                "sunday": {
+                    "full": "Воскресенье",
+                    "short": "Воск"
+                }
+            },
+            "months": [
+                "Январь",
+                "Февраль",
+                "Март",
+                "Апрель",
+                "Май",
+                "Июнь",
+                "Июль",
+                "Август",
+                "Сентябрь",
+                "Октябрь",
+                "Ноябрь",
+                "Декабрь"
+            ]
+        }
+    }
+}

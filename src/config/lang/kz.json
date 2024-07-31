@@ -1,0 +1,110 @@
+{
+    "lang": "kz",
+    "title": "Қазақша",
+    "res": {
+        "success": "Сәтті",
+        "error": "Қате",
+        "info": "Ақпарат",
+        "warning": "Назар аударыңыз"
+    },
+    "app": {
+        "meta": {
+            "title": "Әбен Аңсар",
+            "description": "Менің портфолио.",
+            "keywords": [
+                "Next.js",
+                "Портфолио"
+            ]
+        },
+        "files": {
+            "cv": "CV Aben Angsar ru.docx"
+        },
+        "pages": {
+            "home": {
+                "meta": {
+                    "title": ""
+                },
+                "sections": {}
+            },
+            "notFound": {
+                "meta": {
+                    "title": "Табылған жоқ"
+                },
+                "sections": {}
+            },
+            "about": {
+                "meta": {
+                    "title": "Мен туралы"
+                },
+                "sections": {},
+                "pages": {}
+            },
+            "portfolio": {
+                "meta": {
+                    "title": "Портфолио"
+                }
+            },
+            "contact": {
+                "meta": {
+                    "title": "Байланыс"
+                }
+            },
+            "blog": {
+                "meta": {
+                    "title": "Блог"
+                }
+            }
+        },
+        "buttons": {},
+        "labels": {
+            "downloadCV": "Резюмені жіктеу",
+            "requestProject": "Жобаны сұрау"
+        },
+        "global": {
+            "days": {
+                "monday": {
+                    "full": "Дүйсенбі",
+                    "short": "Дүй"
+                },
+                "tuesday": {
+                    "full": "Сейсенбі",
+                    "short": "Сей"
+                },
+                "wednesday": {
+                    "full": "Сәрсенбі",
+                    "short": "Сәр"
+                },
+                "thursday": {
+                    "full": "Бейсенбі",
+                    "short": "Бей"
+                },
+                "friday": {
+                    "full": "Жұма",
+                    "short": "Жұм"
+                },
+                "saturday": {
+                    "full": "Сенбі",
+                    "short": "Сен"
+                },
+                "sunday": {
+                    "full": "Жексенбі",
+                    "short": "Жек"
+                }
+            },
+            "months": [
+                "Қаңтар",
+                "Ақпан",
+                "Наурыз",
+                "Сәуір",
+                "Мамыр",
+                "Маусым",
+                "Шілде",
+                "Тамыз",
+                "Қыркүйек",
+                "Қазан",
+                "Қараша",
+                "Желтоқсан"
+            ]
+        }
+    }
+}

@@ -35,14 +35,19 @@
             },
             "about": {
                 "meta": {
-                    "title": "About"
+                    "title": "About me"
                 },
                 "sections": {},
                 "pages": {}
             },
-            "portfolio": {
+            "projects": {
                 "meta": {
-                    "title": "Portfolio"
+                    "title": "Projects"
+                }
+            },
+            "services": {
+                "meta": {
+                    "title": "Services"
                 }
             },
             "contact": {

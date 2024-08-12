@@ -38,9 +38,14 @@
                 "sections": {},
                 "pages": {}
             },
-            "portfolio": {
+            "projects": {
                 "meta": {
-                    "title": "Портфолио"
+                    "title": "Проекты"
+                }
+            },
+            "services": {
+                "meta": {
+                    "title": "Услуги"
                 }
             },
             "contact": {

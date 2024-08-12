@@ -9,7 +9,7 @@
     &__fluid {
         margin: $mb_auto;
         padding: 0 20px;
-        max-width: 1370px;
+        max-width: 1400px;
     }
 
     &__mini{
@@ -34,28 +34,33 @@
 
     & h2 {
         font-size: $h2_font_size;
-        font-weight: $bold_font_weight;
+        font-weight: $medium_font_weight;
         margin-bottom: 15px;
     }
 
     & h3 {
         font-size: $h3_font_size;
-        font-weight: $medium_font_weight;
+        font-weight: $light_font_weight;
         margin-bottom: 5px;
+        line-height: $h2_font_size;
     }
 
     & h4 {
         font-size: $h4_font_size;
-        font-weight: $medium_font_weight;
+        font-weight: $lighter_font_weight;
         margin-bottom: 5px;
+    }
+
+    & span{
+        color: $secondary_color;
     }
 }
 
 .info {
     // font-size: max(15px,min(2vw,20px));
-    font-weight: $light_font_weight;
+    font-weight: $lighter_font_weight;
     margin-top: 5px;
-    color: $primary_color;
+    color: $secondary_color;
     line-height: 26px;
     letter-spacing: 0.3px;
     & p{
@@ -175,7 +180,7 @@ button {
     transition: color 0.15s ease;
     cursor: pointer;
     font-size: $p_font_size;
-    font-weight: $light_font_weight;
+    font-weight: $lighter_font_weight;
     &.active{
         color: $primary_color;
     }

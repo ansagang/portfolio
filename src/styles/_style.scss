@@ -109,13 +109,15 @@
     right: 0;
     width: 100%;
     z-index: $z_fixed;
-    // transform: translateY(-100%);
+    transform: translateY(-100%);
     transition: 0.4s ease all;
     // padding: ;
     background: rgba(255, 255, 255, 0);
-    border-radius: 15px;
+    &.sticky{
+        transform: translateY(0%);
+
+    }
     &.active{
-        // transform: translateY(0%);
         
         box-shadow: inset 0 -1px 0 0 var(#111);
         backdrop-filter: saturate(180%) blur(7px);
@@ -188,7 +190,6 @@
     // transform: translate(-50%);
     position: absolute;
     z-index: -1;
-    background: rgb(173,173,173);
     background: radial-gradient(circle, rgb(211, 211, 211) 0%, rgb(234, 234, 234) 23%, rgba(255,255,255,1) 100%);
     // background: radial-gradient(circle, rgb(135, 173, 255) 0%, rgb(93, 112, 255) 27%, rgb(27, 34, 255) 100%);
     &__inner{
@@ -227,6 +228,7 @@
     }
     &__info{
         & p{
+            color: $primary_color;
         }
     }
 }
@@ -284,7 +286,7 @@ body{
     &__options{
         display: grid; 
         grid-template-rows: 0fr;
-        transition: 250ms grid-template-rows ease;
+        transition: 370ms grid-template-rows ease;
     }
     &:hover .translator__options{
         grid-template-rows: 3fr;
@@ -310,3 +312,55 @@ body{
         }
     }
 }
+
+.block{
+        &__inner{
+            display: flex;
+        }
+        &__heading{
+            position: sticky;
+            left: 0;
+            top: 20px;
+            height: 10px;
+            width: 30%;
+        }
+        &__content{
+            width: 70%;
+            &-stats{
+                margin-top: 30px;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                // justify-content: space-between;
+            }
+            &-stat{
+                flex: 1;
+                &_number{
+                    font-weight: $bold_font_weight;
+                    margin-bottom: 10px;
+                    & span{
+                        font-size: $h1_font_size;
+                    }
+                }
+            }
+            &-projects{
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+            }
+        }
+    }
+
+.project-card{
+    &__visual{
+        margin-bottom: 10px;
+        & video{
+            width: 100%;
+            border-radius: 15px;
+        }
+    }
+    &__content{
+        padding: 8px;
+    }
+}
+

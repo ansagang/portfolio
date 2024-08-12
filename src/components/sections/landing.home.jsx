@@ -1,12 +1,19 @@
 "use client"
 
-import Scene from "@/components/sections/scene";
+import Scene from "@/components/sections/scene.home";
 import { Icons } from "@/config/icons";
+import { Suspense } from "react";
+import useInView from "@/hooks/use-in-view";
 
 export default function Landing({ language }) {
+
+    const [ref, inView] = useInView(true)
+
     return (
         <section className="landing">
-            <Scene quantity={65} />
+            {/* <Suspense fallback={null}> */}
+                <Scene ref={ref} quantity={65} inView={inView} />
+            {/* </Suspense> */}
             <div className="container__mini">
                 <div className="landing__inner inner__big">
                     <div className="landing__signature">

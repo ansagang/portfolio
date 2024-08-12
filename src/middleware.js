@@ -37,12 +37,13 @@ export async function middleware(request) {
     const response = NextResponse.next()
 
     const language = request.cookies.get('lang')
-    
+
     if (!language) {
         response.cookies.set('lang', headerLanguage)
+        return response
+    } else {
+        return response
     }
-
-    return response
 }
 
 export const config = {

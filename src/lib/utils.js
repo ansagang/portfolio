@@ -66,3 +66,8 @@ export function generateUsernameFromGmail(email) {
     
     return uniqueUsername;
 }
+
+export function yearsSince(sinceYear) {
+    const currentYear = new Date().getFullYear();
+    return currentYear - sinceYear;
+}

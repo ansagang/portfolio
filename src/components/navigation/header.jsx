@@ -9,11 +9,13 @@ import { languageDecode } from "@/lib/utils"
 import DownloadLink from "@/components/ui/download-link"
 import useScrollPosition from "@/hooks/use-scroll-position"
 import { useEffect, useState } from "react"
+import useScrollMovement from "@/hooks/use-scroll-movement"
 
 export default function Header({ language }) {
     // const pathname = usePathname()
 
     const [active, isActive] = useState(false)
+    const [sticky, setSticky] = useState(true)
     // const [option, setOption] = useState(language)
     // const [isPending, startTransition] = useTransition()
 
@@ -25,8 +27,22 @@ export default function Header({ language }) {
 
     const scroll = useScrollPosition()
 
+    useScrollMovement(
+        ({ prevPos, currPos }) => {
+            const isShow = currPos.y > prevPos.y
+            if (isShow !== sticky) setSticky(isShow)
+        },
+        [sticky]
+    )
+
     useEffect(() => {
-        if (scroll.scrollY !== 0){
+        if (scroll.scrollY === 0) {
+            setSticky(true)
+        }
+    }, [sticky])
+
+    useEffect(() => {
+        if (window.scrollY !== 0) {
             isActive(true)
         }
 
@@ -57,7 +73,7 @@ export default function Header({ language }) {
     // }
     return (
         <>
-            <header className={active ? "header active" : "header"}>
+            <header className={active ? (sticky ? "header sticky active" : "header active") : sticky ? "header sticky" : "header"}>
                 <div className="container__fluid">
                     <div className="header__inner">
                         <nav className="header__nav">
@@ -67,7 +83,10 @@ export default function Header({ language }) {
                                     <NavLink exact={true} href={'/about'}><span>{language.app.pages.about.meta.title}</span></NavLink>
                                 </li>
                                 <li className="header__nav-li">
-                                    <NavLink href={'/portfolio'}><span>{language.app.pages.portfolio.meta.title}</span></NavLink>
+                                    <NavLink href={'/projects'}><span>{language.app.pages.projects.meta.title}</span></NavLink>
+                                </li>
+                                <li className="header__nav-li">
+                                    <NavLink href={'/services'}><span>{language.app.pages.services.meta.title}</span></NavLink>
                                 </li>
                                 <li className="header__nav-li">
                                     <NavLink href={'/blog'}><span>{language.app.pages.blog.meta.title}</span></NavLink>

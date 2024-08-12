@@ -65,18 +65,7 @@ export default async function RootLayout({ children }) {
         <NotificationProvider>
           {children}
         </NotificationProvider>
-        <AnimatedCursor innerSize={0}
-          outerSize={15}
-          innerScale={1}
-          outerScale={2}
-          outerAlpha={0}
-          hasBlendMode={true}
-          innerStyle={{
-            backgroundColor: '#000'
-          }}
-          outerStyle={{
-            border: '3px solid #000'
-          }} trailingSpeed={2} clickables={['a', 'input[type="text"]', 'input[type="email"]', 'input[type="number"]', 'input[type="submit"]', 'input[type="image"]', 'label[for]', 'select', 'textarea', 'button', '.link']} />
+        <AnimatedCursor innerSize={0} outerSize={15} innerScale={1} outerScale={2} outerAlpha={0} hasBlendMode={true} innerStyle={{backgroundColor: '#000' }} outerStyle={{border: '2px solid #000' }} trailingSpeed={1} clickables={['a', 'input[type="text"]', 'input[type="email"]', 'input[type="number"]', 'input[type="submit"]', 'input[type="image"]', 'label[for]', 'select', 'textarea', 'button', '.link']} />
       </body>
     </html>
   )

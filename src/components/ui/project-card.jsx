@@ -10,7 +10,7 @@ export default function ProjectCard({ title, description, type, video, ...props 
     return (
         <div className="project-card" {...props}>
             <TiltCard className="project-card__visual">
-                <video playsInline preload="metadata" muted ref={videoRef} onMouseEnter={() => videoRef.current.play()} onMouseLeave={() => {
+                <video playsInline muted ref={videoRef} onMouseEnter={() => videoRef.current.play()} onMouseLeave={() => {
                     videoRef.current.currentTime = 0
                     videoRef.current.pause()
                 }}>

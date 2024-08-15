@@ -1,6 +1,6 @@
 "use client"
 
-import Scene from "@/components/sections/scene.home";
+import Scene from "@/components/three/landing-scene";
 import { Icons } from "@/config/icons";
 import { Suspense } from "react";
 import useInView from "@/hooks/use-in-view";
@@ -27,11 +27,10 @@ export default function Landing({ language }) {
                         </svg> */}
                     </div>
                     <div className="landing__title title">
-                        <h1>Quality design & web
-                            development synergy</h1>
+                        <h1>{language.app.pages.home.sections.landing.title}</h1>
                     </div>
                     <div className="landing__info info">
-                        <p>I create intuitive design for websites and apps, helping businesses enhance user experience, boost key metrics and achieve digital leadership</p>
+                        <p>{language.app.pages.home.sections.landing.info}</p>
                     </div>
                 </div>
             </div>

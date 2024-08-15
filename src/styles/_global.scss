@@ -15,8 +15,13 @@
     &__mini{
         margin: $mb_auto;
         padding: 0 20px;
-        max-width: 680px;
+        max-width: 850px;
     }
+}
+
+::selection{
+    color: $primary_color;
+    background-color: $secondary_color;
 }
 
 .title {
@@ -107,7 +112,7 @@ button {
     align-items: center;
     justify-content: center;
     background: transparent;
-    transition: all 0.5s ease;
+    // transition: all 0.5s ease;
     &.primary {
         border: 2px solid $accent_color;
         background-color: $accent_color;
@@ -115,8 +120,10 @@ button {
         
 
         & svg{
-            margin-right: 10px;
+            margin-left: 10px;
             fill: $bg_color;
+            width: 10px;
+            height: 10px;
         }
 
         &:disabled{
@@ -133,16 +140,18 @@ button {
         
 
         & svg{
-            margin-right: 10px;
-            fill: $secondary_color_2;
+            margin-left: 10px;
+            fill: $primary_color;
+            width: 10px;
+            height: 10px;
         }
         // width: 100%;
         &:hover{
-            background-color: $accent_color_3;
-            color: $accent_color;
-            border: 2px solid $accent_color;
+            background-color: $primary_color;
+            color: $bg_color;
+            border: 2px solid $primary_color;
             & svg{
-                fill: $accent_color !important;
+                fill: $bg_color !important;
             }
         }
 
@@ -500,5 +509,32 @@ textarea{
     overflow-x: scroll;
     &::-webkit-scrollbar{
         display: none;
+    }
+}
+
+.animation{
+    &__text{
+        & h1,
+        & h2,
+        & h3,
+        & h4,
+        & p{
+            background-image: linear-gradient(to left, $secondary_color 50%, $primary_color 50%);
+            -webkit-background-clip: text;
+            color: transparent;
+            background-size: 200% 100%;
+            background-repeat: no-repeat;
+            background-position: 100% 0;
+            transition: 3s ease;
+        }
+        &.active{
+            & h1,
+            & h2,
+            & h3,
+            & h4,
+            & p{
+                background-position: 0% -100%;
+            }
+        }
     }
 }

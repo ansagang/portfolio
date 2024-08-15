@@ -3,9 +3,14 @@
 import { Icons } from "@/config/icons";
 import { yearsSince } from "@/lib/utils";
 
+import useInView from "@/hooks/use-in-view";
+import IncrementingNumber from "@/components/ui/increment-number";
+
 export default function AboutMe({ language }) {
 
     const yearsPassed = yearsSince(2020)
+    const [titleRef, titleInView] = useInView(false)
+    const [statsRef, statsInView] = useInView(false)
 
     return (
         <section className="block">
@@ -17,35 +22,50 @@ export default function AboutMe({ language }) {
                         </div>
                     </div>
                     <div className="block__content">
-                        <div className="block__content-title title">
-                            <h3>I create an aesthetic design that users like at first sight and seamlessly integrates with business or product</h3>
+                        <div data-text={language.app.pages.home.sections.about.title} ref={titleRef} className={titleInView ? "block__content-title title animation__text active" : "block__content-title title animation__text"}>
+                            <h3>{language.app.pages.home.sections.about.title}</h3>
                         </div>
                         <div className="block__content-info info">
-                            <p>Every project is an opportunity to express myself and give people a cool product. I do what I love and it benefits me and the people around me. Making the best designs and exceeding market expectations. I am constantly evolving, helping other designers and writing a professional blog</p>
+                            <p>{language.app.pages.home.sections.about.info}</p>
                         </div>
-                        <div className="block__content-stats">
+                        <div className="block__content-stats" ref={statsRef}>
                             <div className="block__content-stat">
                                 <div className="block__content-stat_number">
-                                    <span>{yearsPassed}</span>
+                                    {
+                                        statsInView ?
+                                            <span><IncrementingNumber end={yearsPassed} /></span>
+                                            :
+                                            <span>0</span>
+                                    }
                                 </div>
                                 <div className="block__content-stat_title title">
-                                    <h4>years in web development</h4>
+                                    <h4>{language.app.pages.home.sections.about.yearsInDev}</h4>
                                 </div>
                             </div>
                             <div className="block__content-stat">
                                 <div className="block__content-stat_number">
-                                    <span>30+</span>
+                                    {
+                                        statsInView ?
+                                            <span><IncrementingNumber end={30} />+</span>
+                                            :
+                                            <span>0+</span>
+                                    }
                                 </div>
                                 <div className="block__content-stat_title title">
-                                    <h4>completed projects</h4>
+                                    <h4>{language.app.pages.home.sections.about.completedProjects}</h4>
                                 </div>
                             </div>
                             <div className="block__content-stat">
                                 <div className="block__content-stat_number">
-                                    <span>20+</span>
+                                    {
+                                        statsInView ?
+                                            <span><IncrementingNumber end={20} />+</span>
+                                            :
+                                            <span>0+</span>
+                                    }
                                 </div>
                                 <div className="block__content-stat_title title">
-                                    <h4>reviews given</h4>
+                                    <h4>{language.app.pages.home.sections.about.reviewsGiven}</h4>
                                 </div>
                             </div>
                         </div>

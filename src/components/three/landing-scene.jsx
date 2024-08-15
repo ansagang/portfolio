@@ -4,7 +4,6 @@ import * as THREE from "three"
 import { Canvas, useFrame, useThree } from "@react-three/fiber"
 import { Outlines } from "@react-three/drei"
 import { Physics, useSphere } from "@react-three/cannon"
-import { EffectComposer } from "@react-three/postprocessing"
 
 const rfs = THREE.MathUtils.randFloatSpread
 const sphereGeometry = new THREE.SphereGeometry(0.7, 32, 32)

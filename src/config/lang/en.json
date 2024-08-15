@@ -24,7 +24,19 @@
                 "meta": {
                     "title": ""
                 },
-                "sections": {},
+                "sections": {
+                    "landing": {
+                        "title": "Quality design & web development synergy",
+                        "info": "I develop intuitive websites and apps, enhancing user experience, key metrics, and digital leadership."
+                    },
+                    "about": {
+                        "title": "I create an aesthetic design that users like at first sight and seamlessly integrates with business or product",
+                        "info": "Every project is an opportunity to express myself and give people a cool product. I do what I love and it benefits me and the people around me. Making the best designs and exceeding market expectations. I am constantly evolving, helping other designers and writing a professional blog",
+                        "yearsInDev": "years in web development",
+                        "completedProjects": "completed projects",
+                        "reviewsGiven": "reviews given"
+                    }
+                },
                 "pages": {}
             },
             "notFound": {
@@ -62,6 +74,7 @@
             }
         },
         "buttons": {
+            "otherProjects": "Other projects"
         },
         "labels": {
             "downloadCV": "Download CV",

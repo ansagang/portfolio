@@ -321,9 +321,10 @@ body{
         &__heading{
             position: sticky;
             left: 0;
-            top: 120px;
+            top: 95px;
             height: 10px;
             width: 30%;
+            bottom: 100px;
         }
         &__content{
             width: 70%;
@@ -350,7 +351,16 @@ body{
                 gap: 40px;
                 margin-bottom: 20px;
             }
+            &-articles{
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 40px;
+                margin-bottom: 20px;
+            }
             &-title{
+            }
+            &-info{
+                color: $secondary_color;
             }
             &-button{
                 float: right;
@@ -379,3 +389,85 @@ body{
     }
 }
 
+.blog-card{
+    position: relative;
+    height: 450px;
+    border-radius: 25px;
+    overflow: hidden;
+    padding: 20px;
+    &__visual{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -2;
+    }
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    &__title{
+        color: $bg_color;
+    }
+    &::before{
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to top,  rgba(0, 0, 0, 1)  0%, rgba(255, 255, 255, 0) 100%);
+        z-index: -1;
+        transition: 0.5s ease;
+    }
+    &:hover{
+        &::before{
+            opacity: 0.5;
+        }
+    }
+}
+
+.contact{
+    &__banner{
+        padding: 40px;
+        border: 1px solid $secondary_color_2;
+        border-radius: 25px;
+        overflow: hidden;
+        position: relative;
+        &-buttons{
+            margin-top: 20px;
+            display: flex;
+            gap: 20px;
+        }
+        &-content{
+            width: 60%;
+        }
+        &-visual{
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+            width: 50%;
+        }
+    }
+}
+
+.about{
+    &__inner{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    &__left{
+        width: 50%;
+    }
+    &__right{
+        width: 40%;
+        &-visual{
+            background-color: #111;
+            width: 100%;
+            border-radius: 20px;
+            height: 300px;
+        }
+    }
+}

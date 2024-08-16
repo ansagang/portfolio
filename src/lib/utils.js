@@ -71,3 +71,21 @@ export function yearsSince(sinceYear) {
     const currentYear = new Date().getFullYear();
     return currentYear - sinceYear;
 }
+
+export function randomWord(wordsArray) {
+    const usedIndices = new Set();
+
+    return function() {
+        if (usedIndices.size === wordsArray.length) {
+            return null; // All words have been used
+        }
+
+        let randomIndex;
+        do {
+            randomIndex = Math.floor(Math.random() * wordsArray.length);
+        } while (usedIndices.has(randomIndex));
+
+        usedIndices.add(randomIndex);
+        return wordsArray[randomIndex];
+    };
+}

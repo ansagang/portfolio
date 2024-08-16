@@ -65,11 +65,14 @@
     // font-size: max(15px,min(2vw,20px));
     font-weight: $lighter_font_weight;
     margin-top: 5px;
-    color: $secondary_color;
+    color: $primary_color;
     line-height: 26px;
     letter-spacing: 0.3px;
     & p{
         font-size: $p_font_size;
+        &:nth-last-child(1){
+            margin-top: 20px;
+        }
     }
 
     & p2{
@@ -114,8 +117,8 @@ button {
     background: transparent;
     // transition: all 0.5s ease;
     &.primary {
-        border: 2px solid $accent_color;
-        background-color: $accent_color;
+        border: 2px solid $primary_color;
+        background-color: $primary_color;
         color: $bg_color;
         
 
@@ -535,6 +538,16 @@ textarea{
             & p{
                 background-position: 0% -100%;
             }
+        }
+    }
+
+    &__up{
+        transform: translateY(80px);
+        opacity: 0;
+        transition: 0.5s ease-out;
+        &.active{
+            transform: translateY(0px);
+            opacity: 1;
         }
     }
 }

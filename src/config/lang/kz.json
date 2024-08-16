@@ -48,7 +48,11 @@
                 "meta": {
                     "title": "Мен туралы"
                 },
-                "sections": {},
+                "sections": {
+                    "about": {
+                        "words": ["me", "web-development", "front-end", "grace", "gratitude", "dedication", "hard work", "dombra", "sport", "gym", "goal", "back-end", "design", "resilience", "tough", "work", "family", "love", "empathy"]
+                    }
+                },
                 "pages": {}
             },
             "projects": {
@@ -64,6 +68,12 @@
             "contact": {
                 "meta": {
                     "title": "Байланыс"
+                },
+                "sections": {
+                    "banner": {
+                        "title": "Сізде қиындық бар ма? Сөйлесейік!",
+                        "info": "Сіздің жобаңыз бойынша ақысыз кеңес алыңыз-веб-сайтқа сұраныс қалдырыңыз немесе кез-келген ыңғайлы тәсілмен маған хабарласыңыз"
+                    }
                 }
             },
             "blog": {
@@ -73,7 +83,10 @@
             }
         },
         "buttons": {
-            "otherProjects": "Қалған жобалар"
+            "otherProjects": "Қалған жобалар",
+            "otherArticles": "Қалған мақалалар",
+            "leaveRequest": "Өтініш қалдыру",
+            "moreAbout": "Мен туралы толығырақ"
         },
         "labels": {
             "downloadCV": "Резюмені жіктеу",

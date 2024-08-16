@@ -47,7 +47,11 @@
                 "meta": {
                     "title": "Обо мне"
                 },
-                "sections": {},
+                "sections": {
+                    "about": {
+                        "words": ["me", "web-development", "front-end", "grace", "gratitude", "dedication", "hard work", "dombra", "sport", "gym", "goal", "back-end", "design", "resilience", "tough", "work", "family", "love", "empathy"]
+                    }
+                },
                 "pages": {}
             },
             "projects": {
@@ -63,6 +67,12 @@
             "contact": {
                 "meta": {
                     "title": "Связаться"
+                },
+                "sections": {
+                    "banner": {
+                        "title": "У тебя есть задача? Давай поговорим!",
+                        "info": "Получите бесплатную консультацию по вашему проекту – оставьте заявку на сайте или свяжитесь со мной любым удобным способом"
+                    }
                 }
             },
             "blog": {
@@ -72,7 +82,10 @@
             }
         },
         "buttons": {
-            "otherProjects": "Остальные проекты"
+            "otherProjects": "Остальные проекты",
+            "otherArticles": "Остальные статьи",
+            "leaveRequest": "Оставьте заявку",
+            "moreAbout": "Подробнее обо мне"
         },
         "labels": {
             "downloadCV": "Скачать резюме",

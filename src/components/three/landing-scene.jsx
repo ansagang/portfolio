@@ -7,7 +7,7 @@ import { Physics, useSphere } from "@react-three/cannon"
 
 const rfs = THREE.MathUtils.randFloatSpread
 const sphereGeometry = new THREE.SphereGeometry(0.7, 32, 32)
-const baubleMaterial = new THREE.MeshStandardMaterial({ color: 'white', roughness: 1, envMapIntensity: 1 })
+const baubleMaterial = new THREE.MeshStandardMaterial({ color: 'lack', roughness: 1, envMapIntensity: 1 })
 
 export default function Scene({ quantity = 0, inView }) {
   return (
@@ -47,8 +47,8 @@ function Clump({ quantity, mat = new THREE.Matrix4(), vec = new THREE.Vector3(),
   })
   return (
     <instancedMesh ref={ref} castShadow receiveShadow args={[sphereGeometry, baubleMaterial, quantity]}>
-      <Outlines color='gray' thickness={0.99} />
-      <meshBasicMaterial attach="material" color='white' toneMapped={false} />
+      <Outlines color='black' thickness={0.99} />
+      <meshBasicMaterial attach="material" color='#222' toneMapped={false} />
     </instancedMesh>
   )
 }

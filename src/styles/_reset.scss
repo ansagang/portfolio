@@ -227,3 +227,7 @@ input[type="search"] {
 //     border:1px solid $bg_color_lighter;
 //     margin: 30px 0;
 // }
+
+a:-webkit-any-link {
+    cursor: none;
+}

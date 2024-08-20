@@ -12,16 +12,13 @@ function Word({ children, ...props }) {
     const over = (e) => (e.stopPropagation(), setHovered(true))
     const out = () => setHovered(false)
     // Change the mouse cursor on hover
-    useEffect(() => {
-        if (hovered) document.body.style.cursor = 'pointer'
-        return () => (document.body.style.cursor = 'auto')
-    }, [hovered])
+
     // Tie component to the render-loop
     useFrame(({ camera }) => {
         // Make text face the camera
         ref.current.quaternion.copy(camera.quaternion)
         // Animate font color
-        ref.current.material.color.lerp(color.set(hovered ? '#fa2720' : 'white'), 0.1)
+        // ref.current.material.color.lerp(color.set(hovered ? '#fa2720' : 'white'), 0.1)
     })
     return <Text ref={ref} onPointerOver={over} onPointerOut={out} {...props} {...fontProps} children={children} />
 }
@@ -42,12 +39,12 @@ function Cloud({ count = 4, radius = 20, language }) {
     return words.map(([pos, word], index) => <Word key={index} position={pos} children={word} />)
 }
 
-export default function Words({ language }) {
+export default function Words({ language, count, radius }) {
     return (
         <Canvas dpr={[1, 2]} camera={{ position: [0, 0, 35], fov: 90 }}>
             <fog attach="fog" args={['#202025', 0, 80]} />
-            <Cloud language={language} count={8} radius={20} />
-            <TrackballControls />
+            <Cloud language={language} count={count} radius={radius} />
+            <TrackballControls mouseButtons={{RIGHT: null, LEFT: THREE.MOUSE.LEFT}} />
         </Canvas>
     )
 }

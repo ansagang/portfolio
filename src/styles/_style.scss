@@ -191,8 +191,9 @@
     position: absolute;
     z-index: -1;
     background: radial-gradient(circle, rgb(211, 211, 211) 0%, rgb(234, 234, 234) 23%, rgba(255,255,255,1) 100%);
-    // background: radial-gradient(circle, rgb(135, 173, 255) 0%, rgb(93, 112, 255) 27%, rgb(27, 34, 255) 100%);
     // background-color: #202025;
+    // background-color: #111;
+    // background-color: $bg_color;
     &__inner{
         opacity: 0.99;
         // background-color:rgb(200, 255, 238);
@@ -219,17 +220,24 @@
                 stroke-dasharray: 400%;
                 stroke-dashoffset: 0;
                 animation: dash 2s alternate linear;
+                stroke: $bg_color;
+                mix-blend-mode: exclusion;
             }
         }
     }
     &__title{
         & h1{
             font-size: $big_font_size;
+    color: $bg_color !important;
+            mix-blend-mode: exclusion;
         }
     }
     &__info{
         & p{
-            color: $primary_color;
+            // color: $primary_color;
+    color: $bg_color !important;
+    mix-blend-mode: exclusion;
+
         }
     }
 }
@@ -453,21 +461,74 @@ body{
 }
 
 .about{
+    background-color: $bg_color;
     &__inner{
+        // background-color: #111;
         display: flex;
         align-items: center;
         justify-content: space-between;
     }
-    &__left{
-        width: 50%;
+    &__visual{
+        width: 30%;
     }
-    &__right{
-        width: 40%;
-        &-visual{
-            background-color: #111;
-            width: 100%;
-            border-radius: 20px;
+    &__picture{
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &-one,
+        &-two{
+            border: 1px solid $secondary_color;
+            padding: 10px;
+            position: absolute;
             height: 300px;
+            width: 250px;
+            background-color: $bg_color;
+        }
+        &-two{
+            transform: translate(100px, -30px) rotate(6deg);
+            z-index: 3;
+        }
+        &-one{
+            transform: translate(-100px, 50px) rotate(-8deg);
+            z-index: 2;
         }
     }
+    &__content{
+        width: 50%;
+    }
+    &__title{
+        & h2{
+            margin-top: 30px;
+        }
+    }
+    // &__left{
+    //     width: 50%;
+    //     &-title{
+    //         color: $bg_color;
+    //         margin-bottom: 40px;
+    //     }
+    //     &-info{
+    //         color: $bg_color;
+    //     }
+    // }
+    // &__right{
+    //     width: 40%;
+    //     &-visual{
+    //         // background-color: #111;
+    //         width: 100%;
+    //         border-radius: 20px;
+    //         height: 350px;
+    //         border-radius: 20px;
+    //         overflow: hidden;
+    //     }
+    // }
+    // &__banner{
+    //     display: flex;
+    //     align-items: center;
+    //     justify-content: space-between;
+    //     // padding: $pd_medium;
+    //     padding: 60px;
+    //     border-radius: 30px;
+    // }
 }

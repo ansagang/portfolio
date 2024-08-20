@@ -22,9 +22,6 @@ export default function Projects({ language }) {
                         <div className="block__heading-title title">
                             <h2>{language.app.pages.projects.meta.title}</h2>
                         </div>
-                        <div className="block__heading-info title">
-                            <h4>I have a proven track record of my projects</h4>
-                        </div>
                     </div>
                     <div className="block__content">
                         <div className="block__content-projects">

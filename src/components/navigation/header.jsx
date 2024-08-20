@@ -10,9 +10,10 @@ import DownloadLink from "@/components/ui/download-link"
 import useScrollPosition from "@/hooks/use-scroll-position"
 import { useEffect, useState } from "react"
 import useScrollMovement from "@/hooks/use-scroll-movement"
+import { usePathname } from "next/navigation"
 
 export default function Header({ language }) {
-    // const pathname = usePathname()
+    const pathname = usePathname()
 
     const [active, isActive] = useState(false)
     const [sticky, setSticky] = useState(true)
@@ -20,10 +21,6 @@ export default function Header({ language }) {
     // const [isPending, startTransition] = useTransition()
 
     // const notification = responseHandler()
-
-    // useEffect(() => {
-    //     isActive(false)
-    // }, [pathname])
 
     const scroll = useScrollPosition()
 

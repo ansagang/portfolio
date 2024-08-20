@@ -190,7 +190,6 @@ button {
 .link{
     color: $primary_color;
     transition: color 0.15s ease;
-    cursor: pointer;
     font-size: $p_font_size;
     font-weight: $lighter_font_weight;
     &.active{
@@ -550,4 +549,8 @@ textarea{
             opacity: 1;
         }
     }
+}
+
+.black{
+    background-color: #111;
 }

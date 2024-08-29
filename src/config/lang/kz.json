@@ -50,7 +50,9 @@
                 },
                 "sections": {
                     "about": {
-                        "words": ["me", "web-development", "front-end", "grace", "gratitude", "dedication", "hard work", "dombra", "sport", "gym", "goal", "back-end", "design", "resilience", "tough", "work", "family", "love", "empathy"]
+                        "words": ["me", "web-development", "front-end", "grace", "gratitude", "dedication", "hard work", "dombra", "sport", "gym", "goal", "back-end", "design", "resilience", "tough", "work", "family", "love", "empathy"],
+                        "info1": "Қазақстан, Астана қаласында туған. Мен соңғы 4 жылдан астам уақытты брендинг, веб-сайттар, қолданбалар және маркетингте VC қолдайтын өнімдермен бірлесіп жұмыс істедім.",
+                        "info2": "Мен тартымды әңгімелер мен цифрлық тәжірибелер жасау үшін құрылтайшылармен күш біріктіремін. Өнімдерін жарқырататын, пайдаланушылармен резонанс тудыратын және көбірек инвесторларды тартатындар."
                     }
                 },
                 "pages": {}
@@ -90,7 +92,9 @@
         },
         "labels": {
             "downloadCV": "Резюмені жіктеу",
-            "requestProject": "Жобаны сұрау"
+            "requestProject": "Жобаны сұрау",
+            "allRightsReserved": "Барлық құқықтар қорғалған",
+            "privacyPolicy": "Құпиялылық саясаты"
         },
         "global": {
             "days": {

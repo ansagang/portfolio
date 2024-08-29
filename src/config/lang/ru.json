@@ -49,7 +49,9 @@
                 },
                 "sections": {
                     "about": {
-                        "words": ["me", "web-development", "front-end", "grace", "gratitude", "dedication", "hard work", "dombra", "sport", "gym", "goal", "back-end", "design", "resilience", "tough", "work", "family", "love", "empathy"]
+                        "words": ["me", "web-development", "front-end", "grace", "gratitude", "dedication", "hard work", "dombra", "sport", "gym", "goal", "back-end", "design", "resilience", "tough", "work", "family", "love", "empathy"],
+                        "info1": "Родился в Астане, Казахстан. Последние 4+ года я сотрудничал с продуктами, поддерживаемыми венчурным капиталом, по брендингу, веб-сайтам, приложениям и маркетингу.",
+                        "info2": "Я объединяю усилия с основателями для создания захватывающих историй и цифровых впечатлений. Те, которые заставляют их продукты сиять, находить отклик у пользователей и привлекать больше инвесторов."
                     }
                 },
                 "pages": {}
@@ -89,7 +91,9 @@
         },
         "labels": {
             "downloadCV": "Скачать резюме",
-            "requestProject": "Запросить проект"
+            "requestProject": "Запросить проект",
+            "allRightsReserved": "Все права защищены.",
+            "privacyPolicy": "Политика конфиденциальности"
         },
         "global": {
             "days": {

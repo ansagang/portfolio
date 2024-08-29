@@ -51,7 +51,9 @@
                 },
                 "sections": {
                     "about": {
-                        "words": ["me", "web-development", "front-end", "grace", "gratitude", "dedication", "hard work", "dombra", "sport", "gym", "goal", "back-end", "design", "resilience", "tough", "work", "family", "love", "empathy", "me", "web-development", "front-end", "grace", "gratitude", "dedication", "hard work", "dombra", "sport", "gym", "goal", "back-end", "design", "resilience", "tough", "work", "family", "love", "empathy", "me", "web-development", "front-end", "grace", "gratitude", "dedication", "hard work", "dombra", "sport", "gym", "goal", "back-end", "design", "resilience", "tough", "work", "family", "love", "empathy", "me", "web-development", "front-end", "grace", "gratitude", "dedication", "hard work", "dombra", "sport", "gym", "goal", "back-end", "design", "resilience", "tough", "work", "family", "love", "empathy", "me", "web-development", "front-end", "grace", "gratitude", "dedication", "hard work", "dombra", "sport", "gym", "goal", "back-end", "design", "resilience", "tough", "work", "family", "love", "empathy"]
+                        "words": ["me", "web-development", "front-end", "grace", "gratitude", "dedication", "hard work", "dombra", "sport", "gym", "goal", "back-end", "design", "resilience", "tough", "work", "family", "love", "empathy", "me", "web-development", "front-end", "grace", "gratitude", "dedication", "hard work", "dombra", "sport", "gym", "goal", "back-end", "design", "resilience", "tough", "work", "family", "love", "empathy", "me", "web-development", "front-end", "grace", "gratitude", "dedication", "hard work", "dombra", "sport", "gym", "goal", "back-end", "design", "resilience", "tough", "work", "family", "love", "empathy", "me", "web-development", "front-end", "grace", "gratitude", "dedication", "hard work", "dombra", "sport", "gym", "goal", "back-end", "design", "resilience", "tough", "work", "family", "love", "empathy", "me", "web-development", "front-end", "grace", "gratitude", "dedication", "hard work", "dombra", "sport", "gym", "goal", "back-end", "design", "resilience", "tough", "work", "family", "love", "empathy"],
+                        "info1": "Born in Astana, Kazakhstan. I've spent the past 4+ years collaborating with VC-backed products on branding, websites, apps, and marketing.",
+                        "info2": "I join forces with founders to create compelling stories and digital experiences. Ones that make their products shine, resonate with users, and attract more investors."
                     }
                 },
                 "pages": {}
@@ -91,7 +93,9 @@
         },
         "labels": {
             "downloadCV": "Download CV",
-            "requestProject": "Request a project"
+            "requestProject": "Request a project",
+            "allRightsReserved": "All rights reserved.",
+            "privacyPolicy": "Privacy policy"
         },
         "global": {
             "days": {

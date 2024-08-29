@@ -6,6 +6,15 @@ import Divider from "@/components/ui/divider";
 import Experience from "@/components/sections/experience.about";
 import Achievements from "@/components/sections/achievements.about";
 
+export async function generateMetadata() {
+
+  const language = await getLanguage({})
+
+  return {
+    title: language.app.pages.about.meta.title
+  }
+}
+
 export default async function About() {
 
   const language = await getLanguage({})

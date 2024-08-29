@@ -210,6 +210,13 @@
     position: relative;
     text-align: center;
     pointer-events: none;
+    &__inner{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
     &__button{
         pointer-events: auto;
     }
@@ -714,7 +721,7 @@ body{
         padding: $pd_nav;
         display: flex;
         flex-direction: column;
-        gap: 15px;
+        gap: 5px;
     }
     &__upper{
         display: flex;
@@ -778,6 +785,43 @@ body{
                     color: $secondary_color;
                 }
             }
+        }
+    }
+}
+
+.gallery{
+    background-image: url('/images/background.png');
+    &__inner{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    &__info{
+        &.info{
+            & p{
+                color: $secondary_color;
+            }
+        }
+    }
+    &__visual{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        // height: 500px;
+
+        &-slider{
+            width: 100%;
+            height: 100%;
+        }
+
+        & ::-webkit-scrollbar{
+            display: none !important;
+        }
+        &-item{
+            border-radius: 20px;
+            overflow: hidden;
         }
     }
 }

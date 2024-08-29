@@ -35,10 +35,10 @@ export default function Footer({ language }) {
                     </div>
                     <div className="footer__lower">
                         <div className="footer__copyright info">
-                            <p>&#169; {new Date().getFullYear()} {language.app.meta.title}. All rights reserved.</p>
+                            <p>&#169; {new Date().getFullYear()} {language.app.meta.title}. {language.app.labels.allRightsReserved}</p>
                         </div>
                         <div className="footer__details info">
-                            <p>Some details</p>
+                            <Link href={'/policy'}><p>{language.app.labels.privacyPolicy}</p></Link>
                         </div>
                     </div>
                 </div>

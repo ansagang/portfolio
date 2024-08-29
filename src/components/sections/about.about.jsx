@@ -46,8 +46,8 @@ export default function AboutMe({ language }) {
                     </div>
                     <div className="about__content">
                         <div className="about__title title">
-                            <h2>Born in Astana, Kazakhstan. I've spent the past 4+ years collaborating with VC-backed products on branding, websites, apps, and marketing.</h2>
-                            <h2>I join forces with founders to create compelling stories and digital experiences. Ones that make their products shine, resonate with users, and attract more investors.</h2>
+                            <h2>{language.app.pages.about.sections.about.info1}</h2>
+                            <h2>{language.app.pages.about.sections.about.info2}</h2>
                         </div>
                     </div>
                 </div>

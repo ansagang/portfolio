@@ -7,7 +7,7 @@ import Image from "next/image";
 
 export default function AboutMe({ language }) {
 
-    const [ref, inView] = useInView(true)
+    const [ref, inView] = useInView(false)
 
     return (
         <section className="about">

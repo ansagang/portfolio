@@ -120,7 +120,7 @@
     &.active{
         
         box-shadow: inset 0 -1px 0 0 var(#111);
-        backdrop-filter: saturate(180%) blur(7px);
+        backdrop-filter: saturate(180%) blur(10px);
         background: rgba(255, 255, 255, 0.7);
     }
     &__inner{
@@ -138,6 +138,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            // gap: 35px;
         }
         &-li{
             margin: 0 35px;
@@ -531,4 +532,252 @@ body{
     //     padding: 60px;
     //     border-radius: 30px;
     // }
+}
+
+.skills{
+    position: relative;
+    background-color: #1c1c1c;
+    &__list{
+        margin-top: 60px;
+    }
+    &__title{
+        &.title{
+            color: $bg_color;
+        }
+    }
+    &__item{
+        &-title{
+            &.title{
+                color: $bg_color;
+                & h1{
+                    margin-bottom: 0;
+                    font-weight: $light_font_weight;
+                }
+            }
+        }
+        &-chips{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 7px;
+            &:has(.skills__item-chip){
+                margin: 20px 0;
+            }
+        }
+        &-chip{
+            background-color: $bg_color;
+            border-radius: 40px;
+            & button{
+                font-weight: $medium_font_weight;
+            }
+        }
+    }
+}
+
+.divider{
+    width: 100%;
+    height: 50px;
+    background-image: url('/images/skills-banner.png');
+    background-repeat: repeat-x;
+}
+
+.experience{
+    &__list{
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        margin-top: 40px;
+    }
+    &__item{
+        display: flex;
+        align-items: center;
+        border-radius: 10px;
+        border: 1px solid $secondary_color_2;
+        position: relative;
+        overflow: hidden;
+        &-year{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #111;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            & span{
+                color: white;
+                font-size: $h3_font_size;
+            }
+        }
+        &-left{
+            height: 100%;
+            width: 7%;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        &-right{
+            padding: 20px 30px 10px 30px;
+            margin-left: 7%;
+            width: 100%;
+            // display: grid; 
+            // grid-template-rows: 0fr;
+            // transition: 370ms grid-template-rows ease;
+        }
+        &-invisible{
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: 375ms grid-template-rows ease;
+            overflow: hidden;
+            // display: none;
+        }
+        &.active{
+            & .experience__item-invisible{
+                grid-template-rows: 1fr;
+                // display: block;
+            }
+
+            & .experience__item-details{
+                // display: block;
+                visibility: visible;
+            }
+
+            & .experience__item-arrow{
+                & svg{
+                    transform: rotate(0deg);
+                }
+            }
+        }
+        // &:hover{
+        //     // & .experience__item-right{
+        //     //     grid-template-rows: 1fr 100%;
+        //     // }
+        //     & .experience__item-invisible{
+        //         grid-template-rows: 1fr;
+        //         // display: block;
+        //     }
+
+        //     & .experience__item-details{
+        //         // display: block;
+        //         visibility: visible;
+        //     }
+
+        //     & .experience__item-arrow{
+        //         & svg{
+        //             transform: rotate(0deg);
+        //         }
+        //     }
+        // }   
+        &-details{
+            visibility: hidden;
+            min-height: 0;
+            transition: visibility 1s;
+            color: $secondary_color;
+        }
+        &-visible{
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        &-description{
+            &.info{
+                & p{
+                    margin-top: 0;
+                    color: $secondary_color;
+                }
+            }
+        }
+        &-title{
+            &.title{
+                font-weight: $bold_font_weight;
+            }
+        }
+        &-arrow{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 0px;
+            width: 20px;
+            height: 20px;
+            & svg{
+                width: 100%;
+                height: 100%;
+                transform: rotate(-180deg);
+                transition: 375ms transform ease;
+            }
+        }
+    }
+}
+
+.footer{
+    &__inner{
+        padding: $pd_nav;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    &__upper{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    &__nav{
+        &-ol{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+    }
+    &__logo{
+        font-weight: $bold_font_weight;
+    }
+    &__lower{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    & .info{
+        & p{
+            color: $secondary_color;
+        }
+    }
+}
+
+.achievements{
+    &__list{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        // grid-template-rows: ;
+        gap: 20px;
+        margin-top: 40px;
+    }
+    &__item{
+        display: flex;
+        border: 1px solid $secondary_color_2;
+        border-radius: 15px;
+        &-left{
+            width: 20%;
+            border-right: 1px solid $secondary_color_2;
+        }
+        &-picture{
+            & img{
+                aspect-ratio: 1;
+            }
+        }
+        &-right{
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        &-info{
+            &.info{
+                & p{
+                    margin-top: 0;
+                    color: $secondary_color;
+                }
+            }
+        }
+    }
 }

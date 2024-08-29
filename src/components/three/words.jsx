@@ -23,7 +23,7 @@ function Word({ children, ...props }) {
     return <Text ref={ref} onPointerOver={over} onPointerOut={out} {...props} {...fontProps} children={children} />
 }
 
-function Cloud({ count = 4, radius = 20, language }) {
+function Cloud({ count = 8, radius = 22, language }) {
     // Create a count x count random words with spherical distribution
     const getRandomWord = randomWord(language.app.pages.about.sections.about.words)
     const words = useMemo(() => {

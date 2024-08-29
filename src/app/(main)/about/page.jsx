@@ -1,5 +1,10 @@
 import AboutMe from "@/components/sections/about.about";
 import { getLanguage } from "@/lib/get-language";
+import Skills from "@/components/sections/skills.about";
+import Image from "next/image";
+import Divider from "@/components/ui/divider";
+import Experience from "@/components/sections/experience.about";
+import Achievements from "@/components/sections/achievements.about";
 
 export default async function About() {
 
@@ -8,6 +13,10 @@ export default async function About() {
   return (
     <>
       <AboutMe language={language} />
+      {/* <Divider /> */}
+      <Skills language={language} />
+      <Experience language={language} />
+      <Achievements language={language} />
     </>
   );
 }

@@ -13,7 +13,7 @@ export default async function Mainlayout({ children }) {
             <main>
                 <Header language={language} />
                 {children}
-                {/* <Footer language={language} /> */}
+                <Footer language={language} />
             </main>
         </>
     )

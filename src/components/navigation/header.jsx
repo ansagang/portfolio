@@ -74,7 +74,7 @@ export default function Header({ language }) {
                 <div className="container__fluid">
                     <div className="header__inner">
                         <nav className="header__nav">
-                            <Link href={'/'} className="header__nav-logo"><span>{language.app.meta.title}</span></Link>
+                            <Link href={'/'} className="header__nav-logo link"><span>{language.app.meta.title}</span></Link>
                             <ol className="header__nav-ol links">
                                 <li className="header__nav-li">
                                     <NavLink exact={true} href={'/about'}><span>{language.app.pages.about.meta.title}</span></NavLink>
@@ -89,7 +89,7 @@ export default function Header({ language }) {
                                     <NavLink href={'/blog'}><span>{language.app.pages.blog.meta.title}</span></NavLink>
                                 </li>
                                 <li className="header__nav-li">
-                                    <NavLink href={'/contact'}><span>{language.app.pages.contact.meta.title}</span></NavLink>
+                                    <NavLink hard={true} href={'/contact'}><span>{language.app.pages.contact.meta.title}</span></NavLink>
                                 </li>
                             </ol>
                         </nav>
@@ -99,7 +99,10 @@ export default function Header({ language }) {
                                     <DownloadLink file={language.app.files.cv}><span>{language.app.labels.downloadCV}</span></DownloadLink>
                                 </li>
                                 <li className="header__nav-li">
-                                    <NavLink href={'/about'}><span>{language.app.labels.requestProject}</span></NavLink>
+                                    {/* <div className="link"><span>Available</span></div> */}
+                                    <div className="header__nav-status white">
+                                        <span>Available</span>
+                                    </div>
                                 </li>
                             </ol>
                         </nav>

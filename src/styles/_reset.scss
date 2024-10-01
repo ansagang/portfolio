@@ -1,5 +1,5 @@
 @import 'vars';
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 *,
 *::before,
@@ -7,6 +7,7 @@
     box-sizing: border-box;
     outline: none;
     -webkit-tap-highlight-color: transparent;
+    cursor: none !important;
 }
 
 html,
@@ -25,7 +26,6 @@ body {
     -moz-text-size-adjust: 100%;
     text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;
-    // cursor:url('data:image/png;base64,PUT_YOUR_BASE64_ENCODED_IMAGE_HERE');
 }
 
 html {
@@ -95,11 +95,11 @@ select {
 
 a{
     text-decoration: none;
-    color: initial;
+    color: inherit;
     // font-family: "Roboto", sans-serif;
     font-style: normal;
-    font-weight: $lighter_font_weight;
-    cursor: none;
+    font-weight: inherit;
+    // cursor: none;
 }
 
 input[type="email"],
@@ -125,7 +125,7 @@ textarea {
     //     border: 1px solid $accent_color
     // }
     &:focus{
-        border: 1px solid $primary_color;
+        border: 1px solid $accent_color;
     }
 
     &:disabled{
@@ -147,12 +147,12 @@ input[type="search"] {
     width: 100%;
     // background: $secondary_color_3;
     padding: 12px 20px;
-    border-radius: 7px;
+    border-radius: 10px;
     appearance: none; //for iOS input[type="search"] roundedness issue. border-radius alone doesn't work
     transition: all 0.4s ease;
     z-index: 1;
     position: relative;
-    border: 2px solid $secondary_color_2;
+    border: 1.5px solid $secondary_color_2;
     // &:hover{
     //     border: 2px solid $accent_color_2;
     // }
@@ -160,7 +160,7 @@ input[type="search"] {
     //     border: 2px solid $accent_color_2;
     // }
     &::placeholder{
-        color: $secondary_color_4;
+        color: $secondary_color;
     }
 
     &::-webkit-search-cancel-button {
@@ -230,5 +230,9 @@ input[type="search"] {
 // }
 
 a:-webkit-any-link {
-    cursor: none;
+    // cursor: none;
+}
+
+button[type="submit"]{
+    border-radius: $input_radius;
 }

@@ -22,7 +22,7 @@ export default function Blog({ language }) {
                     </div>
                     <div className="block__content">
                         <div ref={cardRef} className="block__content-articles">
-                            <BlogCard style={{transitionDelay: '0s'}} className={inView ? 'active animation__up' : 'animation__up'} id={1} title={'Best Design Tips for Front-end Developer'} picture={'https://images.pexels.com/photos/53435/tree-oak-landscape-view-53435.jpeg?cs=srgb&dl=pexels-pixabay-53435.jpg&fm=jpg'} />
+                            <BlogCard info={'Bla bla bvla'} style={{transitionDelay: '0s'}} className={inView ? 'active animation__up' : 'animation__up'} id={1} title={'Best Design Tips for Front-end Developer'} picture={'https://images.pexels.com/photos/53435/tree-oak-landscape-view-53435.jpeg?cs=srgb&dl=pexels-pixabay-53435.jpg&fm=jpg'} />
                             <BlogCard style={{transitionDelay: '0.5s'}} className={inView ? 'active animation__up' : 'animation__up'} id={1} title={'Best Design Tips for Front-end Developer'} picture={'https://mir-s3-cdn-cf.behance.net/project_modules/1400/e2422641871883.57b7605716279.png'} />
                             <BlogCard style={{transitionDelay: '1s'}} className={inView ? 'active animation__up' : 'animation__up'} id={1} title={'Best Design Tips for Front-end Developer'} picture={'https://symbolsage.com/wp-content/uploads/2020/08/gray-color-in-nature.jpg'} />
                         </div>

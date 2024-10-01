@@ -1,7 +1,12 @@
 "use client"
 
-export default function Button({ form, type, children, className, ...props }) {
+import Link from "next/link"
+
+export default function Button({ href, form, type, children, className, ...props }) {
     return (
-        <button type={form ? 'submit' : 'button'} className={type + ' ' + className} {...props}>{children}</button>
+        href ?
+        <Link href={href}><button type={form ? 'submit' : 'button'} className={type + ' white ' + className} {...props}>{children}</button></Link>
+        :
+        <button type={form ? 'submit' : 'button'} className={type + ' white ' + className} {...props}>{children}</button>
     )
 }

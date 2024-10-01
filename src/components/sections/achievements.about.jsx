@@ -7,7 +7,7 @@ export default function Achievements({language}) {
     return (
         <div className="achievements">
             <div className="container">
-                <div className="achievements__inner inner">
+                <div className="achievements__inner inner__small">
                     <div className="achievemenets__title title">
                         <h2>Achievements</h2>
                     </div>

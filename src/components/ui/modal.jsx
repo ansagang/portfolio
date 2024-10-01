@@ -1,33 +1,16 @@
 "use client"
 
+import { Icons } from "@/config/icons"
 import Button from "./button"
 
-export default function Modal({ refer, title, description, cancelButton, button, children, ...props }) {
+export default function Modal({ children, ...props }) {
 
     return (
-        <dialog ref={refer} {...props} className="dialog">
-            <div className="dialog__head">
-                <div className="dialog__title title">
-                    <h3>{title}</h3>
-                </div>
-                {
-                    description ?
-                        (
-                            <div className="dialog__info info">
-                                <p>{description}</p>
-                            </div>
-                        )
-                        :
-                        null
-                }
+        <dialog className="dialog" {...props}>
+            <div className="dialog__close">
+                <Icons.close />
             </div>
-            <div className="dialog__body">
-                {children}
-            </div>
-            <div className="dialog__buttons">
-                {cancelButton}
-                {button}
-            </div>
+           {children}
         </dialog>
     )
 }

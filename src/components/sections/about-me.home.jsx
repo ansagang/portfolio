@@ -57,12 +57,7 @@ export default function AboutMe({ language }) {
                             </div>
                             <div className="block__content-stat">
                                 <div className="block__content-stat_number">
-                                    {
-                                        statsInView ?
-                                            <span><IncrementingNumber end={20} />+</span>
-                                            :
-                                            <span>0+</span>
-                                    }
+                                    <Icons.infinity width="50px" height="50px" />
                                 </div>
                                 <div className="block__content-stat_title title">
                                     <h4>{language.app.pages.home.sections.about.reviewsGiven}</h4>

@@ -39,7 +39,7 @@ export const TiltCard = ({ children, ...props }) => {
     };
 
     return (
-        <div {...props} onMouseMove={onMouseMove} onMouseLeave={onMouseLeave} style={{transform: `perspective(1000px) rotateX(${rotate.x}deg) rotateY(${rotate.y}deg) scale3d(1, 1, 1)`, transition: "all 400ms cubic-bezier(0.03, 0.98, 0.52, 0.99) 0s",}}>
+        <div {...props} onMouseMove={onMouseMove} onMouseLeave={onMouseLeave} style={{transform: `perspective(1000px) rotateX(${rotate.x}deg) rotateY(${rotate.y}deg) scale3d(1, 1, 1)`, transition: "all 400ms cubic-bezier(0.03, 0.98, 0.52, 0.99) 0s"}}>
             {children}
         </div>
     );

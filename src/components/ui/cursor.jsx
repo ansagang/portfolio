@@ -1,43 +1,74 @@
-"use client"
+"use client";
 
-import useMousePosition from "@/hooks/use-mouse-position"
-import { useEffect, useState } from "react"
+import { findCommonElement } from "@/lib/utils";
+import React, { useState, useEffect } from "react";
 
-export default function Cursor() {
-    const mouse = useMousePosition()
+const Cursor = ({ colors, pointers }) => {
+  const [position, setPosition] = useState({ x: 0, y: 0 });
 
-    // const [active, setActive] = useState(false)
+  const [isColor, setIsColor] = useState(false);
+  const [isPointer, setIsPointer] = useState(false);
+  const [isClicked, setIsClicked] = useState(false)
 
-    // const body = document.querySelector('body');
+  const handleMouseDown = () => {
+    setIsClicked(true);
+  };
 
-    // useEffect(() => {
-    //     body.addEventListener('mouseleave', () => {
-    //         setActive(false)
-    //     })
-    //     body.addEventListener('mouseenter', () => {
-    //         setActive(true)
-    //     })
+  const handleMouseUp = () => {
+    setIsClicked(false);
+  };
 
-    //     return () => {
-    //         body.addEventListener('mouseleave', () => {
-    //             setActive(false)
-    //         })
-    //     }
-    // }, [mouse])
-
-    // useEffect(() => {
-    //     body.addEventListener('mouseenter', () => {
-    //         setActive(true)
-    //     })
-
-    //     return () => {
-    //         body.addEventListener('mouseenter', () => {
-    //             setActive(true)
-    //         })
-    //     }
+  const handleMouseMove = (e) => {
+    setPosition({ x: e.clientX, y: e.clientY });
+    // classes.forEach((clas) => {
+    //     setIsPointer(target.className.split(' ').includes(clas))
     // })
+    // target.className.split(' ').forEach((targetClassname) => {
+    //     setIsPointer(classes.includes(targetClassname))
+    // })
+    const target = e.target
 
-    return (
-        <div style={{ transform: `translate(${mouse.mouseX}px, ${mouse.mouseY}px)` }} className={"cursor active"}></div>
-    )
-}
+    const closestColor = target.closest(`.${colors.join(", .")}`);
+    const closestPointer = target.closest(pointers.join(", "));
+
+    // If a parent (or the target) with the class exists, set the cursor as pointer
+    setIsColor(!!closestColor);
+    setIsPointer(!!closestPointer)
+    // setIsPointer(
+    //     window.getComputedStyle(e.target).getPropertyValue("cursor") === "pointer"
+    //     window.get
+    //   );
+  };
+
+  useEffect(() => {
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousedown", handleMouseDown);
+    window.addEventListener("mouseup", handleMouseUp);
+
+    return () => {
+      window.addEventListener("mousedown", handleMouseDown);
+      window.addEventListener("mouseup", handleMouseUp);
+      window.removeEventListener("mousemove", handleMouseMove);
+    }
+
+
+
+  }, [position]);
+
+  const flareSize = isPointer ? 0 : 30;
+
+  const cursorStyle = isPointer ? { left: "-100px", top: "-100px" } : {};
+
+  return (
+    <div
+      className={`cursor ${isColor ? "color" : ""} ${isPointer ? "pointer" : ""} ${isClicked ? "clicked" : ''}`}
+      style={{
+        ...cursorStyle,
+        left: `${position.x}px`,
+        top: `${position.y}px`
+      }}
+    ></div>
+  );
+};
+
+export default Cursor;

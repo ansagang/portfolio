@@ -25,7 +25,7 @@ export default async function About() {
       {/* <Divider /> */}
       <Skills language={language} />
       <Experience language={language} />
-      <Achievements language={language} />
+      {/* <Achievements language={language} /> */}
     </>
   );
 }

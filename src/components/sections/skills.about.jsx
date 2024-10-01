@@ -6,7 +6,7 @@ import Laptop from "../three/laptop"
 
 export default function Skills({language}) {
     return (
-        <section className="skills">
+        <section className="skills white">
             <div className="container">
                 <div className="skills__inner inner">
                     <div className="skills__title title">

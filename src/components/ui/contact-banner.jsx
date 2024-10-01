@@ -4,6 +4,7 @@ import Image from "next/image"
 import Button from "./button"
 import { useRouter } from "next/navigation"
 import { Icons } from "@/config/icons"
+import Link from "next/link"
 
 export default function ContactBanner({ banner, className, language, ...props }) {
 

@@ -10,7 +10,7 @@ export default function Experience({ language }) {
     return (
         <section className="experience">
             <div className="container">
-                <div className="experience__inner inner">
+                <div className="experience__inner inner__small">
                     <div className="experience__title title">
                         <h2>Experience</h2>
                     </div>

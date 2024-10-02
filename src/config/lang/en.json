@@ -5,36 +5,37 @@
         "success": "Success",
         "error": "Error",
         "info": "Info",
-        "warning": "Warning"
+        "warning": "Warning",
+        "linkCopied": "Link copied"
     },
     "app": {
         "meta": {
             "title": "Angsar Aben",
-            "description": "My portfolio.",
+            "description": "My portfolio website.",
             "keywords": [
                 "Next.js",
                 "Portfolio"
             ]
         },
         "files": {
-            "cv": "CV Aben Angsar.pdf"
+            "cv": "Angsar Aben CV.pdf"
         },
         "pages": {
             "home": {
                 "meta": {
                     "title": ""
                 },
-                "sections": {
+                "sections": {   
                     "landing": {
-                        "title": "Quality design & web development synergy",
-                        "info": "I develop intuitive websites and apps, enhancing user experience, key metrics, and digital leadership."
+                        "title": "Quality design & development for impactful solutions",
+                        "info": "I develop intuitive solutions that benefit the society, enhancing user experience and key metrics."
                     },
                     "about": {
-                        "title": "I create an aesthetic design that users like at first sight and seamlessly integrates with business or product",
-                        "info": "Every project is an opportunity to express myself and give people a cool product. I do what I love and it benefits me and the people around me. Making the best designs and exceeding market expectations. I am constantly evolving, helping other designers and writing a professional blog",
-                        "yearsInDev": "years in web development",
+                        "title": "Crafting appealing products, dynamic web apps, and digital platforms that empower communities and create lasting impact.",
+                        "info": "Every project is an opportunity to express myself and give people a cool product. I do what I love and it benefits me and the people around me. Making the best designs and exceeding market expectations. I am constantly evolving, helping other developers.",
+                        "yearsInDev": "years in development",
                         "completedProjects": "completed projects",
-                        "reviewsGiven": "reviews given"
+                        "passion": "passion"
                     }
                 },
                 "pages": {}
@@ -48,13 +49,19 @@
             "about": {
                 "meta": {
                     "title": "About me"
-                },
-                "sections": {
-                    "about": {
-                        "words": ["me", "web-development", "front-end", "grace", "gratitude", "dedication", "hard work", "dombra", "sport", "gym", "goal", "back-end", "design", "resilience", "tough", "work", "family", "love", "empathy", "me", "web-development", "front-end", "grace", "gratitude", "dedication", "hard work", "dombra", "sport", "gym", "goal", "back-end", "design", "resilience", "tough", "work", "family", "love", "empathy", "me", "web-development", "front-end", "grace", "gratitude", "dedication", "hard work", "dombra", "sport", "gym", "goal", "back-end", "design", "resilience", "tough", "work", "family", "love", "empathy", "me", "web-development", "front-end", "grace", "gratitude", "dedication", "hard work", "dombra", "sport", "gym", "goal", "back-end", "design", "resilience", "tough", "work", "family", "love", "empathy", "me", "web-development", "front-end", "grace", "gratitude", "dedication", "hard work", "dombra", "sport", "gym", "goal", "back-end", "design", "resilience", "tough", "work", "family", "love", "empathy"],
-                        "info1": "Born in Astana, Kazakhstan. I've spent the past 4+ years collaborating with VC-backed products on branding, websites, apps, and marketing.",
-                        "info2": "I join forces with founders to create compelling stories and digital experiences. Ones that make their products shine, resonate with users, and attract more investors."
-                    }
+                    },
+                    "sections": {
+                        "about": {
+                            "words": ["me", "web-development", "front-end", "grace", "gratitude", "dedication", "hard work", "dombra", "sport", "gym", "goal", "back-end", "design", "resilience", "tough", "work", "family", "love", "empathy", "me", "web-development", "front-end", "grace", "gratitude", "dedication", "hard work", "dombra", "sport", "gym", "goal", "back-end", "design", "resilience", "tough", "work", "family", "love", "empathy", "me", "web-development", "front-end", "grace", "gratitude", "dedication", "hard work", "dombra", "sport", "gym", "goal", "back-end", "design", "resilience", "tough", "work", "family", "love", "empathy", "me", "web-development", "front-end", "grace", "gratitude", "dedication", "hard work", "dombra", "sport", "gym", "goal", "back-end", "design", "resilience", "tough", "work", "family", "love", "empathy", "me", "web-development", "front-end", "grace", "gratitude", "dedication", "hard work", "dombra", "sport", "gym", "goal", "back-end", "design", "resilience", "tough", "work", "family", "love", "empathy"],
+                            "info1": "Born in Astana, Kazakhstan. Since 2020, I’ve focused on developing projects that improve the lives of others. I build products that shine and resonate with users 💡.",
+                            "info2": "Outside of coding, I love doing sports 🏀 ⚽️ 🏋🏽‍♂️, playing video games, and volunteering. I’m constantly exploring new ways to leverage technology for positive impact."
+                        },
+                        "skills": {
+                            "title": "Skills"
+                        },
+                        "experience": {
+                            "title": "Experience"
+                        }
                 },
                 "pages": {}
             },
@@ -75,7 +82,11 @@
                 "sections": {
                     "banner": {
                         "title": "You’ve got a challenge? Let's talk!",
-                        "info": "Get a free consultation on your project – leave a request on the website or contact me in any convenient way"
+                        "info": "Leave a request on the website or contact me in any convenient way"
+                    },
+                    "contact": {
+                        "title": "Get in Touch!",
+                        "info": "I’d love to hear from you! Whether you have a question, want to collaborate, or just want to say hello, feel free to reach out. You can use the contact form below, and I’ll get back to you as soon as possible."
                     }
                 }
             },
@@ -89,15 +100,26 @@
             "otherProjects": "Other projects",
             "otherArticles": "Other articles",
             "leaveRequest": "Leave a request",
-            "moreAbout": "More about me"
+            "moreAbout": "More about me",
+            "send": "Send"
         },
         "labels": {
             "downloadCV": "Download CV",
             "requestProject": "Request a project",
             "allRightsReserved": "All rights reserved.",
-            "privacyPolicy": "Privacy policy"
+            "privacyPolicy": "Privacy policy",
+            "firstName": "First name",
+            "lastName": "Last name",
+            "email": "Email",
+            "message": "Message",
+            "firstNamePlaceholder": "Angsar",
+            "lastNamePlaceholder": "Aben",
+            "emailPlaceholder": "angsar.aben@gmail.com",
+            "messagePlaceholder": "Hello!"
         },
         "global": {
+            "available": "Available for work",
+            "unavailable": "Busy",
             "days": {
                 "monday": {
                     "full": "Monday",

@@ -12,7 +12,7 @@ export default function Experience({ language }) {
             <div className="container">
                 <div className="experience__inner inner__small">
                     <div className="experience__title title">
-                        <h2>Experience</h2>
+                        <h2>{language.app.pages.about.sections.experience.title}</h2>
                     </div>
                     <div className="experience__list">
                         <div className={active === 1 ? "experience__item active" : "experience__item"} onClick={() => {

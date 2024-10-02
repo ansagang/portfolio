@@ -60,7 +60,7 @@ export default function AboutMe({ language }) {
                                     <Icons.infinity width="50px" height="50px" />
                                 </div>
                                 <div className="block__content-stat_title title">
-                                    <h4>{language.app.pages.home.sections.about.reviewsGiven}</h4>
+                                    <h4>{language.app.pages.home.sections.about.passion}</h4>
                                 </div>
                             </div>
                         </div>

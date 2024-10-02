@@ -77,7 +77,7 @@ export default function Header({ language }) {
                             <Link href={'/'} className="header__nav-logo link"><span>{language.app.meta.title}</span></Link>
                             <ol className="header__nav-ol links">
                                 <li className="header__nav-li">
-                                    <NavLink exact={true} href={'/about'}><span>{language.app.pages.about.meta.title}</span></NavLink>
+                                    <NavLink href={'/about'}><span>{language.app.pages.about.meta.title}</span></NavLink>
                                 </li>
                                 <li className="header__nav-li">
                                     <NavLink href={'/projects'}><span>{language.app.pages.projects.meta.title}</span></NavLink>
@@ -89,7 +89,7 @@ export default function Header({ language }) {
                                     <NavLink href={'/blog'}><span>{language.app.pages.blog.meta.title}</span></NavLink>
                                 </li>
                                 <li className="header__nav-li">
-                                    <NavLink hard={true} href={'/contact'}><span>{language.app.pages.contact.meta.title}</span></NavLink>
+                                    <NavLink href={'/contact'}><span>{language.app.pages.contact.meta.title}</span></NavLink>
                                 </li>
                             </ol>
                         </nav>
@@ -101,7 +101,7 @@ export default function Header({ language }) {
                                 <li className="header__nav-li">
                                     {/* <div className="link"><span>Available</span></div> */}
                                     <div className="header__nav-status white">
-                                        <span>Available</span>
+                                        <span>{language.app.global.available}</span>
                                     </div>
                                 </li>
                             </ol>

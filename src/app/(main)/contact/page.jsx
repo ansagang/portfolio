@@ -1,4 +1,4 @@
-import HeroContact from "@/components/sections/hero.contact";
+import Contact from "@/components/sections/contact.contact";
 import { getLanguage } from "@/lib/get-language";
 
 export async function generateMetadata() {
@@ -10,11 +10,11 @@ export async function generateMetadata() {
   }
 }
 
-export default async function Contact() {
+export default async function ContactPage() {
 
   const language = await getLanguage({})
 
   return (
-    <HeroContact language={language} />
+    <Contact language={language} />
   );
 }

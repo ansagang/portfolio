@@ -16,7 +16,7 @@ export default function Footer({ language }) {
                         <nav className="footer__nav">
                             <ol className="footer__nav-ol links">
                                 <li className="footer__nav-li">
-                                    <NavLink exact={true} href={'/about'}><span>{language.app.pages.about.meta.title}</span></NavLink>
+                                    <NavLink href={'/about'}><span>{language.app.pages.about.meta.title}</span></NavLink>
                                 </li>
                                 <li className="footer__nav-li">
                                     <NavLink href={'/projects'}><span>{language.app.pages.projects.meta.title}</span></NavLink>

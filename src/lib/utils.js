@@ -119,3 +119,17 @@ export function findCommonElement(array1, array2) {
     // Return if no common element exist
     return false;
 }
+
+export default async function facetsFinder(array, value) {
+
+  const values = []
+  array.forEach(element => {
+
+      element[value].forEach(element => {
+        values.push(element)
+      })
+  });
+  const valuesUnique = Array.from(new Set(values))
+
+  return valuesUnique
+}

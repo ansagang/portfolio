@@ -4,9 +4,10 @@ import { TiltCard } from "@/components/ui/tilt-card"
 import Link from "next/link"
 import { useRef, useState } from "react"
 
-export default function ProjectCard({ id, title, description, type, video, ...props }) {
+export default function ProjectCard({ id, title, description, category, video, ...props }) {
 
     const videoRef = useRef(null)
+    const type = category.join(" / ")
 
     return (
         <div className="project-card" {...props}>

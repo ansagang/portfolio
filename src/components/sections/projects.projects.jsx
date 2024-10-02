@@ -1,60 +1,46 @@
 "use client"
 
-import Image from "next/image"
-import { useEffect, useState } from "react"
+import { useState } from "react"
+import Chip from "../ui/chip"
+import Input from "../ui/input"
+import ProjectCard from "../ui/project-card"
+import Select from "../ui/select"
 
-export default function HeroProjects({ language }) {
+export default function Projects({ language }) {
 
-    const [number, setNumber] = useState(6)
-    const [randomNumber, setRandomNumber] = useState(null);
+    const [search, setSearch] = useState()
+    const [category, setCategory] = useState()
 
-    // Function to pick a random number between 1 and maxNumber
-    const pickRandomNumber = (maxNumber) => {
-        const num = Math.floor(Math.random() * maxNumber) + 1;
-        setRandomNumber(num);
-    };
-
-    useEffect(() => {
-        const intervalId = setInterval(() => {
-            pickRandomNumber(number)
-        }, 2000);
-
-        // Cleanup function to clear the interval when the component unmounts
-        return () => clearInterval(intervalId);
-    }, []);
 
     return (
         <section className="projects">
             <div className="container">
-                <div className="projects__inner inner__big">
-                    <div className="projects__left">
-                        <div className="projects__content">
-                            <div className="projects__title title">
-                                <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor eius simil</h2>
-                                <h2>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa bland</h2>
+                <div className="projects__inner inner">
+                    <div className="projects__title title">
+                        <h2>{language.app.pages.projects.meta.title}</h2>
+                    </div>
+                    <div className="projects__list">
+                        <div className="projects__list-filter">
+                            <div className="projects__list-filter_search">
+                                <Input value={search} type={'search'} placeholder="Search some projects..." />
+                            </div>
+                            <div className="projects__list-filter_select">
+                                <Select activeOption={category} setActiveOption={setCategory} options={[{ title: 'All', code: 'frontend' }, { title: 'front-end', code: 'frontend' }]} />
+
+                            </div>
+                            <div className="projects__list-filter_select">
+                                <Select activeOption={category} setActiveOption={setCategory} options={[{ title: 'front-end', code: 'frontend' }]} />
                             </div>
                         </div>
-                    </div>
-                    <div className="projects__right">
-                        <div className="projects__visual">
-                            <div className={randomNumber === 1 ? "projects__visual-img active" : "projects__visual-img"}>
-                                <Image width={1} height={1} unoptimized src={"https://cdn.prod.website-files.com/643f7373d3f6653157617339/650a831a122b388d02f5a641_ui-ux-design-agency-musemind.jpg"} />
-                            </div>
-                            <div className={randomNumber === 2 ? "projects__visual-img active" : "projects__visual-img"}>
-                                <Image width={1} height={1} unoptimized src={"https://cdn.prod.website-files.com/643f7373d3f6653157617339/650a831a122b388d02f5a641_ui-ux-design-agency-musemind.jpg"} />
-                            </div>
-                            <div className={randomNumber === 3 ? "projects__visual-img active" : "projects__visual-img"}>
-                                <Image width={1} height={1} unoptimized src={"https://cdn.prod.website-files.com/643f7373d3f6653157617339/650a831a122b388d02f5a641_ui-ux-design-agency-musemind.jpg"} />
-                            </div>
-                            <div className={randomNumber === 4 ? "projects__visual-img active" : "projects__visual-img"}>
-                                <Image width={1} height={1} unoptimized src={"https://cdn.prod.website-files.com/643f7373d3f6653157617339/650a831a122b388d02f5a641_ui-ux-design-agency-musemind.jpg"} />
-                            </div>
-                            <div className={randomNumber === 5 ? "projects__visual-img active" : "projects__visual-img"}>
-                                <Image width={1} height={1} unoptimized src={"https://cdn.prod.website-files.com/643f7373d3f6653157617339/650a831a122b388d02f5a641_ui-ux-design-agency-musemind.jpg"} />
-                            </div>
-                            <div className={randomNumber === 6 ? "projects__visual-img active" : "projects__visual-img"}>
-                                <Image width={1} height={1} unoptimized src={"https://cdn.prod.website-files.com/643f7373d3f6653157617339/650a831a122b388d02f5a641_ui-ux-design-agency-musemind.jpg"} />
-                            </div>
+                        <div className="projects__list-items">
+                            <ProjectCard className="projects__list-item" id={1} title={'Chetam'} description={'Tuda susa'} category={['Local']} video={'takoe'} />
+                            <ProjectCard className="projects__list-item" id={1} title={'Chetam'} description={'Tuda susa'} category={['Local']} video={'takoe'} />
+
+                            <ProjectCard className="projects__list-item" id={1} title={'Chetam'} description={'Tuda susa'} category={['Local']} video={'takoe'} />
+                            <ProjectCard className="projects__list-item" id={1} title={'Chetam'} description={'Tuda susa'} category={['Local']} video={'takoe'} />
+
+                            <ProjectCard className="projects__list-item" id={1} title={'Chetam'} description={'Tuda susa'} category={['Local']} video={'takoe'} />
+
                         </div>
                     </div>
                 </div>

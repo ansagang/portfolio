@@ -4,10 +4,10 @@ import Image from "next/image"
 import Link from "next/link"
 import Chip from "./chip"
 
-export default function BlogCard({ className, active, id, info = null, title, picture, ...props }) {
+export default function BlogCard({ className, active, id, info = null, title, tags, picture, ...props }) {
 
     return (
-        <Link href={`/blog/${id}`} className={active ? `blog-card ${className} show` : `blog-card ${className}`} {...props}>
+        <Link href={`/blog/${id}`} className={active ? `blog-card ${className} show white` : `blog-card white ${className}`} {...props}>
             <div className="blog-card__visual">
                 <Image src={picture} width={1} height={1} unoptimized={true} />
             </div>
@@ -22,9 +22,18 @@ export default function BlogCard({ className, active, id, info = null, title, pi
                 </div>
 
                 <div className="blog-card__chips">
-                        <Chip type={'secondary'} className={'blog-card__chip'}>Tag</Chip>
-                        <Chip type={'secondary'} className={'blog-card__chip'}>Tag</Chip>
-                    </div>
+                    {
+                        tags ?
+                            tags.length !== 0 ?
+                                tags.map((tag) => (
+                                    <Chip type={'secondary'} className={'blog-card__chip'}>{tag}</Chip>
+                                ))
+                                :
+                                null
+                            :
+                            null
+                    }
+                </div>
             </div>
         </Link>
     )

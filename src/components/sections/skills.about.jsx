@@ -10,7 +10,7 @@ export default function Skills({language}) {
             <div className="container">
                 <div className="skills__inner inner">
                     <div className="skills__title title">
-                        <h2>Skills</h2>
+                        <h2>{language.app.pages.about.sections.skills.title}</h2>
                     </div>
                     <div className="skills__list">
                         <div className="skills__item">

@@ -1,3 +1,4 @@
+import getProjects from "@/actions/projects";
 import AboutMe from "@/components/sections/about-me.home";
 import Blog from "@/components/sections/blog.home";
 import Contact from "@/components/sections/contact.home";
@@ -14,7 +15,7 @@ export default async function Home() {
     <>
       <Landing language={language} />
       <AboutMe language={language} />
-      <Projects language={language} />
+      <Projects language={language}  />
       <Blog language={language} />
       <Contact language={language} />
     </>

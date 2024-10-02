@@ -5,8 +5,10 @@ import Button from "../ui/button";
 import { Icons } from "@/config/icons";
 import { useRouter } from "next/navigation";
 import InteractiveNodes from "../three/interactive-nodes";
-import { useRef } from "react";
+import { Suspense, useRef } from "react";
 import Game from "../three/game";
+import ProjectsLoader from "../loaders/projects-loader";
+import getProjects from "@/actions/projects";
 
 export default function Projects({ language }) {
 
@@ -25,11 +27,25 @@ export default function Projects({ language }) {
                     </div>
                     <div className="block__content">
                         <div className="block__content-projects">
-                            <ProjectCard title={'Navicon'} description={'I have a proven track record of my own product and over 30 projects that have helped clients grow'} type={'Corporare website'} video={'https://azpfacrylvtimqbpwxgo.supabase.co/storage/v1/object/public/project_video/project-utracesolutions.mp4?t=2024-08-12T19%3A56%3A47.226Z'} id={1} />
+                            {/* <ProjectCard title={'Navicon'} description={'I have a proven track record of my own product and over 30 projects that have helped clients grow'} category={['Local', "MAlbaeb"]} video={'https://azpfacrylvtimqbpwxgo.supabase.co/storage/v1/object/public/project_video/project-utracesolutions.mp4?t=2024-08-12T19%3A56%3A47.226Z'} id={1} />
 
-                            <ProjectCard title={'Navicon'} description={'I have a proven track record of my own product and over 30 projects that have helped clients grow'} type={'Corporare website'} video={'https://azpfacrylvtimqbpwxgo.supabase.co/storage/v1/object/public/project_video/project-utracesolutions.mp4?t=2024-08-12T19%3A56%3A47.226Z'} id={1} />
-                            <ProjectCard title={'Navicon'} description={'I have a proven track record of my own product and over 30 projects that have helped clients grow'} type={'Corporare website'} video={'https://azpfacrylvtimqbpwxgo.supabase.co/storage/v1/object/public/project_video/project-utracesolutions.mp4?t=2024-08-12T19%3A56%3A47.226Z'} id={1} />
-                            <ProjectCard title={'Navicon'} description={'I have a proven track record of my own product and over 30 projects that have helped clients grow'} type={'Corporare website'} video={'https://azpfacrylvtimqbpwxgo.supabase.co/storage/v1/object/public/project_video/project-utracesolutions.mp4?t=2024-08-12T19%3A56%3A47.226Z'} id={1} />
+                            <ProjectCard title={'Navicon'} description={'I have a proven track record of my own product and over 30 projects that have helped clients grow'} category={['Local']} video={'https://azpfacrylvtimqbpwxgo.supabase.co/storage/v1/object/public/project_video/project-utracesolutions.mp4?t=2024-08-12T19%3A56%3A47.226Z'} id={1} />
+                            <ProjectCard title={'Navicon'} description={'I have a proven track record of my own product and over 30 projects that have helped clients grow'} category={['Local']} video={'https://azpfacrylvtimqbpwxgo.supabase.co/storage/v1/object/public/project_video/project-utracesolutions.mp4?t=2024-08-12T19%3A56%3A47.226Z'} id={1} />
+                            <ProjectCard title={'Navicon'} description={'I have a proven track record of my own product and over 30 projects that have helped clients grow'} category={['Local']} video={'https://azpfacrylvtimqbpwxgo.supabase.co/storage/v1/object/public/project_video/project-utracesolutions.mp4?t=2024-08-12T19%3A56%3A47.226Z'} id={1} /> */}
+                            <Suspense fallback={<h1>title</h1>}>
+                                <ProjectsLoader language={language.lang} limit={4} />
+                            </Suspense>
+                            {/* {
+                                projects ?
+                                projects.length !== 0 ?
+                                    projects.map((project) => (
+                                        <ProjectCard id={project.id} title={project.title} description={project.description} category={project.category} video={project.video} />
+                                    ))
+                                    :
+                                    null
+                                :
+                                null
+                            } */}
                         </div>
                         <Button onClick={() => router.push('/projects')} type={'secondary'} className={'block__content-button'}>{language.app.buttons.otherProjects}<Icons.arrow /></Button>
                         {/* <div ref={ref} className="block__content-test">

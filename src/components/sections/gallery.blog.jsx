@@ -93,7 +93,7 @@ export default function Gallery({ language }) {
         <section className="gallery">
             <div className="container">
                 <div className="gallery__inner inner">
-                    <div ref={bannerRef} className={inView ? "gallery__banner active" : "gallery__banner"}>
+                    <div ref={bannerRef} className={inView ? "gallery__banner white active" : "gallery__banner white"}>
                         <div className="gallery__content">
                             <div className="gallery__title title">
                                 <h2>{language.app.pages.blog.meta.title}</h2>

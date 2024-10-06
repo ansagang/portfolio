@@ -14,7 +14,7 @@ export default function NotFound({ language }) {
                         <div className="not-found__visual-digit">
                             <h1>4</h1>
                         </div>
-                        <div className="not-found__visual-circle"></div>
+                        <div className="not-found__visual-circle"><Words count={5} radius={14} language={language} /></div>
                         <div className="not-found__visual-digit">
                             <h1>4</h1>
                         </div>

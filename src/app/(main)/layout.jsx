@@ -4,15 +4,16 @@ import Translator from "@/components/ui/translator";
 import { getLanguage } from "@/lib/get-language";
 
 
-export default async function Mainlayout({ modal, children }) {
+export default async function Mainlayout({ projects, children }) {
 
     const language = await getLanguage({})
+    // console.log(projects);
+    
 
     return (
         <>
             <Translator language={language} />
             <Header language={language} />
-
             <main>
                 {children}
             </main>

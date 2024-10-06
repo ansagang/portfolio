@@ -2,25 +2,37 @@
 
 import { TiltCard } from "@/components/ui/tilt-card"
 import Link from "next/link"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
+import { getProjectMedia } from "@/actions/api"
 
-export default function ProjectCard({ id, title, description, category, video, ...props }) {
+export default function ProjectCard({ slug, id, title, description, category, video, ...props }) {
 
     const videoRef = useRef(null)
     const type = category.join(" / ")
+    const [videoUrl, setVideoUrl] = useState()
+    useEffect(() => {
+        setVideoUrl()
+        async function getProjectMediaUrl() {
+            const { data: projectVideoUrl } = await getProjectMedia(video)
+            if (projectVideoUrl) {
+                setVideoUrl(projectVideoUrl)
+            }
+        }
+
+        getProjectMediaUrl()
+    }, [id])
+
 
     return (
-        <div className="project-card" {...props}>
-            <Link className="project-card__visual" href={`/projects/${id}`}>
+        <div className="project-card card" {...props}>
+            <Link className="project-card__visual" href={`/projects/${slug}`}>
                 <TiltCard>
-                    <video playsInline muted ref={videoRef} onMouseEnter={() => videoRef.current.play()} onMouseLeave={() => {
+                    <video preload="metadata" playsInline muted ref={videoRef} onMouseEnter={() => videoRef.current.play()} onMouseLeave={() => {
                         videoRef.current.currentTime = 0
                         videoRef.current.pause()
-                    }}>
-                        <source src={video} />
+                    }} src={videoUrl}>
+                        <source src={videoUrl + "#t=0.1"} />
                     </video>
-                    {/* <Image src={'logo.png'} width={1} height={1} unoptimized={true} /> */}
-                    {/* <Player autoPlay={true} controls={false} src={video} /> */}
                 </TiltCard>
             </Link>
             <div className="project-card__content">

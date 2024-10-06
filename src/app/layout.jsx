@@ -4,11 +4,10 @@ import { Montserrat } from 'next/font/google'
 
 import NotificationProvider from '@/context/notification-provider'
 import { getLanguage } from '@/lib/get-language'
-
-import AnimatedCursor from 'react-animated-cursor'
+import NextTopLoader from 'nextjs-toploader'
 import Cursor from '@/components/ui/cursor'
 
-const font = Montserrat({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700', '800'], fallback: 'false' })
+const font = Montserrat({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700', '800'], fallback: 'false', display: 'swap' })
 
 export async function generateMetadata() {
 
@@ -63,18 +62,13 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={font.className}>
-      <div className="wrapper__main">
-        <NotificationProvider>
+        <NextTopLoader color='#000' showSpinner={false} shadow={false} height={5} />
+        <div className="wrapper__main">
+          <NotificationProvider>
             {children}
           </NotificationProvider>
-          {/* <AnimatedCursor innerSize={15} outerSize={15} innerScale={2} outerScale={2} outerAlpha={0} innerStyle={{background: 'rgba(0, 0, 0, 0.5)'}} outerStyle={{ border: '2px solid #000' }} trailingSpeed={1} clickables={['a', 'input[type="text"]', 'input[type="email"]', 'input[type="number"]', 'input[type="submit"]', 'input[type="image"]', 'label[for]', 'select', 'textarea', '.link', 'button', '.header__nav-logo',
-          {
-            target: '.white',
-            outerStyle: { border: '2px solid white' },
-            innerStyle: {background: 'rgba(255, 255, 255, 0)'}
-          }]} /> */}
-          <Cursor colors={['white']} pointers={['a', 'button', 'input']} />
-      </div>
+          <Cursor colors={['white']} pointers={['a', 'button', 'input']} cards={['card']} />
+        </div>
       </body>
     </html>
   )

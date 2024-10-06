@@ -3,13 +3,28 @@
 import Image from "next/image"
 import Link from "next/link"
 import Chip from "./chip"
+import { getBlogMedia } from "@/actions/api"
+import { useEffect, useState } from "react"
 
-export default function BlogCard({ className, active, id, info = null, title, tags, picture, ...props }) {
+export default function BlogCard({ className, active, id, info, title, tags, picture, ...props }) {
 
+    const [bannerUrl, setBannerUrl] = useState()
+    useEffect(() => {
+        async function getBannerUrl() {
+            const { data: blogBannerUrl } = await getBlogMedia(picture)
+            if (blogBannerUrl) {
+                setBannerUrl(blogBannerUrl)
+            }
+
+        }
+
+        getBannerUrl()
+    }, [id])
+    
     return (
-        <Link href={`/blog/${id}`} className={active ? `blog-card ${className} show white` : `blog-card white ${className}`} {...props}>
+        <Link href={`/blog/${id}`} className={active ? `blog-card ${className} show card` : `blog-card card ${className}`} {...props}>
             <div className="blog-card__visual">
-                <Image src={picture} width={1} height={1} unoptimized={true} />
+                <Image src={bannerUrl} width={1} height={1} unoptimized={true} />
             </div>
             <div className="blog-card__bottom">
                 <div className="blog-card__content">

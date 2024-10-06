@@ -1,7 +1,8 @@
 "use server"
 
 import { cookies } from "next/headers"
-import { revalidatePath } from "next/cache"
+import { revalidatePath, revalidateTag } from "next/cache"
+import { NextResponse } from "next/server"
 
 export default async function changeLanguage({ lang, path = '/' }) {
     try {

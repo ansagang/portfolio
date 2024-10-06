@@ -41,7 +41,7 @@ function Cloud({ count = 8, radius = 22, language }) {
 
 export default function Words({ language, count, radius, ...props }) {
     return (
-        <Canvas dpr={[1, 2]} camera={{ position: [0, 0, 35], fov: 90 }} {...props}>
+        <Canvas dpr={[1, 2]} camera={{ position: [0, 0, 35], fov: 70 }} {...props}>
             <fog attach="fog" args={['#000000', 0, 80]} />
             <Cloud language={language} count={count} radius={radius} />
             <TrackballControls mouseButtons={{RIGHT: null, LEFT: THREE.MOUSE.LEFT}} />

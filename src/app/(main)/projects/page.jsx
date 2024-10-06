@@ -1,4 +1,3 @@
-import getProjects from "@/actions/projects";
 import Gallery from "@/components/sections/gallery.projects";
 import Projects from "@/components/sections/projects.projects";
 import HeroProjects from "@/components/sections/projects.projects";

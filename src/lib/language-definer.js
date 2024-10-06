@@ -1,3 +1,5 @@
+"use server"
+
 const languages = {
     en: () => import('../config/lang/en.json').then((module) => module.default),
     ru: () => import('../config/lang/ru.json').then((module) => module.default),

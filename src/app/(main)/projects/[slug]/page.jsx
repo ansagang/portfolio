@@ -1,36 +1,31 @@
 import { getProject, getProjects } from "@/actions/api"
 import Project from "@/components/sections/project.project"
 import { getLanguage } from "@/lib/get-language"
-
-async function staticParams() {
-    const language = await getLanguage({})
-    const { data: projects } = getProjects({ lang: language.lang })
-
-    return projects.map((project) => ({
-        id: project.id,
-    }))
-}
-
-export const generateStaticParams = process.env.NODE_ENV === "production" ? staticParams : undefined;
-export const dynamic = process.env.NODE_ENV === "production" ? 'auto' : 'force-dynamic';
+import { notFound } from "next/navigation"
 
 export async function generateMetadata({ params }) {
 
     const { slug } = params
     const language = await getLanguage({})
-    const { data: project } = await getProject({ lang: language.lang, slug: slug })
+    const data = await getProject({ lang: language.lang, slug: slug })
 
-    return {
-        title: project.title
+    if (data) {
+        return {
+            title: data.data.title
+        }
     }
 }
 
 export default async function ProjectPage({ params }) {
     const { slug } = params
     const language = await getLanguage({})
-    const { data: project } = await getProject({ lang: language.lang, slug: slug })
+    const data = await getProject({ lang: language.lang, slug: slug })
+
+    if (!data) {
+        notFound()
+    }
 
     return (
-        <Project project={project} language={language} />
+        <Project project={data.data} language={language} />
     )
 }

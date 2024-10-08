@@ -21,7 +21,7 @@ export default function Contact({ language }) {
                         </div>
                     </div>
                     <div className="block__content">
-                        <ContactBanner banner={'/images/contact-banner2.png'} language={language} ref={bannerRef} className={inView ? "block__content-banner active": "block__content-banner active"} />
+                        <ContactBanner language={language} ref={bannerRef} className={inView ? "block__content-banner active": "block__content-banner active"} />
                     </div>
                 </div>
             </div>

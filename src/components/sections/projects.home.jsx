@@ -4,9 +4,7 @@ import ProjectCard from "@/components/ui/project-card";
 import Button from "../ui/button";
 import { Icons } from "@/config/icons";
 import { useRouter } from "next/navigation";
-import InteractiveNodes from "../three/interactive-nodes";
 import { useEffect, useRef, useState } from "react";
-import Game from "../three/game";
 import { getProjects } from "@/actions/api";
 
 export default function Projects({ language }) {
@@ -16,9 +14,9 @@ export default function Projects({ language }) {
     useEffect(() => {
         setProjects()
         async function get() {
-            const { data } = await getProjects({lang: language.lang, limit: 4})
+            const data = await getProjects({lang: language.lang, limit: 4})
             if (data) {
-                setProjects(data)
+                setProjects(data.data)
             }
         }
 

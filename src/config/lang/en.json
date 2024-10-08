@@ -42,7 +42,8 @@
             },
             "notFound": {
                 "meta": {
-                    "title": "Not Found"
+                    "title": "Not Found",
+                    "description": "The page you are looking for cannot be found"
                 },
                 "sections": {}
             },
@@ -52,7 +53,7 @@
                     },
                     "sections": {
                         "about": {
-                            "words": ["me", "web-development", "front-end", "grace", "gratitude", "dedication", "hard work", "dombra", "sport", "gym", "goal", "back-end", "design", "resilience", "tough", "work", "family", "love", "empathy", "me", "web-development", "front-end", "grace", "gratitude", "dedication", "hard work", "dombra", "sport", "gym", "goal", "back-end", "design", "resilience", "tough", "work", "family", "love", "empathy", "me", "web-development", "front-end", "grace", "gratitude", "dedication", "hard work", "dombra", "sport", "gym", "goal", "back-end", "design", "resilience", "tough", "work", "family", "love", "empathy", "me", "web-development", "front-end", "grace", "gratitude", "dedication", "hard work", "dombra", "sport", "gym", "goal", "back-end", "design", "resilience", "tough", "work", "family", "love", "empathy", "me", "web-development", "front-end", "grace", "gratitude", "dedication", "hard work", "dombra", "sport", "gym", "goal", "back-end", "design", "resilience", "tough", "work", "family", "love", "empathy"],
+                            "words": ["me", "web-development", "front-end", "grace", "gratitude", "dedication", "hard work", "dombra", "sport", "gym", "goal", "back-end", "design", "resilience", "tough", "work", "family", "love", "empathy", "me", "web-development", "front-end", "grace", "gratitude", "dedication", "hard work", "dombra", "sport", "gym", "goal", "back-end", "design", "resilience", "tough", "work", "family", "love", "empathy"],
                             "info1": "Born in Astana, Kazakhstan. Since 2020, I’ve focused on developing projects that improve the lives of others. I build products that shine and resonate with users 💡.",
                             "info2": "Outside of coding, I love doing sports 🏀 ⚽️ 🏋🏽‍♂️, playing video games, and volunteering. I’m constantly exploring new ways to leverage technology for positive impact."
                         },
@@ -94,6 +95,19 @@
                 "meta": {
                     "title": "Blog"
                 }
+            },
+            "project": {
+                "sections": {
+                    "technologies": {
+                        "title": "Technologies"
+                    },
+                    "pictures": {
+                        "title": "Pictures"
+                    },
+                    "snippets": {
+                        "title": "Code snippets"
+                    }
+                }
             }
         },
         "buttons": {
@@ -101,7 +115,8 @@
             "otherArticles": "Other articles",
             "leaveRequest": "Leave a request",
             "moreAbout": "More about me",
-            "send": "Send"
+            "send": "Send",
+            "goBack": "Go back"
         },
         "labels": {
             "downloadCV": "Download CV",

@@ -1,6 +1,4 @@
-import Gallery from "@/components/sections/gallery.projects";
 import Projects from "@/components/sections/projects.projects";
-import HeroProjects from "@/components/sections/projects.projects";
 import { getLanguage } from "@/lib/get-language";
 
 export async function generateMetadata() {
@@ -18,7 +16,6 @@ export default async function ProjectsPage() {
 
   return (
     <>
-      {/* <HeroProjects language={language} /> */}
       <Projects language={language} />
     </>
   );

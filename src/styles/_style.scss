@@ -450,6 +450,13 @@ body{
     &__content{
         padding: 8px;
     }
+    &__info{
+        overflow: hidden;
+   display: -webkit-box;
+   -webkit-line-clamp: 2; /* number of lines to show */
+           line-clamp: 2; 
+   -webkit-box-orient: vertical;
+    }
 }
 
 .blog-card{
@@ -532,7 +539,6 @@ body{
             gap: 20px;
         }
         &-content{
-            width: 60%;
         }
         &-visual{
             position: absolute;
@@ -1159,8 +1165,9 @@ body{
         height: 25px;
     }
     &.card{
-        border: 2px solid $bg_color;
-        mix-blend-mode: exclusion;
+        border: 2px solid $primary_color;
+        background-color: rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(1px);
     }
     &.clicked{
         width: 30px;
@@ -1174,38 +1181,63 @@ body{
     }
     &__video{
         width: 100%;
-        overflow: hidden;
-        height: 600px;
-        & video{
-            position: absolute;
-            width: 100%;
-            z-index: -1;
-            border-bottom-left-radius: 30px;
-            border-bottom-right-radius: 30px;
-        }
-    }
-    &__picture{
         position: relative;
-        width: 100%;
-        height: 500px;
-        & img{
-            // position: absolute;
+        overflow: hidden;
+        & video{
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            border-radius: 30px;
         }
     }
-    &__content{
+    &__header{
         background-color: $bg_color;
         display: flex;
         flex-direction: column;
         gap: 10px;
         padding: 30px 0;
+        align-items: flex-start;
     }
-    &__tags{
+    &__block{
         display: flex;
-        align-items: center;
-        gap: 15px;
+        justify-content: space-between;
+        &-tags{
+            width: 70%;
+        display: flex;
         flex-wrap: wrap;
+        gap: 10px;
+        }
+        &-title{
+            position: sticky;
+            left: 0;
+            top: 110px;
+            height: 10px;
+            bottom: 100px;
+        }
+        &-gallery{
+            width: 70%;
+            display:inline-block;    
+            column-count: 2;    
+            column-gap: 15px; 
+        }
+        &-image{
+            border: 2px solid $primary_color;
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            filter: grayscale(100%);
+            transition: 0.3s ease;
+            &:hover{
+                filter: grayscale(0%);
+            }
+        }
+        &-contact{
+            width: 70%; 
+        }
+    }
+    &__content{
+        margin-top: 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
     }
 }

@@ -50,7 +50,7 @@ const Cursor = ({ colors, pointers, cards }) => {
 
     return () => {
       window.addEventListener("mousedown", handleMouseDown);
-      window.addEventListener("mouseup", handleMouseUp);
+      window.removeEventListener("mouseup", handleMouseUp);
       window.removeEventListener("mousemove", handleMouseMove);
     }
 
@@ -58,15 +58,10 @@ const Cursor = ({ colors, pointers, cards }) => {
 
   }, [position]);
 
-  const flareSize = isPointer ? 0 : 30;
-
-  const cursorStyle = isPointer ? { left: "-100px", top: "-100px" } : {};
-
   return (
     <div
       className={`cursor ${isColor ? "color" : ""} ${isPointer ? "pointer" : ""} ${isClicked ? "clicked" : ''} ${isCard ? 'card' : ''}`}
       style={{
-        ...cursorStyle,
         left: `${position.x}px`,
         top: `${position.y}px`
       }}

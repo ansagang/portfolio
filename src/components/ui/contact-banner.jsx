@@ -25,7 +25,7 @@ export default function ContactBanner({ banner, className, language, ...props })
                 </div>
             </div>
             <div className="contact__banner-visual">
-                <Image width={1} height={1} unoptimized={true} src={banner} />
+                <Image width={1} height={1} unoptimized={true} src={'/images/contact-banner2.png'} />
             </div>
         </div>
     )

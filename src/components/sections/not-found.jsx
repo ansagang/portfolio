@@ -4,8 +4,14 @@ import Image from "next/image"
 import Words from "../three/words"
 import Link from "next/link"
 import Button from "../ui/button"
+import { usePathname } from "next/navigation"
+import { useRouter } from "next/navigation"
 
 export default function NotFound({ language }) {
+
+    const pathname = usePathname()
+    const router = useRouter()
+
     return (
         <section className="not-found">
             <div className="container">
@@ -24,9 +30,9 @@ export default function NotFound({ language }) {
                             <h2>{language.app.pages.notFound.meta.title}</h2>
                         </div>
                         <div className="not-found__info info">
-                            <p>`Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo modi sunt possimus sint aspernatur quis.</p>
+                            <p>{language.app.pages.notFound.meta.description}: <code>{pathname}</code></p>
                         </div>
-                        <Button type={'primary'} href={'/'}>Go back</Button>
+                        <Button onClick={() => router.back()} type={'primary'}>Go back</Button>
                     </div>
                 </div>
             </div>

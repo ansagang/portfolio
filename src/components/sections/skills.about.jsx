@@ -1,8 +1,5 @@
 "use client"
 
-import Image from "next/image"
-import Words from "../three/words"
-import Laptop from "../three/laptop"
 
 export default function Skills({language}) {
     return (

@@ -10,13 +10,13 @@ export async function generateMetadata() {
   }
 }
 
-export default async function ProjectsPage() {
+export default async function ProjectsPage({searchParams}) {
 
   const language = await getLanguage({})
 
   return (
     <>
-      <Projects language={language} />
+      <Projects language={language} searchParams={searchParams} />
     </>
   );
 }

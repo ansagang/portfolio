@@ -6,6 +6,7 @@ import { Icons } from "@/config/icons";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { getProjects } from "@/actions/api";
+import SkeletonProject from "../ui/skeleton-project";
 
 export default function Projects({ language }) {
 
@@ -18,10 +19,13 @@ export default function Projects({ language }) {
             if (data) {
                 setProjects(data.data)
             }
+            console.log(data);
+            
         }
 
         get()
     }, [language])
+    
 
     return (
         <section className="block">
@@ -51,7 +55,9 @@ export default function Projects({ language }) {
                                         :
                                         null
                                     :   
-                                    <h1>loading</h1>
+                                    [...Array(4)].map((i) => (
+                                        <SkeletonProject />
+                                    ))
                             }
                         </div>
                         {/* <Button onClick={() => router.push('/projects')} type={'secondary'} className={'block__content-button'}>{language.app.buttons.otherProjects}<Icons.arrow /></Button> */}

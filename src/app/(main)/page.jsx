@@ -16,7 +16,7 @@ export default async function Home() {
       <Landing language={language} />
       <AboutMe language={language} />
       <Projects language={language} />
-      <Blog language={language}/>
+      {/* <Blog language={language}/> */}
       <Contact language={language} />
     </>
   );

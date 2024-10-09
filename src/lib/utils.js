@@ -124,10 +124,7 @@ export default async function facetsFinder(array, value) {
 
   const values = []
   array.forEach(element => {
-
-      element[value].forEach(element => {
-        values.push(element)
-      })
+        values.push(element[value])
   });
   const valuesUnique = Array.from(new Set(values))
 

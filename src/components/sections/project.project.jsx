@@ -2,7 +2,7 @@
 
 import { getProjectMedia } from "@/actions/api"
 import Image from "next/image"
-import { useEffect, useRef, useState } from "react"
+import { Suspense, useEffect, useRef, useState } from "react"
 import Chip from "../ui/chip"
 import Button from "../ui/button"
 import { Icons } from "@/config/icons"
@@ -14,6 +14,7 @@ export default function Project({ language, project }) {
     const [picturesUrl, setPicturesUrl] = useState([])
     const [snippetsUrl, setSnippetsUrl] = useState([])
     const [paused, setPaused] = useState(false)
+    const [loading, setLoading] = useState(false)
     const videoRef = useRef()
 
     useEffect(() => {
@@ -66,12 +67,12 @@ export default function Project({ language, project }) {
             <div className="container">
                 <div className="project__inner inner">
                     <div className="project__header">
-                        <div className="project__title title">
-                            <h2>{project.title}</h2>
-                        </div>
-                        <div className="project__info info">
-                            <p>{project.description}</p>
-                        </div>
+                            <div className="project__title title">
+                                <h2>{project.title}</h2>
+                            </div>
+                            <div className="project__info info">
+                                <p>{project.description}</p>
+                            </div>
                         <div className="project__links">
                             <Button type={'primary'} className={'project__button'} href={project.link}>Github</Button>
                         </div>
@@ -79,15 +80,18 @@ export default function Project({ language, project }) {
                     <div onClick={() => {
                         setPaused(!paused)
                     }} className="project__video card">
-                        <video className={paused ? "video" : "video paused"} ref={videoRef} loop={true} playsInline muted src={videoUrl}>
+                        <video onLoadStart={() => setLoading(true)} onLoadedData={() => setLoading(false)} className={loading ? "video loading" : paused ? "video" : "video paused"} ref={videoRef} loop={true} playsInline muted src={videoUrl}>
                         </video>
                         {
-                            !paused ?
-                                <div className="video__paused">
-                                    <Icons.play />
-                                </div>
+                            loading ?
+                                <div className="video__loading"></div>
                                 :
-                                null
+                                !paused ?
+                                    <div className="video__paused">
+                                        <Icons.play />
+                                    </div>
+                                    :
+                                    null
                         }
                     </div>
                     <div className="project__content">
@@ -109,6 +113,27 @@ export default function Project({ language, project }) {
                                 }
                             </div>
                         </div>
+
+                        {
+                            project.pictures ?
+                                <div className="project__block">
+                                    <div className="project__block-title title">
+                                        <h2>{language.app.pages.project.sections.pictures.title}</h2>
+                                    </div>
+                                    <div className="project__block-gallery pictures">
+                                        {
+                                            project.pictures.length === picturesUrl.length ?
+                                                picturesUrl.map((pictureUrl) => (
+                                                    <Image priority className="project__block-image card" src={pictureUrl} width={1} height={1} unoptimized />
+                                                ))
+                                                :
+                                                null
+                                        }
+                                    </div>
+                                </div>
+                                :
+                                null
+                        }
                         {
                             project.snippets ?
                                 <div className="project__block">
@@ -119,7 +144,7 @@ export default function Project({ language, project }) {
                                         {
                                             project.snippets.length === snippetsUrl.length ?
                                                 snippetsUrl.map((snippeturl) => (
-                                                    <Image className="project__block-image card" src={snippeturl} width={1} height={1} unoptimized />
+                                                    <Image priority className="project__block-image card" src={snippeturl} width={1} height={1} unoptimized />
                                                 ))
                                                 :
                                                 null
@@ -129,8 +154,7 @@ export default function Project({ language, project }) {
                                 :
                                 null
                         }
-
-                    <div className="project__block">
+                        <div className="project__block">
                             <div className="project__block-title title">
                                 <h2>{language.app.pages.contact.meta.title}</h2>
                             </div>

@@ -375,7 +375,7 @@ hr{
         justify-content: space-between;
         padding: 12px 20px;
         color: $primary_color !important;
-        border-radius: 10px;
+        border-radius: 12px;
         & svg{
             margin-left: 15px;
             transition: 0.1s ease transform;
@@ -389,7 +389,7 @@ hr{
         cursor: pointer;
         transition: 0.1s ease background-color;
         color: $primary_color;
-        border-radius: 10px;
+        border-radius: 12px;
         &:hover{
             background-color: $secondary_color_3;
         }

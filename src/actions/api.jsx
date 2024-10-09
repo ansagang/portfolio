@@ -1,18 +1,18 @@
-"use server"
-import { createClient } from "@/lib/supabase/server";
+import { createClient } from "@/lib/supabase/client";
 import facetsFinder from "@/lib/utils";
 
 export async function getProjects({ search, category, lang, limit, sort }) {
     
     try {
         const supabase = createClient()
+        
 
         let query = supabase.from("projects").select('*', { count: 'exact' })
         if (search) {
             query = query.textSearch('title', `${search}`, { type: 'websearch', config: lang })
         }
         if (category) {
-            query = query.in('category', category)
+            query = query.match({category: category})
         }
         if (sort) {
             query = query.order(sort.by, { ascending: sort.ascending })
@@ -25,7 +25,7 @@ export async function getProjects({ search, category, lang, limit, sort }) {
         }
 
         const { data, error, count } = await query
-        const facets = facetsFinder(data, "category")
+        const facets = await facetsFinder(data, "category")
         
 
         if (!error) {

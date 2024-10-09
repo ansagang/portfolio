@@ -85,9 +85,9 @@ export default function Header({ language }) {
                                 {/* <li className="header__nav-li">
                                     <NavLink href={'/services'}><span>{language.app.pages.services.meta.title}</span></NavLink>
                                 </li> */}
-                                <li className="header__nav-li">
+                                {/* <li className="header__nav-li">
                                     <NavLink href={'/blog'}><span>{language.app.pages.blog.meta.title}</span></NavLink>
-                                </li>
+                                </li> */}
                                 <li className="header__nav-li">
                                     <NavLink href={'/contact'}><span>{language.app.pages.contact.meta.title}</span></NavLink>
                                 </li>

@@ -32,7 +32,7 @@ export default function NotFound({ language }) {
                         <div className="not-found__info info">
                             <p>{language.app.pages.notFound.meta.description}: <code>{pathname}</code></p>
                         </div>
-                        <Button onClick={() => router.back()} type={'primary'}>Go back</Button>
+                        <Button onClick={() => router.back()} type={'primary'}>{language.app.buttons.goBack}</Button>
                     </div>
                 </div>
             </div>

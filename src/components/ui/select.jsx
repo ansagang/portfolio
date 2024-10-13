@@ -26,8 +26,23 @@ export default function Select({ setActiveOption, activeOption, options, text, .
 
     return (
         <div ref={ref} className="select" {...props}>
-            <button onClick={() => setActive(!active)} className="select__button">{options[0].title}<Icons.downArrow className={active ? 'active' : ''} /></button>
+            <button onClick={() => {
+                if (options && options.length !== 0) {
+                    setActive(!active)
+                }
+            }} className="select__button">{activeOption ? activeOption.title : text}<Icons.downArrow className={active ? 'active' : ''} /></button>
             <div className={active ? "select__options active" : "select__options"}>
+                {
+                    text ?
+                        <div onClick={() => {
+                            setActiveOption()
+                            setActive(false)
+                        }} className="select__option">
+                            <div className="select__option-title"><p>{text}</p></div>
+                        </div>
+                        :
+                        null
+                }
                 {
                     options ?
                         (
@@ -35,7 +50,7 @@ export default function Select({ setActiveOption, activeOption, options, text, .
                                 (
                                     options.map((option) => (
                                         <div onClick={() => {
-                                            setActiveOption(option.code)
+                                            setActiveOption(option)
                                             setActive(false)
                                         }} className="select__option">
                                             <div className="select__option-title"><p>{option.title}</p></div>

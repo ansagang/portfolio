@@ -128,7 +128,10 @@
             "firstNamePlaceholder": "Ансар",
             "lastNamePlaceholder": "Абен",
             "emailPlaceholder": "angsar.aben@gmail.com",
-            "messagePlaceholder": "Привет!"
+            "messagePlaceholder": "Привет!",
+            "searchProjects": "Поиск проектов...",
+            "sortByNewest": "Сначала новые",
+            "sortByOldest": "Сначала старые"
         },
         "global": {
             "available": "Доступен для работы",

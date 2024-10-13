@@ -3,9 +3,15 @@
 import { Icons } from "@/config/icons"
 import { languages } from "@/config/languages"
 import changeLanguage from "@/actions/actions"
+import { usePathname, useRouter } from "next/navigation"
 
 export default function Translator({ language }) {
 
+    const pathname = usePathname()
+    const router = useRouter()
+
+    console.log(pathname);
+    
     return (
         <div className="translator">
             <div className="translator__options">
@@ -13,7 +19,9 @@ export default function Translator({ language }) {
                     {
                         languages.map((lang, key) => (
                             <span key={key} onClick={() => {
-                                changeLanguage({lang: lang.code})
+                               changeLanguage({lang: lang.code, path: pathname}).then(() => {
+                                    window.location.reload()
+                               })
                             }} className={language.lang === lang.code ? "active" : null}>{lang.title_short}</span>
                         ))
                     }

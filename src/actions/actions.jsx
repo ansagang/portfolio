@@ -7,8 +7,11 @@ import { NextResponse } from "next/server"
 export default async function changeLanguage({ lang, path = '/' }) {
     try {
         const cookiesList = cookies()
+        console.log(path);
+        
         cookiesList.set("lang", lang)
-        revalidatePath(path)
+        // revalidatePath(path)
+
     } catch (err) {
         console.log(err);
     }

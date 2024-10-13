@@ -5,17 +5,16 @@ export async function getProjects({ search, category, lang, limit, sort }) {
     
     try {
         const supabase = createClient()
-        
-
-        let query = supabase.from("projects").select('*', { count: 'exact' })
+    
+        let query = supabase.from("projects").select('*')
         if (search) {
-            query = query.textSearch('title', `${search}`, { type: 'websearch', config: lang })
+            query = query.textSearch('description_title', `${search}`, {type: 'websearch'})     
         }
         if (category) {
-            query = query.match({category: category})
+            query = query.eq("category->>code", category)
         }
         if (sort) {
-            query = query.order(sort.by, { ascending: sort.ascending })
+            query = query.order(sort.code, { ascending: sort.ascending })
         }
         if (lang) {
             query = query.match({lang: lang})
@@ -25,10 +24,11 @@ export async function getProjects({ search, category, lang, limit, sort }) {
         }
 
         const { data, error, count } = await query
-        const facets = await facetsFinder(data, "category")
+        const {data: facetsData} = await supabase.from("projects").select('*').match({lang: lang})
+        const facets = await facetsFinder(facetsData, "category")
         
-
-        if (!error) {
+        
+        if (!error) {            
             return {
                 data: data,
                 count: count,

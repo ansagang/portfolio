@@ -130,7 +130,10 @@
             "firstNamePlaceholder": "Angsar",
             "lastNamePlaceholder": "Aben",
             "emailPlaceholder": "angsar.aben@gmail.com",
-            "messagePlaceholder": "Hello!"
+            "messagePlaceholder": "Hello!",
+            "searchProjects": "Search for projects...",
+            "sortByNewest": "Sort by newest",
+            "sortByOldest": "Sort by oldest"
         },
         "global": {
             "available": "Available for work",

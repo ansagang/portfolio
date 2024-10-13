@@ -215,7 +215,7 @@
     // transform: translate(-50%);
     position: absolute;
     z-index: 0;
-    background: radial-gradient(circle, rgb(237, 237, 237) 0%, rgb(242, 242, 242) 23%, rgba(255,255,255,1) 100%);    
+    background: radial-gradient(circle, rgb(237, 237, 237) 0%, rgb(231, 231, 231) 23%, rgba(255,255,255,1) 100%);    
     
     // background-color: #202025;
     // background-color: #111;
@@ -326,7 +326,7 @@ body{
         border-radius: 50%;
         transition: 0.3s ease background;
         & path{
-            stroke: $primary_color;
+            stroke: $accent_color;
         }
     }
     &__options{
@@ -338,7 +338,7 @@ body{
         grid-template-rows: 3fr;
     }
     &:hover .translator__icon{
-        background-color: $primary_color;
+        background-color: $accent_color;
         & path{
             stroke: $bg_color;
         }
@@ -999,17 +999,29 @@ body{
             gap: 20px;
         }
         &-filter{
-            width: 100%;
-            margin-bottom: 20px;
-            display: flex;
-            gap: 10px;
-            align-items: center;
+            &_up{
+                width: 100%;
+                margin-bottom: 10px;
+                display: flex;
+                gap: 10px;
+                align-items: center;
+            }
+
             &_search{
-                width: 80%;
+                // width: 90%;
+                flex: 1;
             }
             &_select{
                 width: 20%;
             }
+            &_down{
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+        }
+        &-filters{
+            margin-bottom: 20px;
         }
         &-chips{
             width: 100%;
@@ -1047,6 +1059,7 @@ body{
         align-items: center;
         gap: 20px;
         flex-wrap: row;
+        margin-bottom: 20px;
     }
 }
 

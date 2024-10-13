@@ -10,9 +10,8 @@ export function slugify(str) {
 
 export function unslugify(str) {
   return str
-    .split("_")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
+    .replace(/_/g, " ") // Replace underscores with spaces
+    .replace(/\b\w/g, (char) => char.toUpperCase()); // Capitalize the first letter of each word
 }
 
 export function isDev() {
@@ -98,35 +97,32 @@ export function randomWord(wordsArray) {
 }
 
 export function findCommonElement(array1, array2) {
-
-    // Loop for array1
-    for (let i = 0; i < array1.length; i++) {
-
-        // Loop for array2
-        for (let j = 0; j < array2.length; j++) {
-
-            // Compare the element of each and
-            // every element from both of the
-            // arrays
-            if (array1[i] === array2[j]) {
-
-                // Return if common element found
-                return true;
-            }
-        }
+  // Loop for array1
+  for (let i = 0; i < array1.length; i++) {
+    // Loop for array2
+    for (let j = 0; j < array2.length; j++) {
+      // Compare the element of each and
+      // every element from both of the
+      // arrays
+      if (array1[i] === array2[j]) {
+        // Return if common element found
+        return true;
+      }
     }
+  }
 
-    // Return if no common element exist
-    return false;
+  // Return if no common element exist
+  return false;
 }
 
 export default async function facetsFinder(array, value) {
-
-  const values = []
-  array.forEach(element => {
-        values.push(element[value])
+  const values = [];
+  array.forEach((element) => {
+    if (!values.find(val => val.code == element[value].code)) {
+      values.push({ title: element[value].title, code: element[value].code });
+    }
   });
-  const valuesUnique = Array.from(new Set(values))
+  
 
-  return valuesUnique
+  return values;
 }

@@ -129,7 +129,10 @@
             "firstNamePlaceholder": "Аңсар",
             "lastNamePlaceholder": "Әбен",
             "emailPlaceholder": "angsar.aben@gmail.com",
-            "messagePlaceholder": "Сәлем!"
+            "messagePlaceholder": "Сәлем!",
+            "searchProjects": "Жобаларды іздеу...",
+            "sortByNewest": "Ең жаңа бойынша сұрыптау",
+            "sortByOldest": "Ең ескі бойынша сұрыптау"
         },
         "global": {
             "available": "Жұмыс үшін боспын",

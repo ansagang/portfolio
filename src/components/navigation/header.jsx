@@ -9,7 +9,7 @@ import useScrollMovement from "@/hooks/use-scroll-movement"
 import { usePathname } from "next/navigation"
 import Chip from "../ui/chip"
 
-export default function Header({ language, status, cv }) {
+export default function Header({ language, status }) {
 
     const [active, isActive] = useState(true)
     const [sticky, setSticky] = useState(true)
@@ -29,6 +29,7 @@ export default function Header({ language, status, cv }) {
 
         if (scroll.scrollY == 0) {
             isActive(false)
+            setSticky(true)
         } else {
             isActive(true)
         }
@@ -60,7 +61,7 @@ export default function Header({ language, status, cv }) {
                         <nav className="header__nav">
                             <ol className="header__nav-ol links">
                                 <li className="header__nav-li">
-                                    <DownloadLink file={cv}><span>{language.app.labels.downloadCV}</span></DownloadLink>
+                                    <DownloadLink file={language.app.files.cv}><span>{language.app.labels.downloadCV}</span></DownloadLink>
                                 </li>
                                 <li className="header__nav-li">
                                     {/* <div className="link"><span>Available</span></div> */}

@@ -553,6 +553,7 @@ textarea{
         & h3,
         & h4,
         & p{
+            -webkit-background-clip: text;
             background-image: linear-gradient(to left, $secondary_color 50%, $primary_color 50%);
             color: transparent;
             background-size: 200% 100%;

@@ -7,7 +7,7 @@ import { Physics, useSphere } from "@react-three/cannon"
 
 const rfs = THREE.MathUtils.randFloatSpread
 const sphereGeometry = new THREE.SphereGeometry(0.7, 32, 32)
-const baubleMaterial = new THREE.MeshStandardMaterial({ color: 'lack', roughness: 1, envMapIntensity: 1 })
+const baubleMaterial = new THREE.MeshStandardMaterial({ color: 'black', roughness: 1, envMapIntensity: 1 })
 
 export default function Scene({ quantity = 0, inView }) {
   return (

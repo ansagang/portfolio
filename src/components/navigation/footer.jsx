@@ -1,8 +1,4 @@
-import Image from "next/image"
 import NavLink from "@/components/ui/nav-link"
-import { slugify } from "@/lib/utils"
-import { Suspense } from "react"
-import Input from "../ui/input"
 import Link from "next/link"
 
 export default function Footer({ language }) {
@@ -20,12 +16,6 @@ export default function Footer({ language }) {
                                 </li>
                                 <li className="footer__nav-li">
                                     <NavLink href={'/projects'}><span>{language.app.pages.projects.meta.title}</span></NavLink>
-                                </li>
-                                {/* <li className="header__nav-li">
-                                    <NavLink href={'/services'}><span>{language.app.pages.services.meta.title}</span></NavLink>
-                                </li> */}
-                                <li className="footer__nav-li">
-                                    <NavLink href={'/blog'}><span>{language.app.pages.blog.meta.title}</span></NavLink>
                                 </li>
                                 <li className="footer__nav-li">
                                     <NavLink href={'/contact'}><span>{language.app.pages.contact.meta.title}</span></NavLink>

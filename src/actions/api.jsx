@@ -1,61 +1,136 @@
-import { createClient } from "@/lib/supabase/client";
-import facetsFinder from "@/lib/utils";
+"use server"
 
-export async function getProjects({ search, category, lang, limit, sort }) {
-    
+export async function getStatus({ lang = '', revalidate = 0 }) {
     try {
-        const supabase = createClient()
-    
-        let query = supabase.from("projects").select('*')
-        if (search) {
-            query = query.textSearch('description_title', `${search}`, {type: 'websearch'})     
-        }
-        if (category) {
-            query = query.eq("category->>code", category)
-        }
-        if (sort) {
-            query = query.order(sort.code, { ascending: sort.ascending })
-        }
-        if (lang) {
-            query = query.match({lang: lang})
-        }
-        if (limit) {
-            query = query.limit(limit)
-        }
-
-        const { data, error, count } = await query
-        const {data: facetsData} = await supabase.from("projects").select('*').match({lang: lang})
-        const facets = await facetsFinder(facetsData, "category")
-        
-        
-        if (!error) {            
-            return {
-                data: data,
-                count: count,
-                facets: facets
+        const res = await fetch(`${process.env.URL || ''}/api/status?lang=${lang}`, {
+            method: 'GET',
+            headers: {
+                'x-api-key': process.env.API_KEY
+            },
+            next: {
+                revalidate: revalidate,
+                tags: ['status']
             }
-        }
-    
+        })
+
+        const data = await res.json()
+
+        return data
     } catch (err) {
         console.log(err);
+
     }
 }
 
-export async function getProject({ lang, slug }) {
-    
+
+export async function getSkills({ lang = '', revalidate = 0 }) {
     try {
-        const supabase = createClient()
-
-        const {data, error} = await supabase.from("projects").select("").match({lang: lang, slug: slug}).single()        
-
-        if (!error) {
-            return {
-                data: data,
+        const res = await fetch(`${process.env.URL || ''}/api/skills?lang=${lang}`, {
+            method: 'GET',
+            headers: {
+                'x-api-key': process.env.API_KEY
+            },
+            next: {
+                revalidate: revalidate,
+                tags: ['skills']
             }
-        }
-    
+        })
+
+        const data = await res.json()
+
+        return data
     } catch (err) {
         console.log(err);
+
+    }
+}
+
+export async function getExperience({ lang = '', revalidate = 0 }) {
+    try {
+        const res = await fetch(`${process.env.URL || ''}/api/experience?lang=${lang}`, {
+            method: 'GET',
+            headers: {
+                'x-api-key': process.env.API_KEY
+            },
+            next: {
+                revalidate: revalidate,
+                tags: ['experience']
+            }
+        })
+
+        const data = await res.json()
+
+        return data
+    } catch (err) {
+        console.log(err);
+
+    }
+}
+
+export async function postContact({ first_name, last_name, email, message, lang }) {
+    try {
+        const res = await fetch(`${process.env.URL || ''}/api/contact?lang=${lang}`, {
+            method: 'POST',
+            headers: {
+                'x-api-key': process.env.API_KEY
+            },
+            body: JSON.stringify({first_name: first_name,
+                last_name: last_name,
+                email: email,
+                message: message})
+        })
+
+        const data = await res.json()
+
+        return data
+    } catch (err) {
+        console.log(err);
+
+    }
+}
+
+export async function getProjects({ search = '', category = '', lang = '', limit = '', sort = '', revalidate = 0 }) {
+    try {
+        const sortQ = sort ? `${sort.code}.${sort.ascending ? 'asc' : 'desc'}` : ''
+        const res = await fetch(`${process.env.URL || ''}/api/projects?search=${search}&category=${category}&lang=${lang}&sort=${sortQ}&limit=${limit}`, {
+            method: 'GET',
+            headers: {
+                'x-api-key': process.env.API_KEY
+            },
+            next: {
+                revalidate: revalidate,
+                tags: ['projects']
+            }
+        })
+
+        const data = await res.json()
+
+        return data
+    } catch (err) {
+        console.log(err);
+
+    }
+}
+
+export async function getProject({ lang, slug, revalidate }) {
+    try {
+        const res = await fetch(`${process.env.URL || ''}/api/projects/${slug}?lang=${lang}`, {
+            method: 'GET',
+            headers: {
+                'x-api-key': process.env.API_KEY
+            },
+            next: {
+                revalidate: revalidate,
+                tags: ['project']
+            }
+        })
+
+        const data = await res.json()
+
+        return data
+    } catch (err) {
+        console.log(err);
+
     }
 }
 
@@ -86,11 +161,11 @@ export async function getProjectMedia(media) {
 }
 
 export async function getBlogs({ search, category, lang, limit, sort }) {
-    
+
     try {
         const supabase = createClient()
 
-        let query = supabase.from("blogs").select('*', { count: 'exact' }).match({lang: lang})
+        let query = supabase.from("blogs").select('*', { count: 'exact' }).match({ lang: lang })
         if (search) {
             query = query.textSearch('title', `${search}`, { type: 'websearch', config: lang })
         }
@@ -104,7 +179,7 @@ export async function getBlogs({ search, category, lang, limit, sort }) {
 
         const { data, error, count } = await query
         const facets = facetsFinder(data, "category")
-        
+
 
         if (!error) {
             return {
@@ -113,7 +188,7 @@ export async function getBlogs({ search, category, lang, limit, sort }) {
                 facets: facets
             }
         }
-    
+
     } catch (err) {
         console.log(err);
     }

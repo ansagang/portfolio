@@ -6,7 +6,11 @@
         "error": "Ошибка",
         "info": "Инфо",
         "warning": "Внимание",
-        "linkCopied": "Ссылка скопирована"
+        "linkCopied": "Ссылка скопирована",
+        "messageSuccess": "Сообщение успешно отправлено",
+        "emailInvalidError": "Неверная почта",
+        "missingFields": "Заполните все поля"
+
     },
     "app": {
         "meta": {

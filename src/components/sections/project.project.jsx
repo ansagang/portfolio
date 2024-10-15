@@ -1,12 +1,11 @@
 "use client"
 
-import { getProjectMedia } from "@/actions/api"
+import { getProjectMedia } from "@/actions/actions"
 import Image from "next/image"
-import { Suspense, useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Chip from "../ui/chip"
 import Button from "../ui/button"
 import { Icons } from "@/config/icons"
-import ContactBanner from "../ui/contact-banner"
 
 export default function Project({ language, project }) {
 
@@ -51,7 +50,6 @@ export default function Project({ language, project }) {
         getProjectMediaUrl()
     }, [project])
 
-    console.log(snippetsUrl);
 
 
     useEffect(() => {
@@ -68,13 +66,12 @@ export default function Project({ language, project }) {
                 <div className="project__inner inner">
                     <div className="project__header">
                             <div className="project__title title">
-                                <h2>{project.title}</h2>
+                            <h2>{project.title}</h2><Button type={'primary'} className={'project__button'} href={project.link}>Github</Button>
                             </div>
                             <div className="project__info info">
                                 <p>{project.description}</p>
                             </div>
                         <div className="project__links">
-                            <Button type={'primary'} className={'project__button'} href={project.link}>Github</Button>
                         </div>
                     </div>
                     <div onClick={() => {
@@ -154,16 +151,7 @@ export default function Project({ language, project }) {
                                 :
                                 null
                         }
-                        <div className="project__block">
-                            <div className="project__block-title title">
-                                <h2>{language.app.pages.contact.meta.title}</h2>
-                            </div>
-                            <ContactBanner className={'project__block-contact'} language={language} />
-                        </div>
                     </div>
-                    {/* <div className="project__picture">
-                        <Image src={picturesUrl[activePicture]} width={1} height={1} unoptimized={true} />
-                    </div> */}
                 </div>
             </div>
         </section>

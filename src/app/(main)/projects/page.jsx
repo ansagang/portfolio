@@ -1,6 +1,8 @@
 import Projects from "@/components/sections/projects.projects";
 import { getLanguage } from "@/lib/get-language";
 
+export const revalidate = 3600
+
 export async function generateMetadata() {
 
   const language = await getLanguage({})

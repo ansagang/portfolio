@@ -6,7 +6,10 @@
         "error": "Error",
         "info": "Info",
         "warning": "Warning",
-        "linkCopied": "Link copied"
+        "linkCopied": "Link copied",
+        "messageSuccess": "Message has been sent succesfully",
+        "emailInvalidError": "Invalid email",
+        "missingFields": "Missing fields"
     },
     "app": {
         "meta": {

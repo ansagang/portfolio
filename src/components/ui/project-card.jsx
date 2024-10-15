@@ -3,7 +3,7 @@
 import { TiltCard } from "@/components/ui/tilt-card"
 import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
-import { getProjectMedia } from "@/actions/api"
+import { getProjectMedia } from "@/actions/actions"
 
 export default function ProjectCard({ slug, id, title, description, category, video, ...props }) {
 

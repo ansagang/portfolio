@@ -1,8 +1,6 @@
 "use client"
 
-import Image from "next/image"
 import Words from "../three/words"
-import Link from "next/link"
 import Button from "../ui/button"
 import { usePathname } from "next/navigation"
 import { useRouter } from "next/navigation"

@@ -6,7 +6,10 @@
         "error": "Қате",
         "info": "Ақпарат",
         "warning": "Назар аударыңыз",
-        "linkCopied": "Сілтеме көшірілді"
+        "linkCopied": "Сілтеме көшірілді",
+        "messageSuccess": "Хабар сәтті жіберілді",
+        "emailInvalidError": "Жарамсыз электрондық пошта",
+        "missingFields": "Жетіспейтін өрістер"
     },
     "app": {
         "meta": {

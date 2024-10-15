@@ -3,6 +3,14 @@ import Project from "@/components/sections/project.project"
 import { getLanguage } from "@/lib/get-language"
 import { notFound } from "next/navigation"
 
+// export async function generateStaticParams() {
+//     const { data: projects } = await getProjects({})
+
+//     return projects.map((project) => ({
+//         slug: project.slug,
+//     }))
+// }
+
 export async function generateMetadata({ params }) {
 
     const { slug } = params
@@ -19,13 +27,13 @@ export async function generateMetadata({ params }) {
 export default async function ProjectPage({ params }) {
     const { slug } = params
     const language = await getLanguage({})
-    const data = await getProject({ lang: language.lang, slug: slug })
+    const { data: project } = await getProject({ lang: language.lang, slug: slug, revalidate: 3600 })
 
-    if (!data) {
+    if (!project) {
         notFound()
     }
 
     return (
-        <Project project={data.data} language={language} />
+        <Project project={project} language={language} />
     )
 }

@@ -14,6 +14,7 @@ html,
 body {
     height: 100%;
     cursor: none;
+    position: relative;
 }
 
 body {
@@ -32,10 +33,6 @@ html {
     box-sizing: border-box;
 }
 
-section {
-    // overflow-x: hidden;
-    // position: relative;
-}
 
 *,
 *::before,
@@ -229,19 +226,12 @@ input[type="search"] {
 //     margin: 30px 0;
 // }
 
-a:-webkit-any-link {
-    // cursor: none;
-}
-
 button[type="submit"]{
     border-radius: $input_radius;
 }
 .video{
     filter: grayscale(0%);
     position: relative;
-    &.paused{
-        // filter: grayscale(100%);
-    }
     &__loading{
         position: absolute;
         width: 100%;
@@ -249,7 +239,7 @@ button[type="submit"]{
         left: 0;
         top: 0;
         animation: skeleton-loading 1s linear infinite alternate;
-        border-radius: 30px;
+        border-radius: 12px;
     }
     &__paused{
         position: absolute;

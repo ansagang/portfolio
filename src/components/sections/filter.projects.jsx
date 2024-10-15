@@ -1,19 +1,25 @@
 "use client"
 
-import { useCallback, useEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import Input from "../ui/input"
 import Select from "../ui/select"
-import { slugify } from "@/lib/utils"
 import Chip from "../ui/chip"
 import { usePathname, useSearchParams } from "next/navigation"
 import { useRouter } from "next/navigation"
-import SkeletonChip from "../ui/skeleton-chip"
 import SkeletonCategories from "../ui/skeleton-categories"
 import { getProjects } from "@/actions/api"
 import useDebounce from "@/hooks/use-debounce"
 
-export default function FilterProjects({ language, searchQ, categoryQ, limitQ, sortQ }) {
+export default function FilterProjects({ categories,language, searchQ, categoryQ, limitQ, sortQ }) {
 
+
+    // useEffect(() => {
+    //     async function get() {
+    //         await getProjects({ lang: language.lang, revalidate: 0 }).then(res => setCategories(res.facets))
+    //     }
+
+    //     get()
+    // }, [language])
 
     const sortOptions = [
         {
@@ -22,7 +28,7 @@ export default function FilterProjects({ language, searchQ, categoryQ, limitQ, s
             ascending: 'desc'
         },
         {
-            title:language.app.labels.sortByOldest,
+            title: language.app.labels.sortByOldest,
             code: "created_at",
             ascending: 'asc'
         }
@@ -51,11 +57,10 @@ export default function FilterProjects({ language, searchQ, categoryQ, limitQ, s
 
 
     const [search, setSearch] = useState(searchQ)
-    const [sort, setSort] = useState(sortQ ? sortOptions.find((item) => item.code == sortQ.code) : sortOptions[0])
+    const [sort, setSort] = useState(sortOptions[0])
     const [limit, setLimit] = useState(limitQ)
     const [category, setCategory] = useState(categoryQ)
 
-    const categoryOptions = []
 
     const router = useRouter()
     const pathname = usePathname()
@@ -67,7 +72,7 @@ export default function FilterProjects({ language, searchQ, categoryQ, limitQ, s
         } else {
             router.push(pathname + '?' + createQueryString('sort'))
         }
-    }, [sort, language])
+    }, [sort])
 
     useEffect(() => {
         if (category) {
@@ -75,20 +80,9 @@ export default function FilterProjects({ language, searchQ, categoryQ, limitQ, s
         } else {
             router.push(pathname + '?' + createQueryString('category'))
         }
-    }, [category, language])
+    }, [category])
 
-    const [categories, setCategories] = useState()
-    useEffect(() => {
-        async function get() {
-            const { facets: facets } = await getProjects({ lang: language.lang })
-            if (facets) {
-                setCategories(facets)
-            }
-        }
-
-        get()
-    }, [language])
-
+    // const [categories, setCategories] = useState()
     const debouncedSearch = useDebounce(search, 1000)
 
     useEffect(() => {
@@ -97,7 +91,7 @@ export default function FilterProjects({ language, searchQ, categoryQ, limitQ, s
         } else {
             router.push(pathname + '?' + createQueryString('search'))
         }
-    }, [debouncedSearch, language])
+    }, [debouncedSearch])
 
     return (
         <div className="projects__list-filters">

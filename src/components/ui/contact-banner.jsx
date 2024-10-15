@@ -12,12 +12,14 @@ export default function ContactBanner({ banner, className, language, ...props })
 
     return (
         <div className={`contact__banner ${className}`} {...props}>
-            <div className="contact__banner-content">
-                <div className="contact__banner-title title">
-                    <h2>{language.app.pages.contact.sections.banner.title}</h2>
-                </div>
-                <div className="contact__banner-info title">
-                    <h4>{language.app.pages.contact.sections.banner.info}</h4>
+            <div className="contact__banner-left">
+                <div className="contact__banner-content">
+                    <div className="contact__banner-title title">
+                        <h2>{language.app.pages.contact.sections.banner.title}</h2>
+                    </div>
+                    <div className="contact__banner-info title">
+                        <h4>{language.app.pages.contact.sections.banner.info}</h4>
+                    </div>
                 </div>
                 <div className="contact__banner-buttons">
                     <Button onClick={() => router.push('/contact')} className={'contact__banner-button'} type="primary">{language.app.buttons.leaveRequest}<Icons.arrow /></Button>

@@ -2,6 +2,7 @@ import AboutMe from "@/components/sections/about.about";
 import { getLanguage } from "@/lib/get-language";
 import Skills from "@/components/sections/skills.about";
 import Experience from "@/components/sections/experience.about";
+import { getExperience, getSkills } from "@/actions/api";
 
 export async function generateMetadata() {
 
@@ -16,13 +17,14 @@ export default async function About() {
 
   const language = await getLanguage({})
 
+  const {data: skills} = await getSkills({lang: language.lang, revalidate: 3600})
+  const {data: experience} = await getExperience({lang: language.lang, revalidate: 3600})
+
   return (
     <>
       <AboutMe language={language} />
-      {/* <Divider /> */}
-      <Skills language={language} />
-      <Experience language={language} />
-      {/* <Achievements language={language} /> */}
+      <Skills language={language} skills={skills} />
+      <Experience language={language} experience={experience} />
     </>
   );
 }

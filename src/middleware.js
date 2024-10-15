@@ -1,9 +1,10 @@
 import { headers } from 'next/headers'
 import { NextResponse } from 'next/server'
+import { isDev } from './lib/utils'
 
 export async function middleware(request) {
 
-    // const dev = isDev()
+    const dev = isDev()
 
     // const { data: user } = await getUser()
     // for (let route of routes) {
@@ -31,6 +32,20 @@ export async function middleware(request) {
     //         //     }
     //         // }
     // }
+
+    if (request.nextUrl.pathname.startsWith('/api')) {
+        const api_key = request.headers.get('x-api-key')
+        if (!dev) {
+            if (api_key !== process.env.API_KEY) {
+                return NextResponse.json({
+                    success: false,
+                    message: "Invalid api key"
+                })
+            } else {
+                return NextResponse.next()
+            }
+        }
+    }
 
     const headersList = headers()
     const headerLanguage = headersList.get("accept-language").split(",")[0].split("-")[0]

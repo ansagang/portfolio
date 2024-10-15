@@ -1,9 +1,7 @@
 "use client"
 
-import { Icons } from "@/config/icons";
 
 import useInView from "@/hooks/use-in-view"
-import Button from "../ui/button";
 import ContactBanner from "../ui/contact-banner";
 
 export default function Contact({ language }) {

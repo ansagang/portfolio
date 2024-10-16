@@ -289,7 +289,7 @@ footer{
             transition: all 0.5s ease;
             font-size: $p_font_size;
             background-color: $bg_color;
-            color: $primary_color;
+            color: $primary_color !important;
             &:hover{
                 background-color: rgba(0, 0, 0, 0.5);
                 color: $accent_color;
@@ -324,6 +324,7 @@ footer{
             //     background-color: $accent_color_2;
             //     color: $bg_color;
             // }
+            color: $primary_color !important;
     
             &.active{
                 border: none;

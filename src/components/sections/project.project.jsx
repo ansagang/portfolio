@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react"
 import Chip from "../ui/chip"
 import Button from "../ui/button"
 import { Icons } from "@/config/icons"
+import { supabaseLoader } from "@/lib/utils"
 
 export default function Project({ language, project, video }) {
 
@@ -23,8 +24,10 @@ export default function Project({ language, project, video }) {
                 project.pictures.forEach(async (picture) => {
                     const { data: pictureUrl } = await getProjectMedia(picture)
 
+                    const newUrl = supabaseLoader({src: pictureUrl, width: 100, quality:100})                    
+
                     if (pictureUrl) {
-                        setPicturesUrl((currentUrls) => ([...currentUrls, pictureUrl]))
+                        setPicturesUrl((currentUrls) => ([...currentUrls, newUrl]))
                     }
                 })
             }
@@ -33,8 +36,9 @@ export default function Project({ language, project, video }) {
                 project.snippets.forEach(async (snippet) => {
                     const { data: snippetUrl } = await getProjectMedia(snippet)
 
+                    const newUrl = supabaseLoader({src: snippetUrl, width: 100, quality:100})                    
                     if (snippetUrl) {
-                        setSnippetsUrl(currentUrls => ([...currentUrls, snippetUrl]))
+                        setSnippetsUrl(currentUrls => ([...currentUrls, newUrl]))
                     }
                 })
             }
@@ -114,7 +118,8 @@ export default function Project({ language, project, video }) {
                                         {
                                             project.pictures.length === picturesUrl.length ?
                                                 picturesUrl.map((pictureUrl) => (
-                                                    <Image className="project__block-image card" src={pictureUrl} width={1} height={1} unoptimized />
+                                                    
+                                                    <Image unoptimized className="project__block-image card" src={pictureUrl} width={1} height={1} />
                                                 ))
                                                 :
                                                 null
@@ -134,7 +139,7 @@ export default function Project({ language, project, video }) {
                                         {
                                             project.snippets.length === snippetsUrl.length ?
                                                 snippetsUrl.map((snippeturl) => (
-                                                    <Image className="project__block-image card" src={snippeturl} width={1} height={1} unoptimized />
+                                                    <Image unoptimized className="project__block-image card" src={snippeturl} width={1} height={1} />
                                                 ))
                                                 :
                                                 null

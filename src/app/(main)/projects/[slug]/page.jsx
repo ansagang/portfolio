@@ -16,11 +16,11 @@ export async function generateMetadata({ params }) {
 
     const { slug } = params
     const language = await getLanguage({})
-    const data = await getProject({ lang: language.lang, slug: slug })
+    const {data: project} = await getProject({ lang: language.lang, slug: slug })
 
-    if (data) {
+    if (project) {
         return {
-            title: data.data.title
+            title: project.title
         }
     }
 }

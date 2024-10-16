@@ -57,7 +57,7 @@ export default function FilterProjects({ categories,language, searchQ, categoryQ
 
 
     const [search, setSearch] = useState(searchQ)
-    const [sort, setSort] = useState(sortOptions[0])
+    const [sort, setSort] = useState(sortQ ? sortQ : sortOptions[0])
     const [limit, setLimit] = useState(limitQ)
     const [category, setCategory] = useState(categoryQ)
 
@@ -100,7 +100,7 @@ export default function FilterProjects({ categories,language, searchQ, categoryQ
                     <Input value={search} onChange={(e) => setSearch(e.target.value)} type={'search'} placeholder={language.app.labels.searchProjects} />
                 </div>
                 <div className="projects__list-filter_select">
-                    <Select setActiveOption={setSort} activeOption={sort} options={sortOptions} />
+                    <Select text={sortOptions[0].title} setActiveOption={setSort} activeOption={sort} options={sortOptions} />
                 </div>
             </div>
             <div className="projects__list-filter_down">

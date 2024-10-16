@@ -1076,7 +1076,6 @@ body{
         width: 40%;
         &-links{
             display: flex;
-            flex-wrap: wrap;
             gap: 20px;
             align-items: center;
         }
@@ -1297,7 +1296,7 @@ body{
     height: 100vh;
     background-color: $bg_color;
     position: fixed;
-    top: -100%;
+    top: -200%;
     left: 0;
     width: 100%;
     transition: 0.5s ease;

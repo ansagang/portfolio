@@ -88,15 +88,17 @@ export default function Header({ language, status }) {
                 <div className="menu__inner">
                     <nav className="menu__nav">
                         <ol className="menu__nav-ol links">
-                            {
-                                status ?
-                                    <Chip type={'primary'} active={true} className="menu__nav-li white">{status.status}</Chip>
-                                    :
-                                    null
-                            }
                             <li className="menu__nav-li">
-                                    <DownloadLink file={language.app.files.cv}><span>{language.app.labels.downloadCV}</span></DownloadLink>
-                                </li>
+                                {
+                                    status ?
+                                        <div className="header__nav-status white">{status.status}</div>
+                                        :
+                                        null
+                                }
+                            </li>
+                            <li className="menu__nav-li">
+                                <DownloadLink file={'/files/' + language.app.files.cv}><span>{language.app.labels.downloadCV}</span></DownloadLink>
+                            </li>
                             <li className="menu__nav-li">
                                 <NavLink onClick={() => setShow(false)} href={'/about'}><span>{language.app.pages.about.meta.title}</span></NavLink>
                             </li>

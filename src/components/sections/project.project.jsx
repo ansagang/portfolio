@@ -12,7 +12,7 @@ export default function Project({ language, project }) {
     const [videoUrl, setVideoUrl] = useState()
     const [picturesUrl, setPicturesUrl] = useState([])
     const [snippetsUrl, setSnippetsUrl] = useState([])
-    const [paused, setPaused] = useState(false)
+    const [paused, setPaused] = useState(true)
     const [loading, setLoading] = useState(false)
     const videoRef = useRef()
 

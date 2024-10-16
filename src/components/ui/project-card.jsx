@@ -34,7 +34,7 @@ export default function ProjectCard({ slug, id, title, description, category, vi
                                 videoRef.current.currentTime = 0
                                 videoRef.current.pause()
                             }}>
-                                <source src={videoUrl + "#t=0.1"} />
+                                <source src={videoUrl} />
                             </video>
                     }
                 </TiltCard>

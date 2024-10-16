@@ -85,18 +85,18 @@ export default function Contact({ language }) {
                                 {
                                     socials ?
                                         socials.length !== 0 ?
-                                            socials.map((social) => (
+                                            socials.map((social, k) => (
                                                 social.link.startsWith('http') ?
                                                     (
 
-                                                        <Link title={social.title} className="contact__social-link" href={social.link}>
+                                                        <Link key={k} title={social.title} className="contact__social-link" href={social.link}>
                                                             <Image width={1} height={1} unoptimized src={social.logo} />
                                                         </Link>
                                                     )
                                                     :
                                                     (
 
-                                                        <div onClick={() => {
+                                                        <div key={k} onClick={() => {
                                                             navigator.clipboard.writeText(social.link)
                                                             notification({message: language.res.linkCopied, language: language})
                                                         }} title={social.title} className="contact__social-link">

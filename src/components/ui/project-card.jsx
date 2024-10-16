@@ -33,8 +33,7 @@ export default function ProjectCard({ slug, id, title, description, category, vi
                             <video playsInline muted ref={videoRef} onMouseEnter={() => videoRef.current.play()} onMouseLeave={() => {
                                 videoRef.current.currentTime = 0
                                 videoRef.current.pause()
-                            }}>
-                                <source src={videoUrl} />
+                            }} src={videoUrl}>
                             </video>
                     }
                 </TiltCard>

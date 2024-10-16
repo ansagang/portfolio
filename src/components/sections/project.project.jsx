@@ -116,7 +116,7 @@ export default function Project({ language, project, video }) {
                                     </div>
                                     <div className="project__block-gallery pictures">
                                         {
-                                            project.pictures.length === picturesUrl.length ?
+                                            project.pictures.length !== 0 ?
                                                 picturesUrl.map((pictureUrl) => (
                                                     
                                                     <Image unoptimized className="project__block-image card" src={pictureUrl} width={1} height={1} />
@@ -137,7 +137,7 @@ export default function Project({ language, project, video }) {
                                     </div>
                                     <div className="project__block-gallery">
                                         {
-                                            project.snippets.length === snippetsUrl.length ?
+                                            project.snippets.length !== 0 ?
                                                 snippetsUrl.map((snippeturl) => (
                                                     <Image unoptimized className="project__block-image card" src={snippeturl} width={1} height={1} />
                                                 ))

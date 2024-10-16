@@ -7,9 +7,8 @@ import Chip from "../ui/chip"
 import Button from "../ui/button"
 import { Icons } from "@/config/icons"
 
-export default function Project({ language, project }) {
+export default function Project({ language, project, video }) {
 
-    const [videoUrl, setVideoUrl] = useState()
     const [picturesUrl, setPicturesUrl] = useState([])
     const [snippetsUrl, setSnippetsUrl] = useState([])
     const [paused, setPaused] = useState(true)
@@ -17,15 +16,9 @@ export default function Project({ language, project }) {
     const videoRef = useRef()
 
     useEffect(() => {
-        setVideoUrl()
         setPicturesUrl([])
         setSnippetsUrl([])
         async function getProjectMediaUrl() {
-            const { data: projectVideoUrl } = await getProjectMedia(project.video)
-            if (projectVideoUrl) {
-                setVideoUrl(projectVideoUrl)
-            }
-
             if (project.pictures) {
                 project.pictures.forEach(async (picture) => {
                     const { data: pictureUrl } = await getProjectMedia(picture)
@@ -77,7 +70,7 @@ export default function Project({ language, project }) {
                     <div onClick={() => {
                         setPaused(!paused)
                     }} className="project__video card">
-                        <video onLoadStart={() => setLoading(true)} onLoadedData={() => setLoading(false)} className={loading ? "video loading" : paused ? "video" : "video paused"} ref={videoRef} loop={true} playsInline muted src={videoUrl}>
+                        <video onLoadStart={() => setLoading(true)} onLoadedData={() => setLoading(false)} className={loading ? "video loading" : paused ? "video" : "video paused"} ref={videoRef} loop={true} playsInline muted src={video}>
                         </video>
                         {
                             loading ?
@@ -121,7 +114,7 @@ export default function Project({ language, project }) {
                                         {
                                             project.pictures.length === picturesUrl.length ?
                                                 picturesUrl.map((pictureUrl) => (
-                                                    <Image priority className="project__block-image card" src={pictureUrl} width={1} height={1} unoptimized />
+                                                    <Image className="project__block-image card" src={pictureUrl} width={1} height={1} unoptimized />
                                                 ))
                                                 :
                                                 null
@@ -141,7 +134,7 @@ export default function Project({ language, project }) {
                                         {
                                             project.snippets.length === snippetsUrl.length ?
                                                 snippetsUrl.map((snippeturl) => (
-                                                    <Image priority className="project__block-image card" src={snippeturl} width={1} height={1} unoptimized />
+                                                    <Image className="project__block-image card" src={snippeturl} width={1} height={1} unoptimized />
                                                 ))
                                                 :
                                                 null

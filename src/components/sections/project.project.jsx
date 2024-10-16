@@ -6,20 +6,31 @@ import { useEffect, useRef, useState } from "react"
 import Chip from "../ui/chip"
 import Button from "../ui/button"
 import { Icons } from "@/config/icons"
-import { supabaseLoader } from "@/lib/utils"
 
-export default function Project({ language, project, video }) {
+export default function Project({ language, project }) {
 
     const [picturesUrl, setPicturesUrl] = useState([])
     const [snippetsUrl, setSnippetsUrl] = useState([])
     const [paused, setPaused] = useState(true)
     const [loading, setLoading] = useState(false)
     const videoRef = useRef()
+    const [video, setVideo] = useState()
 
     useEffect(() => {
         setPicturesUrl([])
         setSnippetsUrl([])
+        setVideo()
+
         async function getProjectMediaUrl() {
+            if (project.video) {
+                const { data } = await getProjectMedia(project.video)
+
+
+                if (data) {
+                    setVideo(data)
+                }
+            }
+
             if (project.pictures) {
                 project.pictures.forEach(async (picture) => {
                     const { data: pictureUrl } = await getProjectMedia(picture)

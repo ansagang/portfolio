@@ -28,7 +28,7 @@ export async function generateMetadata({ params }) {
 export default async function ProjectPage({ params }) {
     const { slug } = params
     const language = await getLanguage({})
-    const { data: project } = await getProject({ lang: language.lang, slug: slug, revalidate: 3600 })
+    const { data: project } = await getProject({ lang: language.lang, slug: slug, revalidate: 0 })
     const {data: video} = await getProjectMedia(project.video)
 
     if (!project) {

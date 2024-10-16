@@ -1,15 +1,12 @@
-"use server"
-
 export async function getStatus({ lang = '', revalidate = 0 }) {
     try {
-        const res = await fetch(`${process.env.URL || ''}/api/status?lang=${lang}`, {
+        const res = await fetch(`${process.env.URL}/api/status?lang=${lang}`, {
             method: 'GET',
             headers: {
                 'x-api-key': process.env.API_KEY
             },
             next: {
                 revalidate: revalidate,
-                tags: ['status']
             }
         })
 
@@ -25,14 +22,13 @@ export async function getStatus({ lang = '', revalidate = 0 }) {
 
 export async function getSkills({ lang = '', revalidate = 0 }) {
     try {
-        const res = await fetch(`${process.env.URL || ''}/api/skills?lang=${lang}`, {
+        const res = await fetch(`${process.env.URL}/api/skills?lang=${lang}`, {
             method: 'GET',
             headers: {
                 'x-api-key': process.env.API_KEY
             },
             next: {
                 revalidate: revalidate,
-                tags: ['skills']
             }
         })
 
@@ -54,7 +50,6 @@ export async function getExperience({ lang = '', revalidate = 0 }) {
             },
             next: {
                 revalidate: revalidate,
-                tags: ['experience']
             }
         })
 
@@ -99,7 +94,6 @@ export async function getProjects({ search = '', category = '', lang = '', limit
             },
             next: {
                 revalidate: revalidate,
-                tags: ['projects']
             }
         })
 
@@ -121,7 +115,6 @@ export async function getProject({ lang, slug, revalidate }) {
             },
             next: {
                 revalidate: revalidate,
-                tags: ['project']
             }
         })
 

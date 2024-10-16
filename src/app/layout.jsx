@@ -7,7 +7,7 @@ import { getLanguage } from '@/lib/get-language'
 import NextTopLoader from 'nextjs-toploader'
 import Cursor from '@/components/ui/cursor'
 
-const font = Montserrat({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700', '800'], fallback: 'false', display: 'swap' })
+const font = Montserrat({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700', '800'], display: 'swap' })
 
 export async function generateMetadata() {
 

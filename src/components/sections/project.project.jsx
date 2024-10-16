@@ -24,10 +24,9 @@ export default function Project({ language, project, video }) {
                 project.pictures.forEach(async (picture) => {
                     const { data: pictureUrl } = await getProjectMedia(picture)
 
-                    const newUrl = supabaseLoader({src: pictureUrl, width: 100, quality:100})                    
 
                     if (pictureUrl) {
-                        setPicturesUrl((currentUrls) => ([...currentUrls, newUrl]))
+                        setPicturesUrl((currentUrls) => ([...currentUrls, pictureUrl]))
                     }
                 })
             }
@@ -36,9 +35,8 @@ export default function Project({ language, project, video }) {
                 project.snippets.forEach(async (snippet) => {
                     const { data: snippetUrl } = await getProjectMedia(snippet)
 
-                    const newUrl = supabaseLoader({src: snippetUrl, width: 100, quality:100})                    
                     if (snippetUrl) {
-                        setSnippetsUrl(currentUrls => ([...currentUrls, newUrl]))
+                        setSnippetsUrl(currentUrls => ([...currentUrls, snippetUrl]))
                     }
                 })
             }
@@ -116,7 +114,7 @@ export default function Project({ language, project, video }) {
                                     </div>
                                     <div className="project__block-gallery pictures">
                                         {
-                                            project.pictures.length !== 0 ?
+                                            picturesUrl.length !== 0 ?
                                                 picturesUrl.map((pictureUrl) => (
                                                     
                                                     <Image unoptimized className="project__block-image card" src={pictureUrl} width={1} height={1} />
@@ -137,7 +135,7 @@ export default function Project({ language, project, video }) {
                                     </div>
                                     <div className="project__block-gallery">
                                         {
-                                            project.snippets.length !== 0 ?
+                                            snippetsUrl.length !== 0 ?
                                                 snippetsUrl.map((snippeturl) => (
                                                     <Image unoptimized className="project__block-image card" src={snippeturl} width={1} height={1} />
                                                 ))

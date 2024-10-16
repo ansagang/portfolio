@@ -8,7 +8,7 @@ import { getLanguage } from "@/lib/get-language";
 export default async function Home() {
 
   const language = await getLanguage({})
-  const {data: projects} = await getProjects({lang: language.lang, limit: 4, revalidate: 3600})
+  const {data: projects} = await getProjects({lang: language.lang, limit: 4, revalidate: 0})
   
   return (
     <>

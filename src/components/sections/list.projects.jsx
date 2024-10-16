@@ -13,10 +13,9 @@ export default function ListProjects({ language, searchQ, categoryQ, limitQ, sor
     useEffect(() => {
         setProjects()
         async function get() {
-            await getProjects({ lang: language.lang, search: searchQ, category: categoryQ, limit: limitQ, sort: sortQ, revalidate: 0 }).then(res => {
-                setProjects(res.data)
-                setCategories(res.facets)
-            })
+            const {data, facets} = await getProjects({ lang: language.lang, search: searchQ, category: categoryQ, limit: limitQ, sort: sortQ, revalidate: 0 })
+            setProjects(data)
+            setCategories(facets)
         }
 
         get()

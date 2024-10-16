@@ -57,7 +57,7 @@ export default function Header({ language, status }) {
                         <nav className="header__nav">
                             <ol className="header__nav-ol links">
                                 <li className="header__nav-li">
-                                    <DownloadLink file={language.app.files.cv}><span>{language.app.labels.downloadCV}</span></DownloadLink>
+                                    <DownloadLink file={'/files/'+language.app.files.cv}><span>{language.app.labels.downloadCV}</span></DownloadLink>
                                 </li>
                                 <li className="header__nav-li">
                                     {/* <div className="link"><span>Available</span></div> */}

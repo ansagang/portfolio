@@ -8,8 +8,7 @@ export async function getStatus({ lang = '', revalidate = 0 }) {
                 'x-api-key': process.env.API_KEY
             },
             next: {
-                revalidate: revalidate,
-                tags: ['status']
+                revalidate: revalidate
             }
         })
 
@@ -31,8 +30,7 @@ export async function getSkills({ lang = '', revalidate = 0 }) {
                 'x-api-key': process.env.API_KEY
             },
             next: {
-                revalidate: revalidate,
-                tags: ['skills']
+                revalidate: revalidate
             }
         })
 
@@ -53,8 +51,7 @@ export async function getExperience({ lang = '', revalidate = 0 }) {
                 'x-api-key': process.env.API_KEY
             },
             next: {
-                revalidate: revalidate,
-                tags: ['experience']
+                revalidate: revalidate
             }
         })
 
@@ -116,8 +113,7 @@ export async function getProject({ lang, slug, revalidate }) {
                 'x-api-key': process.env.API_KEY
             },
             next: {
-                revalidate: revalidate,
-                tags: ['project']
+                revalidate: revalidate
             }
         })
 

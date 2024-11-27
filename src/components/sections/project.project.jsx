@@ -9,16 +9,12 @@ import { Icons } from "@/config/icons"
 
 export default function Project({ language, project }) {
 
-    const [picturesUrl, setPicturesUrl] = useState([])
-    const [snippetsUrl, setSnippetsUrl] = useState([])
     const [paused, setPaused] = useState(true)
     const [loading, setLoading] = useState(false)
     const videoRef = useRef()
     const [video, setVideo] = useState()
 
     useEffect(() => {
-        setPicturesUrl([])
-        setSnippetsUrl([])
         setVideo()
 
         async function getProjectMediaUrl() {
@@ -29,27 +25,6 @@ export default function Project({ language, project }) {
                 if (data) {
                     setVideo(data)
                 }
-            }
-
-            if (project.pictures) {
-                project.pictures.forEach(async (picture) => {
-                    const { data: pictureUrl } = await getProjectMedia(picture)
-
-
-                    if (pictureUrl) {
-                        setPicturesUrl((currentUrls) => ([...currentUrls, pictureUrl]))
-                    }
-                })
-            }
-
-            if (project.snippets) {
-                project.snippets.forEach(async (snippet) => {
-                    const { data: snippetUrl } = await getProjectMedia(snippet)
-
-                    if (snippetUrl) {
-                        setSnippetsUrl(currentUrls => ([...currentUrls, snippetUrl]))
-                    }
-                })
             }
         }
 
@@ -116,48 +91,6 @@ export default function Project({ language, project }) {
                                 }
                             </div>
                         </div>
-
-                        {
-                            project.pictures ?
-                                <div className="project__block">
-                                    <div className="project__block-title title">
-                                        <h2>{language.app.pages.project.sections.pictures.title}</h2>
-                                    </div>
-                                    <div className="project__block-gallery pictures">
-                                        {
-                                            picturesUrl.length === project.pictures.length ?
-                                                picturesUrl.map((pictureUrl) => (
-                                                    
-                                                    <Image unoptimized className="project__block-image card" src={pictureUrl} width={1} height={1} />
-                                                ))
-                                                :
-                                                null
-                                        }
-                                    </div>
-                                </div>
-                                :
-                                null
-                        }
-                        {
-                            project.snippets ?
-                                <div className="project__block">
-                                    <div className="project__block-title title">
-                                        <h2>{language.app.pages.project.sections.snippets.title}</h2>
-                                    </div>
-                                    <div className="project__block-gallery">
-                                        {
-                                            snippetsUrl.length === project.snippets.length ?
-                                                snippetsUrl.map((snippeturl) => (
-                                                    <Image unoptimized className="project__block-image card" src={snippeturl} width={1} height={1} />
-                                                ))
-                                                :
-                                                null
-                                        }
-                                    </div>
-                                </div>
-                                :
-                                null
-                        }
                     </div>
                 </div>
             </div>

@@ -6,6 +6,7 @@ import NotificationProvider from '@/context/notification-provider'
 import { getLanguage } from '@/lib/get-language'
 import NextTopLoader from 'nextjs-toploader'
 import Cursor from '@/components/ui/cursor'
+import { Suspense } from 'react'
 
 const font = Montserrat({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700', '800'], display: 'swap' })
 
@@ -62,13 +63,13 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={font.className}>
-        <NextTopLoader color='#000' showSpinner={false} shadow={false} height={5} />
-        <div className="wrapper__main">
-          <NotificationProvider>
-            {children}
-          </NotificationProvider>
-          <Cursor colors={['white']} pointers={['a', 'button', 'input']} cards={['card']} />
-        </div>
+          <NextTopLoader color='#000' showSpinner={false} shadow={false} height={5} />
+          <div className="wrapper__main">
+            <NotificationProvider>
+              {children}
+            </NotificationProvider>
+            <Cursor colors={['white']} pointers={['a', 'button', 'input']} cards={['card']} />
+          </div>
       </body>
     </html>
   )

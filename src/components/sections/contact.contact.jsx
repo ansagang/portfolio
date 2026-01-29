@@ -90,7 +90,7 @@ export default function Contact({ language }) {
                                                     (
 
                                                         <Link key={k} title={social.title} className="contact__social-link" href={social.link}>
-                                                            <Image width={1} height={1} unoptimized src={social.logo} />
+                                                            <Image alt={social.title} width={1} height={1} unoptimized src={social.logo} />
                                                         </Link>
                                                     )
                                                     :
@@ -100,7 +100,7 @@ export default function Contact({ language }) {
                                                             navigator.clipboard.writeText(social.link)
                                                             notification({message: language.res.linkCopied, language: language})
                                                         }} title={social.title} className="contact__social-link">
-                                                            <Image width={1} height={1} unoptimized src={social.logo} />
+                                                            <Image alt={social.title} width={1} height={1} unoptimized src={social.logo} />
                                                         </div>
                                                     )
                                             ))

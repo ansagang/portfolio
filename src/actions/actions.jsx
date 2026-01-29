@@ -1,12 +1,24 @@
 "use server"
 
-import { cookies } from "next/headers"
 import { revalidatePath } from "next/cache"
 import { createClient } from "@/lib/supabase/server"
+import { cookies, headers } from "next/headers"
+import languageDefiner from "@/lib/language-definer"
+
+export async function getLanguage({ locale }) {
+    const headersList = await headers()
+    const headerLanguage = headersList.get("accept-language").split(",")[0].split("-")[0]
+    const cookiesList = await cookies()
+    const lang = cookiesList.get("lang") ? cookiesList.get("lang").value : headerLanguage
+
+    const language = await languageDefiner({locale: locale, headerLanguage: lang})
+
+    return language
+}
 
 export default async function changeLanguage({ lang, path = '/' }) {
     try {
-        const cookiesList = cookies()
+        const cookiesList = await cookies()
         console.log(path);
         
         cookiesList.set("lang", lang)
@@ -19,9 +31,9 @@ export default async function changeLanguage({ lang, path = '/' }) {
 
 export async function getProjectMedia(media) {
     try {
-        const supabase = createClient()
+        const supabase = await createClient()
         if (media) {
-            const { data } = supabase.storage.from('projects').getPublicUrl(media)
+            const { data } = supabase.storage.from('portfolio').getPublicUrl('projects/'+media)
 
             if (data) {
                 return {
@@ -38,9 +50,9 @@ export async function getProjectMedia(media) {
 
 export async function getCV(cv) {
     try {
-        const supabase = createClient()
+        const supabase = await createClient()
         if (cv) {
-            const { data } = supabase.storage.from('assets').getPublicUrl(cv)
+            const { data } = supabase.storage.from('portfolio').getPublicUrl('assets/'+cv)
 
             if (data) {
                 return {

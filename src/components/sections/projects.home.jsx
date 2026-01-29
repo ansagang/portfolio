@@ -1,11 +1,19 @@
-"use client"
-
 import ProjectCard from "@/components/ui/project-card";
 import Button from "../ui/button";
 import { Icons } from "@/config/icons";
-import SkeletonProject from "../ui/skeleton-project";
+import SkeletonProject from "../skeletons/skeleton-project";
+import { getProjects } from "@/actions/api";
+import { Suspense } from "react";
+import { revalidateTag } from "next/cache";
 
-export default function Projects({ language, projects }) {
+export default async function Projects({ language }) {
+
+    const {data: projects} = await getProjects({lang: language.lang, limit: 2})
+    function refreshProjects() {
+        revalidateTag('projects');
+    }
+
+    // refreshProjects()
     
     return (
         <section className="block">
@@ -21,14 +29,14 @@ export default function Projects({ language, projects }) {
                             {
                                 projects ?
                                     projects.length !== 0 ?
-                                        projects.map((project) => (
-                                            <ProjectCard id={project.id} title={project.title} description={project.description} category={project.category} video={project.video} slug={project.slug} />
+                                        projects.map((project, k) => (
+                                            <ProjectCard key={k} id={project.id} title={project.title} description={project.description} categories={project.categories} video={project.video} slug={project.slug} />
                                         ))
                                         :
                                         null
                                     :   
                                     [...Array(4)].map((i) => (
-                                        <SkeletonProject />
+                                        <SkeletonProject key={i} />
                                     ))
                             }
                         </div>

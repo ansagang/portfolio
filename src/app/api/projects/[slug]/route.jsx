@@ -2,9 +2,6 @@ import supabaseErrors from "@/lib/supabase/errors"
 import { createClient } from "@/lib/supabase/server"
 import facetsFinder from "@/lib/utils"
 import { NextResponse } from "next/server"
-
-export const dynamic = 'force-dynamic'
-
 export async function GET(request, {params}) {
     try {
         const supabase = createClient()

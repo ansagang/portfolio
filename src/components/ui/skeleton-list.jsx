@@ -1,4 +1,4 @@
-import SkeletonProject from "./skeleton-project";
+import SkeletonProject from "../skeletons/skeleton-project";
 
 export default function SkeletonList({ count }) {
     return (

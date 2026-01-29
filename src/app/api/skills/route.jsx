@@ -3,11 +3,9 @@ import { createClient } from "@/lib/supabase/server"
 import facetsFinder from "@/lib/utils"
 import { NextResponse } from "next/server"
 
-export const dynamic = 'force-dynamic'
-
 export async function GET(request) {
     try {
-        const supabase = createClient()
+        const supabase = await createClient()
 
         const { searchParams } = new URL(request.url)
         const lang = searchParams.get('lang') ? searchParams.get('lang') : null

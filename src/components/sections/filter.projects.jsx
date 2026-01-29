@@ -107,8 +107,8 @@ export default function FilterProjects({ categories,language, searchQ, categoryQ
                 {
                     categories ?
                         categories.length !== 0 ?
-                            categories.map((item) => (
-                                <Chip onClick={() => {
+                            categories.map((item, i) => (
+                                <Chip key={i} onClick={() => {
                                     if (category == item.code) {
                                         setCategory()
                                     } else {
@@ -125,3 +125,74 @@ export default function FilterProjects({ categories,language, searchQ, categoryQ
         </div>
     )
 }
+
+// // FilterProjects.jsx
+// "use client";
+
+// import Input from "../ui/input";
+// import Select from "../ui/select";
+
+// export default function FilterProjects({
+//     language,
+//     searchQ,
+//     categoryQ,      // should be a string "code"
+//     limitQ,
+//     sortQ,
+//     categories = [],
+//     setFiltersAction,
+// }) {
+
+//     const sortOptions = [
+//         {
+//             title: language.app.labels.sortByNewest,
+//             code: "created_at",
+//             ascending: 'desc'
+//         },
+//         {
+//             title: language.app.labels.sortByOldest,
+//             code: "created_at",
+//             ascending: 'asc'
+//         }
+//     ]
+//     return (
+//         <form action={setFiltersAction} className="projects__filters">
+//             <div className="projects__list-filters">
+//                 <div className="projects__list-filter_up">
+//                     <div className="projects__list-filter_search">
+//                         <Input value={searchQ} placeholder={language.app.labels.searchProjects} />
+//                     </div>
+//                     <div className="projects__list-filter_select">
+//                         <Select text={sortOptions[0].title} options={sortOptions} />
+//                     </div>
+//                 </div>
+//                 <div className="projects__list-filter_down">
+//                     {/* {
+//                         categories ?
+//                             categories.length !== 0 ?
+//                                 categories.map((item, i) =>
+//                                 (<Chip key={i} onClick={() => {
+//                                     if (categoryQ == item.code) { setCategory() }
+//                                     else { setCategory(item.code) }
+//                                 }} type={'primary'} active={categoryQ === item.code} className="projects__list-filter_chip">{item.title}</Chip>))
+//                                 : null :
+//                             <SkeletonCategories count={10} />} */}
+
+//                     <select name="category" defaultValue={categoryQ ?? ""} className="select">
+//                         <option value="">{language?.app?.common?.all ?? "All"}</option>
+//                         {categories?.map((c) => {
+//                             // Support both {title, code} and {label, value}
+//                             const value = c?.code ?? c?.value ?? "";
+//                             const label = c?.title ?? c?.label ?? String(value);
+//                             return (
+//                                 <option key={value} value={value}>
+//                                     {label}
+//                                 </option>
+//                             );
+//                         })}
+//                     </select>
+//                 </div>
+//             </div>
+//         </form>
+//     );
+// }
+

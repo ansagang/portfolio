@@ -17,8 +17,8 @@ export default async function About() {
 
   const language = await getLanguage({})
 
-  const {data: skills} = await getSkills({lang: language.lang, revalidate: 3600})
-  const {data: experience} = await getExperience({lang: language.lang, revalidate: 3600})
+  const {data: skills} = await getSkills({lang: language.lang})
+  const {data: experience} = await getExperience({lang: language.lang})
   
   return (
     <>

@@ -1,4 +1,5 @@
-@import 'style';
+@use 'style' as *;
+@use 'vars' as *;
 
 @media screen and (max-width: $breakpoint_laptop){
     .header{

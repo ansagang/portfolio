@@ -1,36 +1,11 @@
 "use server"
 
-export async function getStatus({ lang = '', revalidate = 0 }) {
-    try {
-        const res = await fetch(`${process.env.URL}/api/status?lang=${lang}`, {
-            method: 'GET',
-            headers: {
-                'x-api-key': process.env.API_KEY
-            },
-            next: {
-                revalidate: revalidate
-            }
-        })
-
-        const data = await res.json()
-
-        return data
-    } catch (err) {
-        console.log(err);
-
-    }
-}
-
-
-export async function getSkills({ lang = '', revalidate = 0 }) {
+export async function getSkills({ lang = ''}) {
     try {
         const res = await fetch(`${process.env.URL}/api/skills?lang=${lang}`, {
             method: 'GET',
             headers: {
                 'x-api-key': process.env.API_KEY
-            },
-            next: {
-                revalidate: revalidate
             }
         })
 
@@ -43,15 +18,12 @@ export async function getSkills({ lang = '', revalidate = 0 }) {
     }
 }
 
-export async function getExperience({ lang = '', revalidate = 0 }) {
+export async function getExperience({ lang = '' }) {
     try {
         const res = await fetch(`${process.env.URL || ''}/api/experience?lang=${lang}`, {
             method: 'GET',
             headers: {
                 'x-api-key': process.env.API_KEY
-            },
-            next: {
-                revalidate: revalidate
             }
         })
 
@@ -86,17 +58,25 @@ export async function postContact({ first_name, last_name, email, message, lang 
     }
 }
 
-export async function getProjects({ search = '', category = '', lang = '', limit = '', sort = ''}) {
+export async function getProjects({ search = '', category = '', lang = '', limit = '', sort = '', revalidate, cache = 'no-cache'}) {
     try {
         const sortQ = sort ? `${sort.code}.${sort.ascending ? 'asc' : 'desc'}` : ''
         const res = await fetch(`${process.env.URL}/api/projects?search=${search}&category=${category}&lang=${lang}&sort=${sortQ}&limit=${limit}`, {
             method: 'GET',
             headers: {
                 'x-api-key': process.env.API_KEY
+            },
+            cache: cache,                                                                                                                                                                                                                                               
+            next: {
+                revalidate: revalidate,
+                tags: ['projects']
             }
         })
 
         const data = await res.json()
+        console.log(data);
+        
+        
 
         return data
     } catch (err) {

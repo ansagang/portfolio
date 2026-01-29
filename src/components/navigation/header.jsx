@@ -1,17 +1,15 @@
 "use client"
 
 import NavLink from "@/components/ui/nav-link"
-import Link from "next/link"
 import DownloadLink from "@/components/ui/download-link"
 import useScrollPosition from "@/hooks/use-scroll-position"
 import { useEffect, useState } from "react"
 import useScrollMovement from "@/hooks/use-scroll-movement"
-import { usePathname } from "next/navigation"
-import Chip from "../ui/chip"
+import Link from "next/link"
 
-export default function Header({ language, status }) {
+export default function Header({ language }) {
 
-    const [active, isActive] = useState(true)
+    const [active, isActive] = useState(false)
     const [sticky, setSticky] = useState(true)
     const [show, setShow] = useState(false)
 
@@ -57,16 +55,7 @@ export default function Header({ language, status }) {
                         <nav className="header__nav">
                             <ol className="header__nav-ol links">
                                 <li className="header__nav-li">
-                                    <DownloadLink file={'/files/'+language.app.files.cv}><span>{language.app.labels.downloadCV}</span></DownloadLink>
-                                </li>
-                                <li className="header__nav-li">
-                                    {/* <div className="link"><span>Available</span></div> */}
-                                    {
-                                        status ?
-                                            <div className="header__nav-status white">{status.status}</div>
-                                            :
-                                            null
-                                    }
+                                    <DownloadLink file={'/files/' + language.app.files.cv}><span>{language.app.labels.downloadCV}</span></DownloadLink>
                                 </li>
                             </ol>
                             <div className="header__nav-menu">
@@ -84,14 +73,6 @@ export default function Header({ language, status }) {
                 <div className="menu__inner">
                     <nav className="menu__nav">
                         <ol className="menu__nav-ol links">
-                            <li className="menu__nav-li">
-                                {
-                                    status ?
-                                        <div className="header__nav-status white">{status.status}</div>
-                                        :
-                                        null
-                                }
-                            </li>
                             <li className="menu__nav-li">
                                 <DownloadLink file={'/files/' + language.app.files.cv}><span>{language.app.labels.downloadCV}</span></DownloadLink>
                             </li>

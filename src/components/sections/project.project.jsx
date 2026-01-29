@@ -46,12 +46,18 @@ export default function Project({ language, project }) {
             <div className="container">
                 <div className="project__inner inner">
                     <div className="project__header">
-                            <div className="project__title title">
-                            <h2>{project.title}</h2><Button type={'primary'} className={'project__button'} href={project.link}>Github</Button>
-                            </div>
-                            <div className="project__info info">
-                                <p>{project.description}</p>
-                            </div>
+                        <div className="project__title title">
+                            <h2>{project.title}</h2>
+                            {
+                                project.link ?
+                                    <Button type={'primary'} className={'project__button'} href={project.link}>Github</Button>
+                                    :
+                                    null
+                            }
+                        </div>
+                        <div className="project__info info">
+                            <p>{project.description}</p>
+                        </div>
                         <div className="project__links">
                         </div>
                     </div>

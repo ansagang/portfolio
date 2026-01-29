@@ -9,7 +9,7 @@ const rfs = THREE.MathUtils.randFloatSpread
 const sphereGeometry = new THREE.SphereGeometry(0.7, 32, 32)
 const baubleMaterial = new THREE.MeshStandardMaterial({ color: 'black', roughness: 1, envMapIntensity: 1 })
 
-export default function Scene({ quantity = 0, inView }) {
+export default function Scene({ quantity = 0 }) {
   return (
     <>
       <div className="scene">
@@ -47,7 +47,7 @@ function Clump({ quantity, mat = new THREE.Matrix4(), vec = new THREE.Vector3(),
   })
   return (
     <instancedMesh ref={ref} castShadow receiveShadow args={[sphereGeometry, baubleMaterial, quantity]}>
-      <Outlines color='black' thickness={0.99} />
+      <Outlines color='black' thickness={1.3} />
       <meshBasicMaterial attach="material" color='#222' toneMapped={false} />
     </instancedMesh>
   )

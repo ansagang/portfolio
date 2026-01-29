@@ -4,11 +4,9 @@ import { createClient } from "@/lib/supabase/server"
 import { contactValidation } from "@/lib/validation"
 import { NextResponse } from "next/server"
 
-export const dynamic = 'force-dynamic'
-
 export async function POST(request) {
     try {
-        const supabase = createClient()
+        const supabase = await createClient()
         const { searchParams } = new URL(request.url)
         const {first_name, last_name, email, message} = await request.json()
         const lang = searchParams.get('lang') ? searchParams.get('lang') : null

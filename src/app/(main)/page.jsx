@@ -1,14 +1,10 @@
-import AboutMe from "@/components/sections/about-me.home";
-import Contact from "@/components/sections/contact.home";
-import Landing from "@/components/sections/landing.home";
-import Projects from "@/components/sections/projects.home";
 import { getLanguage } from "@/lib/get-language";
 import AboutStats from "@/components/home/about-stats";
 import ProjectsList from "@/components/home/projects-list";
 import Scene from "@/components/three/landing-scene";
 import { Icons } from "@/config/icons";
 import Button from "@/components/ui/button";
-import ContactBanner from "@/components/ui/contact-banner";
+import ContactBanner from "@/components/home/contact-banner";
 
 export default async function Home() {
 
@@ -70,7 +66,7 @@ export default async function Home() {
               </div>
             </div>
             <div className="block__content">
-              <ContactBanner language={language} className={"block__content-banner"} />
+              <ContactBanner language={language} />
             </div>
           </div>
         </div>

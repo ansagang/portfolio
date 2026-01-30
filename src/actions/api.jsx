@@ -74,7 +74,6 @@ export async function getProjects({ search = '', category = '', lang = '', limit
         })
 
         const data = await res.json()
-        console.log(data);
         
         
 

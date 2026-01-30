@@ -20,7 +20,7 @@ export default function AboutStats({ language }) {
             <div className="block__content-info info">
                 <p>{language.app.pages.home.sections.about.info}</p>
             </div>
-            <div className="block__content-stats" ref={statsRef}>
+            {/* <div className="block__content-stats" ref={statsRef}>
                 <div className="block__content-stat">
                     <div className="block__content-stat_number">
                         {
@@ -55,7 +55,7 @@ export default function AboutStats({ language }) {
                         <h4>{language.app.pages.home.sections.about.passion}</h4>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </>
     )
 }

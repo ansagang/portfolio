@@ -1,6 +1,4 @@
 import { getProjects } from "@/actions/api"
-import { Suspense } from "react"
-import SkeletonProjects from "../skeletons/skeleton-projects"
 import ProjectCard from "../ui/project-card"
 
 
@@ -10,13 +8,17 @@ export default async function ProjectsList({ language }) {
 
     return (
         <div className="block__content-projects">
-            <Suspense fallback={<SkeletonProjects number={2} />}>
-                {
-                    projects.map((project, k) => (
-                        <ProjectCard key={k} id={project.id} title={project.title} description={project.description} categories={project.categories} video={project.video} slug={project.slug} />
-                    ))
-                }
-            </Suspense>
+            {
+                projects ?
+                    projects.length > 0 ?
+                        projects.map((project, k) => (
+                            <ProjectCard key={k} id={project.id} title={project.title} description={project.description} categories={project.categories} video={project.video} slug={project.slug} />
+                        ))
+                        :
+                        null
+                    :
+                    null
+            }
         </div>
     )
 }

@@ -1,11 +1,23 @@
 "use client"
 
+import Dither from "../three/dither"
 import Chip from "../ui/chip"
 
 
 export default function Skills({ language, skills }) {
     return (
         <section className="skills white">
+
+      {/* <Dither
+    waveColor={[0.5,0.5,0.5]}
+    disableAnimation={false}
+    enableMouseInteraction
+    mouseRadius={0.3}
+    colorNum={10}
+    waveAmplitude={0.3}
+    waveFrequency={2}
+    waveSpeed={0.05}
+  /> */}
             <div className="container">
                 <div className="skills__inner inner">
                     <div className="skills__title title">

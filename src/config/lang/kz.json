@@ -64,6 +64,9 @@
                     },
                     "experience": {
                         "title": "Тәжірибе"
+                    },
+                    "achievements": {
+                        "title": "Жетістіктер"
                     }
                 },
                 "pages": {}
@@ -118,7 +121,9 @@
             "leaveRequest": "Өтініш қалдыру",
             "moreAbout": "Мен туралы толығырақ",
             "send": "Жіберу",
-            "goBack": "Артқа бару"
+            "goBack": "Артқа бару",
+            "organization": "Ұйым",
+            "view": "Қарау"
         },
         "labels": {
             "downloadCV": "Резюмені жіктеу",

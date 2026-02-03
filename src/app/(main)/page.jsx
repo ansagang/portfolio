@@ -5,6 +5,9 @@ import Scene from "@/components/three/landing-scene";
 import { Icons } from "@/config/icons";
 import Button from "@/components/ui/button";
 import ContactBanner from "@/components/home/contact-banner";
+import Dither from "@/components/three/dither";
+import { Suspense } from "react";
+import SkeletonProjects from "@/components/skeletons/skeleton-projects";
 
 export default async function Home() {
 
@@ -13,7 +16,7 @@ export default async function Home() {
   return (
     <>
       <section className="landing">
-        <Scene quantity={65} />
+        <Scene quantity={70} />
         <div className="container__mini">
           <div className="landing__inner inner__big">
             <div className="landing__signature">
@@ -51,7 +54,9 @@ export default async function Home() {
               </div>
             </div>
             <div className="block__content">
-              <ProjectsList language={language} />
+              <Suspense fallback={<SkeletonProjects number={2} />}>
+                <ProjectsList language={language} />
+              </Suspense>
               <Button href={'/projects'} type={'secondary'} className={'block__content-button'}>{language.app.buttons.otherProjects}<Icons.arrow /></Button>
             </div>
           </div>

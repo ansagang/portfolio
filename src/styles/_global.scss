@@ -131,6 +131,37 @@ button {
         }
     }
 
+    &.blurred {
+        background-color: $bg_color;
+        color: $primary_color;
+        border: 2px solid $secondary_color_2;
+        border-radius: $button_radius;
+        & svg{
+            margin-left: 10px;
+            fill: $primary_color;
+            width: 10px;
+            height: 10px;
+        }
+        &:hover{
+            backdrop-filter: blur(20px);
+            background: rgba(0, 0, 0, 0.3) !important;
+            color: $bg_color;
+            border: 2px solid $accent_color;
+            & svg{
+                fill: $bg_color;
+            }
+        }
+        &.active{
+            backdrop-filter: blur(20px);
+            background: rgba(0, 0, 0, 0.3) !important;
+            color: $bg_color;
+            border: 2px solid $accent_color;
+            & svg{
+                fill: $bg_color;
+            }
+        }
+    }
+
     &.secondary {
         background-color: $bg_color;
         color: $primary_color;
@@ -303,6 +334,13 @@ footer{
             }
         }
 
+        & svg{
+                margin-left: 10px;
+                fill: $bg_color;
+                width: 10px;
+                height: 10px;
+        }
+
         // &.img{
         //     & .chip__button{
         //         padding: 15px;
@@ -326,11 +364,50 @@ footer{
             // }
             color: $primary_color !important;
             border: 1.5px solid rgba(205, 205, 205, 0.5);
-            font-weight: 100 !important;
+            font-weight: 400 !important;
             background-color: rgba(255, 255, 255, 0.5);
             &.active{
                 border: none;
                 background-color: $bg_color;
+            }
+        }
+
+        & svg{
+                margin-left: 10px;
+                fill: $fg_color;
+                width: 10px;
+                height: 10px;
+        }
+    }
+
+    &.blurred {
+        & .chip__button{
+            border-radius: 20px;
+            padding: 6px 13px;
+            transition: all 0.5s ease;
+            font-size: $p2_font_size !important;
+            // background-color: $secondary_color_3;
+            backdrop-filter: blur(10px);
+            // &:hover{
+            //     background-color: $accent_color_2;
+            //     color: $bg_color;
+            // }
+            color: $bg_color !important;
+            border: 1.5px solid rgba(0, 0, 0, 0.5);
+            font-weight: 300 !important;
+            background-color: rgba(0, 0, 0, 0.5);
+            &.active{
+                border: none;
+                background-color: $bg_color;
+            }
+
+
+
+            & svg{
+                margin-left: 10px;
+                fill: $fg_color;
+                width: 10px;
+                height: 10px;
             }
         }
     }

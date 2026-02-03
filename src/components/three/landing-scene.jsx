@@ -4,6 +4,7 @@ import * as THREE from "three"
 import { Canvas, useFrame, useThree } from "@react-three/fiber"
 import { Outlines } from "@react-three/drei"
 import { Physics, useSphere } from "@react-three/cannon"
+import { EffectComposer, SMAA } from "@react-three/postprocessing"
 
 const rfs = THREE.MathUtils.randFloatSpread
 const sphereGeometry = new THREE.SphereGeometry(0.7, 32, 32)
@@ -23,9 +24,6 @@ export default function Scene({ quantity = 0 }) {
               <Clump quantity={quantity} />
               <Pointer />
             </Physics>
-            {/* <EffectComposer enableNormalPass multisampling={0}>
-              <SMAA />
-            </EffectComposer> */}
           </Canvas>
         </div>
       </div>
@@ -47,8 +45,8 @@ function Clump({ quantity, mat = new THREE.Matrix4(), vec = new THREE.Vector3(),
   })
   return (
     <instancedMesh ref={ref} castShadow receiveShadow args={[sphereGeometry, baubleMaterial, quantity]}>
-      <Outlines color='black' thickness={1.3} />
-      <meshBasicMaterial attach="material" color='#222' toneMapped={false} />
+      <Outlines color='black' thickness={1} />
+      <meshBasicMaterial attach="material" color='#232323' toneMapped={false} />
     </instancedMesh>
   )
 }

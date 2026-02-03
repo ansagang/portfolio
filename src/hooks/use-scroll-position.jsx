@@ -7,6 +7,13 @@ function useScrollPosition() {
     const [scrollX, setScrollX] = useState(0)
 
     useEffect(() => {
+        if (window) {
+            setScrollX(window.scrollX)
+            setScrollY(window.scrollY)
+        }
+    }, [])
+
+    useEffect(() => {
         window.addEventListener('scroll', scrollEffect)
 
         return () => window.addEventListener('scroll', scrollEffect)

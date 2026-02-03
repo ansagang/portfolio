@@ -1,11 +1,15 @@
 "use server"
 
-export async function getSkills({ lang = ''}) {
+export async function getSkills({ lang = '', revalidate}) {
     try {
         const res = await fetch(`${process.env.URL}/api/skills?lang=${lang}`, {
             method: 'GET',
             headers: {
                 'x-api-key': process.env.API_KEY
+            },
+            next: {
+                revalidate: revalidate,
+                tags: ['skills']
             }
         })
 
@@ -17,6 +21,29 @@ export async function getSkills({ lang = ''}) {
 
     }
 }
+
+export async function getAchievements({ lang = '', revalidate}) {
+    try {
+        const res = await fetch(`${process.env.URL}/api/achievements?lang=${lang}`, {
+            method: 'GET',
+            headers: {
+                'x-api-key': process.env.API_KEY
+            },
+            next: {
+                revalidate: revalidate,
+                tags: ['achievements']
+            }
+        })
+
+        const data = await res.json()
+
+        return data
+    } catch (err) {
+        console.log(err);
+
+    }
+}
+
 
 export async function getExperience({ lang = '' }) {
     try {

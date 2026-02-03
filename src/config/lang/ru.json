@@ -64,6 +64,9 @@
                     },
                     "experience": {
                         "title": "Опыт"
+                    },
+                    "achievements": {
+                        "title": "Достижения"
                     }
                 },
                 "pages": {}
@@ -118,7 +121,9 @@
             "leaveRequest": "Оставьте заявку",
             "moreAbout": "Подробнее обо мне",
             "send": "Отправить",
-            "goBack": "Вернуться назад"
+            "goBack": "Вернуться назад",
+            "organization": "Организация",
+            "view": "Посмотреть"
         },
         "labels": {
             "downloadCV": "Скачать резюме",

@@ -1,9 +1,13 @@
 import SkeletonProject from "./skeleton-project";
 
-export default function SkeletonProjects({ number }) {
+export default function SkeletonProjects({ number, className }) {
     return (
-        [...Array(number)].map((i) => (
-            <SkeletonProject key={i} />
-        ))
+        <div className={className}>
+            {
+                [...Array(number)].map((i, k) => (
+                    <SkeletonProject key={k} />
+                ))
+            }
+        </div>
     )
 }

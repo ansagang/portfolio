@@ -1,75 +1,47 @@
-// import Projects from "@/components/sections/projects.projects";
-// import { getLanguage } from "@/lib/get-language";
-
-// export const revalidate = 3600
-
-// export async function generateMetadata() {
-
-//   const language = await getLanguage({})
-
-//   return {
-//     title: language.app.pages.projects.meta.title
-//   }
-// }
-
-// export default async function ProjectsPage({searchParams}) {
-
-//   const language = await getLanguage({})
-
-//   return (
-//     <>
-//       <Projects language={language} searchParams={searchParams} />
-//     </>
-//   );
-// }
-
-import { Suspense } from "react";
+import { getProjects } from "@/actions/api";
+import Check from "@/components/projects/check";
+import ProjectsChipsShell from "@/components/projects/projects-chips-shell";
+import ProjectsList from "@/components/projects/projects-list";
+import ProjectsSearch from "@/components/projects/projects-search";
+import SkeletonProjects from "@/components/skeletons/skeleton-projects";
+import SkeletonCategories from "@/components/ui/skeleton-categories";
 import { getLanguage } from "@/lib/get-language";
-import FiltersShell from "@/components/sections/filters.shell";        // client
-import CategoriesServer from "@/components/sections/categories.select";
-import ListServer from "@/components/sections/list.server";            // server
+import Image from "next/image";
+import { Suspense } from "react";
 
 export async function generateMetadata() {
-  const language = await getLanguage({});
-  return { title: language.app.pages.projects.meta.title };
+
+  const language = await getLanguage({})
+
+  return {
+    title: language.app.pages.projects.meta.title
+  }
 }
 
-export default async function ProjectsPage({ searchParams }) {
-  const language = await getLanguage({});
+export default async function Projects({ searchParams }) {
+
+  const language = await getLanguage({})
 
   return (
-    <section className="projects">
-      <div className="container">
-        <div className="projects__inner inner__big">
-          {/* Filters are ALWAYS mounted */}
-          <FiltersShell language={language} searchParams={searchParams}>
-            {/* Categories area streams independently */}
-            <Suspense
-              key={`cats:${JSON.stringify(searchParams)}`}
-              fallback={<div className="facet-skeleton">Loading categories…</div>}
-            >
-              <CategoriesServer language={language} searchParams={searchParams} />
-            </Suspense>
-          </FiltersShell>
-
-          {/* Projects list streams separately */}
-          <Suspense
-            key={`list:${JSON.stringify(searchParams)}`}
-            fallback={
-              <div className="projects__list">
-                <div className="projects__list-items">
-                  {/* your animated skeleton list here */}
-                  {/* <SkeletonList count={6} /> */}
-                  <p>Loading projects…</p>
-                </div>
-              </div>
-            }
-          >
-            <ListServer language={language} searchParams={searchParams} />
-          </Suspense>
+    <>
+      <section className="projects">
+        <div className="container">
+          <div className="projects__inner inner">
+            {/* <div className="projects__title title">
+              <h2>{language.app.pages.projects.meta.title}</h2>
+            </div> */}
+            <div className="projects__container">
+              <ProjectsSearch language={language} searchParams={searchParams} />
+              <Suspense key={(await searchParams).search} fallback={<SkeletonCategories count={10} />}>
+                <ProjectsChipsShell language={language} searchParams={searchParams} />
+              </Suspense>
+              <Suspense key={(await searchParams).search + (await searchParams).categories} fallback={<SkeletonProjects className="list" number={9} />}>
+                <ProjectsList language={language} searchParams={searchParams} />
+              </Suspense>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
-

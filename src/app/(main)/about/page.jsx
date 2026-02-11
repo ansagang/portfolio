@@ -7,6 +7,7 @@ import Dither from "@/components/three/dither";
 import AboutVisual from "@/components/about/about-visual";
 import SkillsList from "@/components/about/skills-list";
 import AchievementsList from "@/components/about/achievements-list";
+import FaultyTerminal from "@/components/three/faulty-terminal";
 
 export async function generateMetadata() {
 
@@ -37,6 +38,16 @@ export default async function About() {
         </div>
       </section>
       <section className="skills white">
+        <Dither
+          waveColor={[0.7, 0.7, 0.7]}
+          disableAnimation={false}
+          enableMouseInteraction
+          mouseRadius={0.3}
+          colorNum={4}
+          waveAmplitude={0.1}
+          waveFrequency={3}
+          waveSpeed={0.05}
+        />
         <div className="container">
           <div className="skills__inner inner">
             <div className="skills__title title">

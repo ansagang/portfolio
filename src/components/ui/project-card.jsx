@@ -6,63 +6,105 @@ import { useEffect, useRef, useState } from "react"
 import { getProjectMedia } from "@/actions/actions"
 import Chip from "./chip"
 
-export default function ProjectCard({ slug, id, title, description, categories, video, ...props }) {
+export default function ProjectCard({ project, tilt, ...props }) {
 
     const videoRef = useRef()
     const [videoUrl, setVideoUrl] = useState()
+
     useEffect(() => {
         setVideoUrl()
         async function getProjectMediaUrl() {
-            const { data: projectVideoUrl } = await getProjectMedia(video)
+            const { data: projectVideoUrl } = await getProjectMedia(project.video)
             if (projectVideoUrl) {
                 setVideoUrl(projectVideoUrl)
             }
         }
 
         getProjectMediaUrl()
-    }, [id])
+    }, [project.id])
 
     useEffect(() => {
         videoRef.current?.load();
     }, [videoUrl]);
 
+
+
     return (
         <div className="project-card" {...props}>
-            <Link className="project-card__visual card" href={`/projects/${slug}`}>
-                <TiltCard>
+            <Link className="project-card__visual card" href={`/projects/${project.slug}`}>
+                {
+                    tilt ?
+                        <TiltCard>
 
-                    <div className="project-card__categories">
-                        {
-                            categories ?
-                                categories.length > 0 ?
-                                    categories.map((category, k) => (
-                                        (
-                                            <div key={k} className="project-card__category">
-                                                <Chip type={'secondary'}>{category.title}</Chip>
-                                            </div>
-                                        )
-                                    ))
-                                :
-                                null
-                            :
-                            null
-                        }
-                    </div>
-                    {
-                            <video playsInline muted ref={videoRef} onMouseEnter={() => videoRef.current.play()} onMouseLeave={() => {
-                                videoRef.current.currentTime = 0
-                                videoRef.current.pause()
+                            <div className="project-card__categories">
+                                {
+                                    project.categories ?
+                                        project.categories.length > 0 ?
+                                            project.categories.map((category, k) => (
+                                                (
+                                                    <div key={k} className="project-card__category">
+                                                        <Chip type={'secondary'}>{category}</Chip>
+                                                    </div>
+                                                )
+                                            ))
+                                            :
+                                            null
+                                        :
+                                        null
+                                }
+                            </div>
+                            <video playsInline muted ref={videoRef} onMouseEnter={() => {
+                                if (videoUrl) {
+                                    videoRef.current.play()
+                                }
+                            }} onMouseLeave={() => {
+                                if (videoUrl) {
+                                    videoRef.current.currentTime = 0
+                                    videoRef.current.pause()
+                                }
                             }} src={videoUrl}>
                             </video>
-                    }
-                </TiltCard>
+                        </TiltCard>
+                        :
+                        <div>
+
+                            <div className="project-card__categories">
+                                {
+                                    project.categories ?
+                                        project.categories.length > 0 ?
+                                            project.categories.map((category, k) => (
+                                                (
+                                                    <div key={k} className="project-card__category">
+                                                        <Chip type={'secondary'}>{category}</Chip>
+                                                    </div>
+                                                )
+                                            ))
+                                            :
+                                            null
+                                        :
+                                        null
+                                }
+                            </div>
+                            <video playsInline muted ref={videoRef} onMouseEnter={() => {
+                                if (videoUrl) {
+                                    videoRef.current.play()
+                                }
+                            }} onMouseLeave={() => {
+                                if (videoUrl) {
+                                    videoRef.current.currentTime = 0
+                                    videoRef.current.pause()
+                                }
+                            }} src={videoUrl}>
+                            </video>
+                        </div>
+                }
             </Link>
             <div className="project-card__content">
                 <div className="project-card__title title">
-                    <h3>{title}</h3>
+                    <h3>{project.title}</h3>
                 </div>
                 <div className="project-card__info title">
-                    <h4>{description}</h4>
+                    <h4>{project.description}</h4>
                 </div>
             </div>
         </div>

@@ -1,6 +1,6 @@
 "use server"
 
-import { revalidatePath } from "next/cache"
+import { revalidatePath, revalidateTag } from "next/cache"
 import { createClient } from "@/lib/supabase/server"
 import { cookies, headers } from "next/headers"
 import languageDefiner from "@/lib/language-definer"
@@ -14,6 +14,10 @@ export async function getLanguage({ locale }) {
     const language = await languageDefiner({locale: locale, headerLanguage: lang})
 
     return language
+}
+
+export async function revalidateData({tag}) {
+    revalidateTag(tag)
 }
 
 export default async function changeLanguage({ lang, path = '/' }) {

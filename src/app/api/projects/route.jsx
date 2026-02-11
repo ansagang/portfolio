@@ -2,6 +2,7 @@ import supabaseErrors from "@/lib/supabase/errors"
 import { createClient } from "@/lib/supabase/server"
 import facetsFinder from "@/lib/utils"
 import { NextResponse } from "next/server"
+import { slugify } from "@/lib/utils"
 
 export async function GET(request) {
     try {
@@ -9,18 +10,21 @@ export async function GET(request) {
 
         const { searchParams } = new URL(request.url)
         const search = searchParams.get('search') ? searchParams.get('search') : null
-        // const category = searchParams.get('category') ? searchParams.get('category') : null
+        const categories = searchParams.get('categories') ? searchParams.get('categories').split(',') : null
         const sort = searchParams.get('sort') ? { code: searchParams.get('sort').split('.')[0], ascending: searchParams.get('sort').split('.')[1] == 'asc' ? true : false } : null
         const lang = searchParams.get('lang') ? searchParams.get('lang') : null
         const limit = searchParams.get('limit') ? parseInt(searchParams.get('limit')) : null
 
         let query = supabase.from("projects").select('*')
         if (search) {
-            query = query.textSearch('fts', `${search}`,)
+            // query = query.textSearch('description', `${search}`, {
+            //     type: 'phrase',
+            // })
+            // query = query.like('description', `%${search}%`).or
+            query = query.textSearch('fts', `${search}`, {
+                type: 'phrase',
+            })
         }
-        // if (category) {
-        //     query = query.eq("category->>code", category)
-        // }
         if (sort) {
             query = query.order(sort.code, { ascending: sort.ascending })
         }
@@ -31,16 +35,33 @@ export async function GET(request) {
             query = query.limit(limit)
         }
 
-        const { data, error, count } = await query
-        // const { data: facetsData } = await supabase.from("projects").select('*').match({ lang: lang })
-        // const facets = await facetsFinder(facetsData, "category")
-        
+        let { data, error, count } = await query
+
+        if (categories) {
+            data = data.filter(row =>
+                row.categories.some(category => {
+                    return categories.includes(slugify(category))
+                })
+            )
+        }
+        console.log(data);
+
+
+        let querySearch = supabase.from("projects").select('*').match({ lang: lang })
+        if (search) {
+            querySearch = querySearch.textSearch('fts', `${search}`,)
+        }
+
+        const { data: dataSearch } = await querySearch
+
+        const facets = await facetsFinder(dataSearch, "categories")
+
 
         if (!error) {
             return NextResponse.json({
                 data: data,
                 count: count,
-                // facets: facets
+                facets: facets
             })
         } else {
             const res = supabaseErrors({ error })
@@ -48,7 +69,7 @@ export async function GET(request) {
         }
 
     } catch (err) {
-        
+
         return NextResponse.json({
             message: err.message
         })

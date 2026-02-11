@@ -1,5 +1,7 @@
 "use server"
 
+import { revalidatePath, revalidateTag } from "next/cache";
+
 export async function getSkills({ lang = '', revalidate}) {
     try {
         const res = await fetch(`${process.env.URL}/api/skills?lang=${lang}`, {
@@ -85,10 +87,10 @@ export async function postContact({ first_name, last_name, email, message, lang 
     }
 }
 
-export async function getProjects({ search = '', category = '', lang = '', limit = '', sort = '', revalidate, cache = 'no-cache'}) {
+export async function getProjects({ search = '', categories = [], lang = '', limit = '', sort = '', revalidate, cache = 'no-cache'}) {
     try {
         const sortQ = sort ? `${sort.code}.${sort.ascending ? 'asc' : 'desc'}` : ''
-        const res = await fetch(`${process.env.URL}/api/projects?search=${search}&category=${category}&lang=${lang}&sort=${sortQ}&limit=${limit}`, {
+        const res = await fetch(`${process.env.URL}/api/projects?search=${search}&categories=${categories.join(',')}&lang=${lang}&sort=${sortQ}&limit=${limit}`, {
             method: 'GET',
             headers: {
                 'x-api-key': process.env.API_KEY
@@ -101,8 +103,6 @@ export async function getProjects({ search = '', category = '', lang = '', limit
         })
 
         const data = await res.json()
-        
-        
 
         return data
     } catch (err) {

@@ -9,7 +9,7 @@
     &__fluid {
         margin: $mb_auto;
         padding: 0 20px;
-        max-width: 1400px;
+        max-width: 1340px;
     }
 
     &__mini{
@@ -204,10 +204,11 @@ button {
 
 .list{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap:30px;
+    margin-top: 20px;
     &__mini{
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
         display: grid;
         gap:30px;
     }
@@ -315,7 +316,7 @@ footer{
     &.primary {
         & .chip__button{
             border: 2px solid $secondary_color_2;
-            border-radius: 8px;
+            border-radius: 13px;
             padding: 8px 15px;
             transition: all 0.5s ease;
             font-size: $p_font_size;
@@ -451,7 +452,11 @@ hr{
     height: 1.5px;
     border-radius: 3px;
     border: none;
-    background-color: $secondary_color_2;
+    background: linear-gradient(
+    to right,
+    rgba(255,255,255),
+    transparent
+  );
 }
 
 .animation{
@@ -667,4 +672,35 @@ textarea{
 
 .text-card{
     padding: 20px;
+}
+
+.card-spotlight {
+  position: relative;
+  border-radius: 1.5rem;
+  border: 1px solid #222;
+  background-color: #111;
+  padding: 2rem;
+  overflow: hidden;
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+  --spotlight-color: rgba(255, 255, 255, 0.05);
+}
+
+.card-spotlight::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), var(--spotlight-color), transparent 80%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.card-spotlight:hover::before,
+.card-spotlight:focus-within::before {
+  opacity: 0.6;
 }

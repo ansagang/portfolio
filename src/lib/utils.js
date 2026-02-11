@@ -3,9 +3,10 @@ import { languages } from "@/config/languages";
 export function slugify(str) {
   return str
     .toLowerCase()
-    .replace(/\s+/g, "_")
-    .replace(/[^\w\-]+/g, "")
-    .replace(/\-\-+/g, "_");
+    .replace(/[\/\s]+/g, "-") 
+    .replace(/[^\w\-]+/g, "")   
+    .replace(/\-\-+/g, "-")    
+    .replace(/^-+|-+$/g, ""); 
 }
 
 export function unslugify(str) {
@@ -115,21 +116,46 @@ export function findCommonElement(array1, array2) {
   return false;
 }
 
+// export default async function facetsFinder(array, value) {
+//   const values = [];
+//   if (array) {
+//     array.forEach((element) => {
+//       if (element[value]) {
+//         element[value].forEach((category) => {
+//           if (!values.find((val) => val.slug == category.slug)) {
+//             values.push({
+//               title: category.title,
+//               slug: category.slug,
+//             });
+//           }
+//         });
+//       }
+//     });
+//   }
+
+//   return values;
+// }
+
 export default async function facetsFinder(array, value) {
   const values = [];
-  array.forEach((element) => {
-    if (!values.find(val => val.code == element[value].code)) {
-      values.push({ title: element[value].title, code: element[value].code });
-    }
-  });
-  
+  if (array) {
+    array.forEach((element) => {
+      if (element[value]) {
+        element[value].forEach((category) => {
+          if (!values.find((val) => val == category)) {
+            values.push(category);
+          }
+        });
+      }
+    });
+  }
 
   return values;
 }
 
 export function supabaseLoader({ src, width, quality }) {
-  const url = new URL(`${src}`)
-  url.searchParams.set('width', width.toString())
-  url.searchParams.set('quality', (quality || 75).toString())
-  return url.href
+  const url = new URL(`${src}`);
+  url.searchParams.set("width", width.toString());
+  url.searchParams.set("quality", (quality || 75).toString());
+  return url.href;
 }

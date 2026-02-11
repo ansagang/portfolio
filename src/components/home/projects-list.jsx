@@ -12,7 +12,7 @@ export default async function ProjectsList({ language }) {
                 projects ?
                     projects.length > 0 ?
                         projects.map((project, k) => (
-                            <ProjectCard key={k} id={project.id} title={project.title} description={project.description} categories={project.categories} video={project.video} slug={project.slug} />
+                            <ProjectCard key={k} tilt={true} project={project} />
                         ))
                         :
                         null

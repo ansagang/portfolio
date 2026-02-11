@@ -54,7 +54,7 @@ export default async function Home() {
               </div>
             </div>
             <div className="block__content">
-              <Suspense fallback={<SkeletonProjects number={2} />}>
+              <Suspense fallback={<SkeletonProjects className={'list__mini'} number={2} />}>
                 <ProjectsList language={language} />
               </Suspense>
               <Button href={'/projects'} type={'secondary'} className={'block__content-button'}>{language.app.buttons.otherProjects}<Icons.arrow /></Button>

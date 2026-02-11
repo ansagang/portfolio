@@ -694,21 +694,20 @@ body{
 
 .skills{
     position: relative;
-    background-color: $accent_color;
-    background-image: url('/images/banner-three.png');
+    // background-color: $accent_color;
+    // background-image: url('/images/banner-one.png');
     z-index: 0;
-    &::before{
-        content: '';
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        left: 0;
-        top: 0;
-        background: radial-gradient(rgba(0, 0, 0, 0.7), $accent_color);
-        background-position: 400px;
-        z-index: -1;
-        
-    }
+    // &::before{
+    //     content: '';
+    //     position: absolute;
+    //     width: 100%;
+    //     height: 100%;
+    //     left: 0;
+    //     top: 0;
+    //     background: radial-gradient(rgba(0, 0, 0, 0.55), $accent_color);
+    //     z-index: -1;     
+    // }
+    pointer-events: none;
     &__list{
         margin-top: 60px;
     }
@@ -736,7 +735,7 @@ body{
             }
         }
         &-chip{
-            // background-color: $bg_color;
+            background-color: $bg_color;
             border-radius: 40px;
             & button{
                 font-weight: $medium_font_weight;
@@ -1019,65 +1018,10 @@ body{
 }
 
 .projects{
-    &__list{
-        &-items{
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 20px;
-        }
-        &-filter{
-            &_up{
-                width: 100%;
-                margin-bottom: 10px;
-                display: flex;
-                gap: 10px;
-                align-items: center;
-            }
-
-            &_search{
-                // width: 90%;
-                flex: 100%;
-            }
-            &_select{
-                min-width: auto;
-
-            }
-            &_down{
-                display: flex;
-                flex-wrap: wrap;
-                gap: 10px;
-            }
-        }
-        &-filters{
-            margin-bottom: 20px;
-        }
-        &-chips{
-            width: 100%;
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-    }
-    &__banner{
-        width: 100%;
-        // background-color: $primary_color;
-        border-radius: 25px;
-        padding: 70px 40px 40px 40px;
+    &__chips{
         display: flex;
-        flex-direction: column;
-        gap: 60px;
-        background: url('/images/blog__banner.png');
-        background-repeat: no-repeat;
-        background-size: cover;
-        // background-position: center;
-        opacity: 0;
-        transition: 0.7s ease;
-        transform: translateY(50px);
-        &.active{
-            opacity: 1;
-            transform: translateY(0);
-        }
+        gap: 10px;
+        margin-top: 10px;
     }
     &__filters{
         display: flex;
@@ -1085,6 +1029,12 @@ body{
         gap: 20px;
         flex-wrap: row;
         margin-bottom: 20px;
+    }
+    &__container{
+        margin-top: 40px;
+    }
+    &__title{
+        text-align: center;
     }
 }
 
@@ -1397,12 +1347,23 @@ body{
 }
 
 .dither-container {
-  width: 100% ;
-  height: 100%;
-  position: absolute !important;
-  left: 0;
-  top: 0;
-  z-index: -2;
+    width: 100% ;
+    height: 100%;
+    position: absolute !important;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    &::before{
+        position: absolute;
+        left: 0;
+        top: 0;
+        content: '';
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        // backdrop-filter: blur(1px)
+        z-index: 0;
+    }
 }
 
 .achievements{
@@ -1414,37 +1375,37 @@ body{
         margin-top: 60px;
     }
     &__title{
-        text-align: center;
+        // text-align: center;
         margin-bottom: 10px;
     }
     &__info{
         text-align: center;
         color: $secondary_color;
+        display: none;
     }
 }
 
 .achievement{
     &__card{
         position: relative;
-        border-radius: 25px;
-        padding: 30px;
+        z-index: 0;
+        border-radius: 20px;
+        padding: 30px 40px;
         overflow: hidden;
+        background-color: $accent_color;
         // max-height: 500px;
-        border: 3px solid $primary_color;
-
-        &-content{
-            // z-index: 1;
-            
-        }
+        backdrop-filter: blur(10px);
+        // background-color: rgba(19, 19, 19, 0.9);
         &::before{
             position: absolute;
-            left: 0;
+            right: 0;
             top: 0;
-            content: '';
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: -1;
+        }
+        &-content{
+            // z-index: 1;
+            // pointer-events: none;
         }
         &-title{
             &.title{
@@ -1458,13 +1419,27 @@ body{
         &-info{
             &.info{
                 color: $bg_color;
+                & p{
+                    // font-weight: 400;
+                    margin-bottom: 30px;
+                }
             }
         }
         &-buttons{
             display: flex;
             gap: 10px;
-            margin-top: 30px;
+            // margin-top: 30px;
             float:right;
         }
     }
+}
+
+.faulty-terminal-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+  left: 0;
+  top: 0;
+  z-index: -1;
 }

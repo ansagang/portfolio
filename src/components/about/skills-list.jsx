@@ -1,5 +1,6 @@
 import { getSkills } from "@/actions/api"
 import Chip from "../ui/chip"
+import Button from "../ui/button"
 
 export default async function SkillsList({ language }) {
 

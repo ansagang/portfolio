@@ -9,12 +9,12 @@ import { revalidateData } from "@/actions/actions"
 
 export default function ProjectsSearch({ language, searchParams }) {
 
-    const searchQ =  searchParams?.search ? searchParams.search : ''
+    const searchQ = searchParams?.search ? searchParams.search : ''
     const searchParam = useSearchParams()
 
     const [search, setSearch] = useState(searchQ)
 
-    const debouncedSearch = useDebounce(search, 500)
+    const debouncedSearch = useDebounce(search, 700)
 
     const router = useRouter()
     const pathname = usePathname()
@@ -37,6 +37,24 @@ export default function ProjectsSearch({ language, searchParams }) {
         [searchParam]
     )
 
+    const [currentLetters, setCurrentLetters] = useState([]);
+    const [index, setIndex] = useState(0)
+
+    useEffect(() => {
+        const letters = language.app.labels.searchProjects.split('')
+
+        const interval = setInterval(() => {
+            if (index <= letters.length - 1) {
+                setCurrentLetters([...currentLetters, letters[index]])
+                setIndex(index+1)
+            } else {
+                clearInterval(interval)
+            }
+        }, 70);
+
+        return () => clearInterval(interval);
+    }, [currentLetters]);
+
 
     useEffect(() => {
         if (search) {
@@ -49,7 +67,7 @@ export default function ProjectsSearch({ language, searchParams }) {
 
     return (
         <div className="projects__search">
-            <Input value={search} onChange={(e) => setSearch(e.target.value)} type={'search'} placeholder={language.app.labels.searchProjects} />
+            <Input autoFocus value={search} onChange={(e) => setSearch(e.target.value)} type={'search'} placeholder={currentLetters.join('')} />
         </div>
     )
 }

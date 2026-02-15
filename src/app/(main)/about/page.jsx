@@ -1,13 +1,8 @@
-import AboutMe from "@/components/sections/about.about";
 import { getLanguage } from "@/lib/get-language";
-import Skills from "@/components/sections/skills.about";
-import Experience from "@/components/sections/experience.about";
-import { getExperience, getSkills } from "@/actions/api";
 import Dither from "@/components/three/dither";
 import AboutVisual from "@/components/about/about-visual";
 import SkillsList from "@/components/about/skills-list";
 import AchievementsList from "@/components/about/achievements-list";
-import FaultyTerminal from "@/components/three/faulty-terminal";
 
 export async function generateMetadata() {
 

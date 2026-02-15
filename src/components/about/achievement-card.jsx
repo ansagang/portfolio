@@ -20,7 +20,7 @@ export default function AchievementCard({ language, achievement }) {
     }
 
     return (
-        <SpotlightCard spotlightColor={spotlightColor} className="achievement__card white" onMouseLeave={() => {
+        <SpotlightCard spotlightColor={spotlightColor} className="achievement__card white card" onMouseLeave={() => {
             setSpotlightColor()
         }} onMouseEnter={() => {
             randomColor()

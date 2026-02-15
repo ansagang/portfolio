@@ -20,5 +20,10 @@ export const socials = [
         title: "Telegram",
         link: "https://t.me/ansagang",
         logo: "/images/telegram.png"
+    },
+    {
+        title: "LinkedIn",
+        link: "https://www.linkedin.com/in/angsar-aben-2592843b0/",
+        logo: "/images/linkedin.png"
     }
 ]

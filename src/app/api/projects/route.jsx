@@ -20,10 +20,20 @@ export async function GET(request) {
             // query = query.textSearch('description', `${search}`, {
             //     type: 'phrase',
             // })
-            // query = query.like('description', `%${search}%`).or
-            query = query.textSearch('fts', `${search}`, {
-                type: 'phrase',
-            })
+            // query = query.like('description', `%${search}%`)
+            // query = query.or(`title.like.%${search}%,description.like.%${search}%),title.like.%${search.toLowerCase()}%,description.like.%${search.toLowerCase()}%),title.like.%${search.charAt(0).toUpperCase() + search.slice(1)}%,description.like.%${search.charAt(0).toUpperCase() + search.slice(1)}%)`)
+            // query = query.textSearch('search_vector', `${search}`, {
+            //     type: 'websearch',
+            //     config: 'english'
+            // })
+            // query = query.or('')
+            const searchTerm = search
+                .trim()
+                .split(/\s+/)
+                .map(t => `${t.replace(/'/g, "")}:*`)
+                .join(" & ");
+
+            query = query.textSearch("search_vector", searchTerm, { type: "raw", config: "simple" });
         }
         if (sort) {
             query = query.order(sort.code, { ascending: sort.ascending })
@@ -44,7 +54,6 @@ export async function GET(request) {
                 })
             )
         }
-        console.log(data);
 
 
         let querySearch = supabase.from("projects").select('*').match({ lang: lang })

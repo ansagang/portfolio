@@ -1018,6 +1018,8 @@ body{
 }
 
 .projects{
+    // border-left:10px solid $accent_color;
+    // border-right:10px solid $accent_color;
     &__chips{
         display: flex;
         gap: 10px;
@@ -1030,11 +1032,28 @@ body{
         flex-wrap: row;
         margin-bottom: 20px;
     }
-    &__container{
-        margin-top: 40px;
+    &__search{
+        margin-bottom: 30px;
     }
     &__title{
-        text-align: center;
+        color: $bg_color;
+    }
+    &__banner{
+        width: 100%;
+        border-radius: 15px;
+        overflow: hidden;
+        position: relative;
+        min-height: 100px;
+        padding: 40px;
+        &-background{
+            position: absolute !important;
+            z-index:-1;
+            background-color: $bg_color;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
     }
 }
 
@@ -1077,6 +1096,7 @@ body{
         }
         &-input{
             width: 100%;
+            text-align: left;
             & .input{
                 margin-top: 10px;
             }
@@ -1093,6 +1113,7 @@ body{
             display: flex;
             gap: 20px;
             align-items: center;
+            flex-wrap: wrap;
         }
         &-link{
             padding: 17px;
@@ -1392,17 +1413,13 @@ body{
         border-radius: 20px;
         padding: 30px 40px;
         overflow: hidden;
-        background-color: $accent_color;
+        // background-color: gray;
         // max-height: 500px;
         backdrop-filter: blur(10px);
+        box-shadow: 0px 1px 0px 1px #00000005, 0px 4px 10px #00000005, inset 0px 0px 0px 10px #313131;
+        background: linear-gradient(0deg, #141414 0%, #262626 65.62%);
         // background-color: rgba(19, 19, 19, 0.9);
-        &::before{
-            position: absolute;
-            right: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-        }
+        // border: 7px dashed rgb(68, 68, 68);
         &-content{
             // z-index: 1;
             // pointer-events: none;
@@ -1418,7 +1435,7 @@ body{
         }
         &-info{
             &.info{
-                color: $bg_color;
+                color: $secondary_color;
                 & p{
                     // font-weight: 400;
                     margin-bottom: 30px;
@@ -1442,4 +1459,26 @@ body{
   left: 0;
   top: 0;
   z-index: -1;
+}
+
+.pixel-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.pixel-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  aspect-ratio: 1;
+  background: radial-gradient(circle, #09090b, transparent 85%);
+  opacity: 0;
+  transition: opacity 800ms cubic-bezier(0.5, 1, 0.89, 1);
+}
+
+.pixel-card:hover::before,
+.pixel-card:focus-within::before {
+  opacity: 1;
 }

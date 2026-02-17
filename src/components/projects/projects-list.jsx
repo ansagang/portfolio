@@ -19,7 +19,7 @@ export default async function ProjectsList({ language, searchParams }) {
                     projects ?
                         projects.length > 0 ?
                             projects.map((project) => (
-                                <ProjectCard key={project.id} project={project} />
+                                <ProjectCard tilt={false} key={project.id} project={project} />
                             ))
                             :
                             null

@@ -57,18 +57,20 @@ export default function ProjectsChips({ language, searchParams, categories }) {
     }
 
     return (
-        <div className="projects__chips">
-            {
-                categories ?
-                    categories.length > 0 ?
-                        categories.map((category, k) => (
-                            <Chip key={k} active={categoriesQ.includes(slugify(category))} onClick={() => updateCategory(category)} className={'project__chip'} type="primary">{category}</Chip>
-                        ))
+        <div className="projects__chips-container">
+            <div className="projects__chips">
+                {
+                    categories ?
+                        categories.length > 0 ?
+                            categories.map((category, k) => (
+                                <Chip key={k} active={categoriesQ.includes(slugify(category))} onClick={() => updateCategory(category)} className={'project__chip'} type="primary">{category}</Chip>
+                            ))
+                            :
+                            null
                         :
                         null
-                    :
-                    null
-            }
+                }
+            </div>
         </div>
     )
 }

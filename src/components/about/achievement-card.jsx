@@ -16,7 +16,7 @@ export default function AchievementCard({ language, achievement }) {
         const r = Math.floor(Math.random() * 256)
         const g = Math.floor(Math.random() * 256)
         const b = Math.floor(Math.random() * 256)
-        setSpotlightColor(`rgba(${r}, ${g}, ${b}, 0.45)`)
+        setSpotlightColor(`rgba(${r}, ${g}, ${b}, 0.5)`)
     }
 
     return (

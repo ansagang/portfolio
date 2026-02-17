@@ -2,14 +2,14 @@
 
 .container {
     margin: $mb_auto;
-    max-width: 1200px;
+    max-width: 1250px;
     padding: 0 20px;
     height: 100%;
 
     &__fluid {
         margin: $mb_auto;
         padding: 0 20px;
-        max-width: 1340px;
+        max-width: 1350px;
     }
 
     &__mini{
@@ -313,6 +313,25 @@ footer{
     }
 }
 .chip{
+    white-space: nowrap;
+    &.circle{
+        height: 100%;
+        & .chip__button{
+            border-radius: 50% !important;
+            // padding: 8px 15px !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 100%;
+        }
+        & svg{
+                margin-left: 0 !important;
+                fill: $bg_color;
+                width: 10px !important;
+                height: 10px !important;
+        }
+    }
     &.primary {
         & .chip__button{
             border: 2px solid $secondary_color_2;

@@ -17,16 +17,6 @@ export async function GET(request) {
 
         let query = supabase.from("projects").select('*')
         if (search) {
-            // query = query.textSearch('description', `${search}`, {
-            //     type: 'phrase',
-            // })
-            // query = query.like('description', `%${search}%`)
-            // query = query.or(`title.like.%${search}%,description.like.%${search}%),title.like.%${search.toLowerCase()}%,description.like.%${search.toLowerCase()}%),title.like.%${search.charAt(0).toUpperCase() + search.slice(1)}%,description.like.%${search.charAt(0).toUpperCase() + search.slice(1)}%)`)
-            // query = query.textSearch('search_vector', `${search}`, {
-            //     type: 'websearch',
-            //     config: 'english'
-            // })
-            // query = query.or('')
             const searchTerm = search
                 .trim()
                 .split(/\s+/)

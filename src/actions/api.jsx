@@ -133,13 +133,6 @@ export async function getProject({ lang, slug, revalidate }) {
 }
 
 export async function getProjectMedia(media) {
-    // const res = await fetch(`${process.env.URL}/api/auth/login-session?lang=en`, {
-    //     method: 'POST',
-    //     body: JSON.stringify({ session: session }),
-    // })
-    // const data = await res.json()
-
-    // return data
     try {
         const supabase = createClient()
         if (media) {
@@ -193,13 +186,6 @@ export async function getBlogs({ search, category, lang, limit, sort }) {
 }
 
 export async function getBlogMedia(media) {
-    // const res = await fetch(`${process.env.URL}/api/auth/login-session?lang=en`, {
-    //     method: 'POST',
-    //     body: JSON.stringify({ session: session }),
-    // })
-    // const data = await res.json()
-
-    // return data
     try {
         const supabase = createClient()
         if (media) {

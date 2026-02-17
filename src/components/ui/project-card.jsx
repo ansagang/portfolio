@@ -5,6 +5,7 @@ import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
 import { getProjectMedia } from "@/actions/actions"
 import Chip from "./chip"
+import { Icons } from "@/config/icons"
 
 export default function ProjectCard({ project, tilt, ...props }) {
 
@@ -41,14 +42,28 @@ export default function ProjectCard({ project, tilt, ...props }) {
                                     project.categories ?
                                         project.categories.length > 0 ?
                                             project.categories.map((category, k) => (
-                                                (
+                                                k < 2 ?
                                                     <div key={k} className="project-card__category">
                                                         <Chip type={'secondary'}>{category}</Chip>
                                                     </div>
-                                                )
+                                                    :
+                                                    null
                                             ))
                                             :
                                             null
+
+                                        :
+                                        null
+                                }
+                                {
+                                    project.categories ?
+                                        project.categories.length > 2 ?
+                                            <div className="project-card__category">
+                                                <Chip className={'circle'} type={'secondary'}><Icons.arrow /></Chip>
+                                            </div>
+                                            :
+                                            null
+
                                         :
                                         null
                                 }
@@ -67,24 +82,6 @@ export default function ProjectCard({ project, tilt, ...props }) {
                         </TiltCard>
                         :
                         <div>
-
-                            <div className="project-card__categories">
-                                {
-                                    project.categories ?
-                                        project.categories.length > 0 ?
-                                            project.categories.map((category, k) => (
-                                                (
-                                                    <div key={k} className="project-card__category">
-                                                        <Chip type={'secondary'}>{category}</Chip>
-                                                    </div>
-                                                )
-                                            ))
-                                            :
-                                            null
-                                        :
-                                        null
-                                }
-                            </div>
                             <video playsInline muted ref={videoRef} onMouseEnter={() => {
                                 if (videoUrl) {
                                     videoRef.current.play()

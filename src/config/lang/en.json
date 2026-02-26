@@ -69,6 +69,10 @@
                         "achievements": {
                             "title": "Achievements",
                             "description": "Here you can check my achievements throughout the years."
+                        },
+                        "services": {
+                            "title": "What I can do for you",
+                            "description": "I help businesses and individuals bring their ideas to life through thoughtful design and clean, scalable code."
                         }
                 },
                 "pages": {}

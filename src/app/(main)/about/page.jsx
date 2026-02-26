@@ -1,8 +1,9 @@
 import { getLanguage } from "@/lib/get-language";
-import Dither from "@/components/three/dither";
 import AboutVisual from "@/components/about/about-visual";
 import SkillsList from "@/components/about/skills-list";
-import AchievementsList from "@/components/about/achievements-list";
+import Dither from "@/components/three/dither";
+import ServicesList from "@/components/about/services-list";
+import ExperienceList from "@/components/about/experience-list";
 
 export async function generateMetadata() {
 
@@ -33,16 +34,6 @@ export default async function About() {
         </div>
       </section>
       <section className="skills white">
-        <Dither
-          waveColor={[0.7, 0.7, 0.7]}
-          disableAnimation={false}
-          enableMouseInteraction
-          mouseRadius={0.3}
-          colorNum={4}
-          waveAmplitude={0.1}
-          waveFrequency={3}
-          waveSpeed={0.05}
-        />
         <div className="container">
           <div className="skills__inner inner">
             <div className="skills__title title">
@@ -52,7 +43,7 @@ export default async function About() {
           </div>
         </div>
       </section>
-      <section className="achievements">
+      {/* <section className="achievements">
         <div className="container">
           <div className="achievements__inner inner">
             <div className="achievements__title title">
@@ -62,6 +53,38 @@ export default async function About() {
               <p>{language.app.pages.about.sections.achievements.description}</p>
             </div>
             <AchievementsList language={language} />
+          </div>
+        </div>
+      </section> */}
+      <div className="experience">
+        <div className="container">
+          <div className="experience__inner inner">
+            <div className="experience__left">
+              <div className="experience__title title">
+                <h2>Experience</h2>
+              </div>
+              <div className="experience__info info">
+                <p>Here you can see my journey</p>
+              </div>
+            </div>
+            <div className="experience__right">
+              <ExperienceList language={language} />
+            </div>
+          </div>
+        </div>
+      </div>
+      <section className="services">
+        <div className="container">
+          <div className="services__inner inner">
+            <div className="services__content">
+              <div className="services__title title">
+                <h2>{language.app.pages.about.sections.services.title}</h2>
+              </div>
+              <div className="services__info info">
+                <p>{language.app.pages.about.sections.services.description}</p>
+              </div>
+            </div>
+            <ServicesList language={language} />
           </div>
         </div>
       </section>

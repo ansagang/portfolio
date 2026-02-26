@@ -117,13 +117,8 @@ textarea {
     color: $primary_color;
     border: 1px solid $secondary_color_2;
     width: 100%;
-    // margin-top: 20px;
-    
-    // &:hover{
-    //     border: 1px solid $accent_color
-    // }
     &:focus{
-        border: 1px solid $accent_color;
+        border: 1px solid $primary_color;
     }
 
     &:disabled{
@@ -135,28 +130,15 @@ label{
     color: $primary_color;
     font-weight: $light_font_weight;
 }
-
-// input[type="number"]{
-//     margin-bottom: 0;
-// }
-
 input[type="search"] {
-    outline: 0; // <-- shold probably remove this for better accessibility, adding for demo aesthetics for now.
+    outline: 0; 
     width: 100%;
-    // background: $secondary_color_3;
     padding: 12px 0;
-    appearance: none; //for iOS input[type="search"] roundedness issue. border-radius alone doesn't work
+    appearance: none;
     transition: all 0.4s ease;
     z-index: 1;
     position: relative;
-    // border-left: 2px solid $secondary_color_2;
     font-size: $h1_font_size;
-    // &:hover{
-    //     border-bottom: 2px solid $accent_color_2;
-    // }
-    // &:focus{
-    //     border-bottom: 2px solid $accent_color_2;
-    // }
     &::placeholder{
         color: $secondary_color;
         transition: all 0.4s ease;
@@ -173,62 +155,6 @@ input[type="search"] {
         display: none;
       }
   }
-
-// input,
-// textarea{
-//     &:disabled{
-//         cursor: not-allowed;
-//     }
-// }
-
-// select{
-//     transition: all 0.2s ease-in-out;
-//     &:disabled{
-//         cursor: not-allowed;
-//     }
-//     &:hover{
-//         border: 2px solid $accent_color;
-//     }
-// }
-
-// input[type="file"] {
-//     font-size: $input_font_size;
-//     margin-bottom: $pd-input;
-//     resize: none;
-//     padding: $pd_input;
-//     font-size: $button_font_size !important;
-//     font-weight: $light_font_weight !important;
-//     border-radius: $button_radius;
-//     cursor: pointer;
-//     padding: $pd_button;
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//     background: transparent;
-//     transition: all 0.5s ease;
-//     border: 2px solid $accent_color;
-//     background-color: $accent_color;
-//     color: $bg_color;
-//     width: 0.1px;
-// 	height: 0.1px;
-// 	opacity: 0;
-// 	overflow: hidden;
-// 	position: absolute;
-// 	z-index: -1;
-
-//     &:disabled{
-//         filter: brightness(60%);
-//     }
-
-//     &::-webkit-file-upload-button {
-//         display: none;
-//     }
-// }
-
-// hr{
-//     border:1px solid $bg_color_lighter;
-//     margin: 30px 0;
-// }
 
 button[type="submit"]{
     border-radius: $input_radius;

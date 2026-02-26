@@ -1,13 +1,10 @@
-import { getProjects } from "@/actions/api";
-import Check from "@/components/projects/check";
+
 import ProjectsChipsShell from "@/components/projects/projects-chips-shell";
 import ProjectsList from "@/components/projects/projects-list";
 import ProjectsSearch from "@/components/projects/projects-search";
 import SkeletonProjects from "@/components/skeletons/skeleton-projects";
-import LetterGlitch from "@/components/three/letter-glitch";
 import SkeletonCategories from "@/components/ui/skeleton-categories";
 import { getLanguage } from "@/lib/get-language";
-import Image from "next/image";
 import { Suspense } from "react";
 
 export async function generateMetadata() {

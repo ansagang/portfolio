@@ -19,7 +19,7 @@ export default async function SkillsList({ language }) {
                                 <div className="skills__item-chips">
                                     {
                                         skill.tags.map((tag, k) => (
-                                            <Chip key={k} className={'skills__item-chip'} type={'secondary'}>{tag}</Chip>
+                                            <Chip key={k} className={'skills__item-chip'} type={'secondary dark'}>{tag}</Chip>
                                         ))
                                     }
                                 </div>

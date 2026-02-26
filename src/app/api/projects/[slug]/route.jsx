@@ -4,10 +4,10 @@ import facetsFinder from "@/lib/utils"
 import { NextResponse } from "next/server"
 export async function GET(request, {params}) {
     try {
-        const supabase = createClient()
-        const slug = params.slug
+        const supabase = await createClient()
+        const { slug } = await params
         const { searchParams } = new URL(request.url)
-        const lang = searchParams.get('lang') ? searchParams.get('lang') : null
+        const lang = searchParams.get('lang') ? searchParams.get('lang') : null        
 
         const { data, error } = await supabase.from("projects").select("").match({ lang: lang, slug: slug }).single()
 

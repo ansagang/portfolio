@@ -1,7 +1,5 @@
 "use server"
 
-import { revalidatePath, revalidateTag } from "next/cache";
-
 export async function getSkills({ lang = '', revalidate}) {
     try {
         const res = await fetch(`${process.env.URL}/api/skills?lang=${lang}`, {
@@ -24,16 +22,16 @@ export async function getSkills({ lang = '', revalidate}) {
     }
 }
 
-export async function getAchievements({ lang = '', revalidate}) {
+export async function getServices({ lang = '', revalidate}) {
     try {
-        const res = await fetch(`${process.env.URL}/api/achievements?lang=${lang}`, {
+        const res = await fetch(`${process.env.URL}/api/services?lang=${lang}`, {
             method: 'GET',
             headers: {
                 'x-api-key': process.env.API_KEY
             },
             next: {
                 revalidate: revalidate,
-                tags: ['achievements']
+                tags: ['services']
             }
         })
 
@@ -46,13 +44,16 @@ export async function getAchievements({ lang = '', revalidate}) {
     }
 }
 
-
-export async function getExperience({ lang = '' }) {
+export async function getExperience({ lang = '', revalidate}) {
     try {
-        const res = await fetch(`${process.env.URL || ''}/api/experience?lang=${lang}`, {
+        const res = await fetch(`${process.env.URL}/api/experience?lang=${lang}`, {
             method: 'GET',
             headers: {
                 'x-api-key': process.env.API_KEY
+            },
+            next: {
+                revalidate: revalidate,
+                tags: ['experience']
             }
         })
 
@@ -117,9 +118,10 @@ export async function getProject({ lang, slug, revalidate }) {
             method: 'GET',
             headers: {
                 'x-api-key': process.env.API_KEY
-            },
+            },                                                                                                                                                                                                                                               
             next: {
-                revalidate: revalidate
+                revalidate: revalidate,
+                tags: ['project']
             }
         })
 

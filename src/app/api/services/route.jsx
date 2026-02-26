@@ -9,7 +9,7 @@ export async function GET(request) {
 
         const { searchParams } = new URL(request.url)
         const lang = searchParams.get('lang') ? searchParams.get('lang') : null
-        const {data, error} = await supabase.from("achievements").select('*').match({ lang: lang }) 
+        const {data, error} = await supabase.from("services").select('*').match({ lang: lang }) 
         
         if (!error) {
             return NextResponse.json({

@@ -31,6 +31,10 @@ export default function Header({ language }) {
         } else {
             isActive(true)
         }
+
+        return () => {
+            isActive(true)
+        }
     }, [scroll])
 
     return (

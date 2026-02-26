@@ -5,7 +5,6 @@ import Scene from "@/components/three/landing-scene";
 import { Icons } from "@/config/icons";
 import Button from "@/components/ui/button";
 import ContactBanner from "@/components/home/contact-banner";
-import Dither from "@/components/three/dither";
 import { Suspense } from "react";
 import SkeletonProjects from "@/components/skeletons/skeleton-projects";
 

@@ -63,10 +63,10 @@ export default async function About() {
           <div className="experience__inner inner">
             <div className="experience__left">
               <div className="experience__title title">
-                <h2>Experience</h2>
+                <h2>{language.app.pages.about.sections.experience.title}</h2>
               </div>
               <div className="experience__info info">
-                <p>From self-taught beginnings to building products used by hundreds. Every step shaped how I approach design and code today.</p>
+                <p>{language.app.pages.about.sections.experience.description}</p>
               </div>
             </div>
             <div className="experience__right">

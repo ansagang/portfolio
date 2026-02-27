@@ -44,7 +44,7 @@
 
     & h3 {
         font-size: $h3_font_size;
-        font-weight: $medium_font_weight;
+        font-weight: $light_font_weight;
         margin-bottom: 5px;
         line-height: $h2_font_size;
         letter-spacing: -0.08rem;
@@ -95,8 +95,8 @@
 }
 
 button {
-    font-size: $button_font_size !important;
-    font-weight: $light_font_weight !important;
+    font-size: $button_font_size ;
+    font-weight: $light_font_weight;
     padding: $pd_button;
     display: flex;
     align-items: center;
@@ -315,23 +315,24 @@ footer{
     }
     &.primary {
         & .chip__button{
-            border: 2px solid $secondary_color_2;
-            border-radius: $plate_radius;
+            border: 1.5px solid $secondary_color_2;
+            border-radius: $input_radius;
             padding: 8px 15px;
             transition: all 0.5s ease;
-            font-size: $p_font_size;
+            font-size: $p2_font_size;
             background-color: $bg_color;
-            color: $primary_color !important;
+            font-weight: $light_font_weight;
+            color: $fg_color;
             &:hover{
                 background-color: $blur_color_2;
                 color: $primary_color;
-                border: 2px solid $primary_color;
+                border: 1.5px solid $primary_color;
             }
     
             &.active{
-                background-color: $blur_color_2 !important;
-                color: $primary_color !important;
-                border: 2px solid $primary_color !important;
+                background-color: $blur_color_2;
+                color: $primary_color;
+                border: 1.5px solid $primary_color;
             }
         }
 
@@ -370,11 +371,17 @@ footer{
             font-size: $p2_font_size !important;
             color: $primary_color;
             border: $blur_border;
-            font-weight: $lighter_font_weight !important;
+            font-weight: $light_font_weight !important;
             background-color: $blur_color;
             &.active{
-                border: none;
-                background-color: $bg_color;
+                background-color: $primary_color;
+                border: 1.5px solid $primary_color;
+                color: $bg_color;
+            }
+            &:hover{
+                background-color: $primary_color;
+                border: 1.5px solid $primary_color;
+                color: $bg_color;
             }
         }
 
@@ -440,13 +447,13 @@ footer{
     &.skeleton {
         & .chip__button{
             animation: skeleton-loading 1s linear infinite alternate;
-            border: 2px solid transparent;
-            border-radius: $input_radius;
-            padding: 6px 15px;
+            border: 1.5px solid transparent;
             transition: all 0.5s ease;
-            font-size: $p_font_size;
+            font-size: $p2_font_size;
             width: 100px;
             color: transparent;
+            border-radius: 20px;
+            padding: $pd_button;
             &:hover{
                 background-color: inherit;
                 color: transparent;
@@ -459,6 +466,7 @@ footer{
                 border: 2px solid transparent;
             }
         }
+
     }
 }
 

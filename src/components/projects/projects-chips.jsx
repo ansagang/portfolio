@@ -63,7 +63,7 @@ export default function ProjectsChips({ language, searchParams, categories }) {
                     categories ?
                         categories.length > 0 ?
                             categories.map((category, k) => (
-                                <Chip key={k} active={categoriesQ.includes(slugify(category))} onClick={() => updateCategory(category)} className={'project__chip'} type="primary">{category}</Chip>
+                                <Chip key={k} active={categoriesQ.includes(slugify(category))} onClick={() => updateCategory(category)} className={'project__chip'} type="secondary">{category}</Chip>
                             ))
                             :
                             null

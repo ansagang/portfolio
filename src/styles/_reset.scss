@@ -133,16 +133,15 @@ label{
 input[type="search"] {
     outline: 0; 
     width: 100%;
-    padding: 12px 0;
     appearance: none;
     transition: all 0.4s ease;
     z-index: 1;
     position: relative;
-    font-size: $h1_font_size;
     &::placeholder{
         color: $secondary_color;
         transition: all 0.4s ease;
-        font-size: $h1_font_size;
+        font-weight: $light_font_weight;
+        // font-size: $h1_font_size;
     }
 
     &::-webkit-search-cancel-button {

@@ -31,6 +31,7 @@ export default function ProjectCard({ project, tilt, ...props }) {
 
 
     return (
+        // tilt ?
         <div className="project-card" {...props}>
             <Link className="project-card__visual card" href={`/projects/${project.slug}`}>
                 {
@@ -81,29 +82,53 @@ export default function ProjectCard({ project, tilt, ...props }) {
                             </video>
                         </TiltCard>
                         :
-                        <div>
-                            <video playsInline muted ref={videoRef} onMouseEnter={() => {
-                                if (videoUrl) {
-                                    videoRef.current.play()
-                                }
-                            }} onMouseLeave={() => {
-                                if (videoUrl) {
-                                    videoRef.current.currentTime = 0
-                                    videoRef.current.pause()
-                                }
-                            }} src={videoUrl}>
-                            </video>
-                        </div>
+                        <video playsInline muted ref={videoRef} onMouseEnter={() => {
+                            if (videoUrl) {
+                                videoRef.current.play()
+                            }
+                        }} onMouseLeave={() => {
+                            if (videoUrl) {
+                                videoRef.current.currentTime = 0
+                                videoRef.current.pause()
+                            }
+                        }} src={videoUrl}>
+                        </video>
                 }
             </Link>
             <div className="project-card__content">
                 <div className="project-card__title title">
                     <h3>{project.title}</h3>
                 </div>
-                <div className="project-card__info title">
-                    <h4>{project.description}</h4>
+                <div className="project-card__info info">
+                    <p>{project.description}</p>
                 </div>
             </div>
         </div>
+        // :
+        // <div className="project__card" {...props}>
+        //     <Link className="project__card-visual card" href={`/projects/${project.slug}`}>
+        //         <div>
+        //             <video playsInline muted ref={videoRef} onMouseEnter={() => {
+        //                 if (videoUrl) {
+        //                     videoRef.current.play()
+        //                 }
+        //             }} onMouseLeave={() => {
+        //                 if (videoUrl) {
+        //                     videoRef.current.currentTime = 0
+        //                     videoRef.current.pause()
+        //                 }
+        //             }} src={videoUrl}>
+        //             </video>
+        //         </div>
+        //     </Link>
+        //     <div className="project__card-content">
+        //         <div className="project__card-title title">
+        //             <h3>{project.title}</h3>
+        //         </div>
+        //         <div className="project__card-info info">
+        //             <p>{project.description}</p>
+        //         </div>
+        //     </div>
+        // </div>
     )
 }

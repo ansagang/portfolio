@@ -431,6 +431,8 @@ body{
 
 .project-card{
     position: relative;
+    // border: 1.5px solid $secondary_color_3;
+    // border-radius: 15px;
     &__visual{
         margin-bottom: 10px;
         position: relative;
@@ -447,6 +449,8 @@ body{
             object-fit: cover;
             width: 100%;
             aspect-ratio: 1.5 /1;
+            border-top-right-radius: 15px;
+            border-top-left-radius: 15px;
             border-radius: 15px;
             background-color: $secondary_color_3;
             border: 1.5px solid $secondary_color_3;
@@ -456,7 +460,8 @@ body{
         }
     }
     &__content{
-        padding: 8px;
+        // padding: 23px;
+        padding: 10px;
     }
     &__categories{
         position: absolute;
@@ -477,8 +482,8 @@ body{
     &__info{
         overflow: hidden;
    display: -webkit-box;
-   -webkit-line-clamp: 3; /* number of lines to show */
-           line-clamp: 3; 
+   -webkit-line-clamp: 2;
+           line-clamp: 2; 
    -webkit-box-orient: vertical;
     }
 }
@@ -732,10 +737,10 @@ body{
     &__left{
         position: sticky;
         top: 160px;
-        width: 40%;
+        width: 30%;
     }
     &__right{
-        width: 50%;
+        width: 60%;
         position: relative;
     }
     &__timeline{
@@ -789,13 +794,13 @@ body{
     }
     &__card{
         padding: $pd_plate;
-        border: 1px solid $secondary_color_2;
         border-radius: $plate_radius;
         background-color: $bg_color;
         position: relative;
         overflow: hidden;
         opacity: 0;
         transition: 0.7s ease all;
+        border: 1.5px solid $secondary_color_2;
         &::before{
             content: '';
             position: absolute;
@@ -979,10 +984,19 @@ body{
         margin-bottom: 20px;
     }
     &__search{
-        margin-bottom: 30px;
-    }
-    &__title{
-        color: $bg_color;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 16px 24px;
+        border: 1.5px solid $secondary_color_2;
+        border-radius: 15px;
+        background-color: $bg_color;
+        & svg{
+            stroke: $secondary_color;
+        }
+        & .input{
+            width: 100%;
+        }
     }
     &__banner{
         width: 100%;
@@ -1000,6 +1014,9 @@ body{
             width: 100%;
             height: 100%;
         }
+    }
+    &__container{
+        margin-top: 30px;
     }
 }
 
@@ -1481,5 +1498,35 @@ body{
                 border: 1.5px solid $secondary_color_4;
             }
         }
+    }
+}
+
+.project__card{
+    position: relative;
+    border: 1.5px solid $secondary_color_3;
+    border-radius: 15px;
+    &-visual{
+        margin-bottom: 10px;
+        position: relative;
+        & video{
+            left: 0;
+            top: 0;
+            object-fit: cover;
+            width: 100%;
+            aspect-ratio: 1.5 /1;
+            border-top-right-radius: 15px;
+            border-top-left-radius: 15px;
+            background-color: $secondary_color_3;
+        }
+    }
+    &-content{
+        padding: 17px 25px;
+    }
+    &-info{
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2; 
+        -webkit-box-orient: vertical;
     }
 }

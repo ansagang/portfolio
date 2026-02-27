@@ -27,6 +27,12 @@ export default async function Projects({ searchParams }) {
       <section className="projects">
         <div className="container">
           <div className="projects__inner inner__big">
+            <div className="projects__title title">
+              <h2>{language.app.pages.projects.meta.title}</h2>
+            </div>
+            <div className="projects__info info">
+              <p>{language.app.pages.projects.meta.description}</p>
+            </div>
             <div className="projects__container">
               <ProjectsSearch language={language} searchParams={searchQuery} />
               <Suspense key={(await searchParams).search} fallback={<SkeletonCategories count={10} />}>

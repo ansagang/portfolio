@@ -6,6 +6,7 @@ import useDebounce from "@/hooks/use-debounce"
 import { useRouter, useSearchParams } from "next/navigation"
 import { usePathname } from "next/navigation"
 import { revalidateData } from "@/actions/actions"
+import { Icons } from "@/config/icons"
 
 export default function ProjectsSearch({ language, searchParams }) {
 
@@ -37,24 +38,6 @@ export default function ProjectsSearch({ language, searchParams }) {
         [searchParam]
     )
 
-    const [currentLetters, setCurrentLetters] = useState([]);
-    const [index, setIndex] = useState(0)
-
-    useEffect(() => {
-        const letters = language.app.labels.searchProjects.split('')
-
-        const interval = setInterval(() => {
-            if (index <= letters.length - 1) {
-                setCurrentLetters([...currentLetters, letters[index]])
-                setIndex(index+1)
-            } else {
-                clearInterval(interval)
-            }
-        }, 70);
-
-        return () => clearInterval(interval);
-    }, [currentLetters]);
-
 
     useEffect(() => {
         if (search) {
@@ -67,7 +50,8 @@ export default function ProjectsSearch({ language, searchParams }) {
 
     return (
         <div className="projects__search">
-            <Input autoFocus value={search} onChange={(e) => setSearch(e.target.value)} type={'search'} placeholder={currentLetters.join('')} />
+            <Icons.search />
+            <Input autoFocus value={search} onChange={(e) => setSearch(e.target.value)} type={'search'} placeholder={language.app.labels.searchProjects} />
         </div>
     )
 }

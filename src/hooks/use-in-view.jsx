@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-export default function useInView(repeat) {
+export default function useInView(repeat, delay = 0, position = '0px 0px 0px 0px') {
 
     const [inView, setInView] = useState()
     const [repeated, setRepeated] = useState(false)
@@ -32,7 +32,7 @@ export default function useInView(repeat) {
             });
         };
 
-        const observer = new IntersectionObserver(observerCallback);
+        const observer = new IntersectionObserver(observerCallback, {threshold: delay, rootMargin: position});
         if (ref.current) {
             observer.observe(ref.current);
         }

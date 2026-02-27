@@ -38,13 +38,16 @@
     & h2 {
         font-size: $h2_font_size;
         font-weight: $medium_font_weight;
+        letter-spacing: -0.05rem;
+        margin-bottom: 15px;
     }
 
     & h3 {
         font-size: $h3_font_size;
-        font-weight: $light_font_weight;
+        font-weight: $medium_font_weight;
         margin-bottom: 5px;
         line-height: $h2_font_size;
+        letter-spacing: -0.08rem;
     }
 
     & h4 {
@@ -64,6 +67,7 @@
     color: $primary_color_3;
     font-size: $p_font_size;
     line-height: 1.4;
+    letter-spacing: -0.05rem;
 }
 
 .inner {

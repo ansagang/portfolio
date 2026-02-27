@@ -4,6 +4,7 @@ import SkillsList from "@/components/about/skills-list";
 import Dither from "@/components/three/dither";
 import ServicesList from "@/components/about/services-list";
 import ExperienceList from "@/components/about/experience-list";
+import { getExperience } from "@/actions/api";
 
 export async function generateMetadata() {
 
@@ -17,6 +18,7 @@ export async function generateMetadata() {
 export default async function About() {
 
   const language = await getLanguage({})
+  const { data: experiences } = await getExperience({ lang: language.lang, revalidate: 3600 })
 
   return (
     <>
@@ -64,11 +66,11 @@ export default async function About() {
                 <h2>Experience</h2>
               </div>
               <div className="experience__info info">
-                <p>Here you can see my journey</p>
+                <p>From self-taught beginnings to building products used by hundreds. Every step shaped how I approach design and code today.</p>
               </div>
             </div>
             <div className="experience__right">
-              <ExperienceList language={language} />
+              <ExperienceList experiences={experiences} />
             </div>
           </div>
         </div>

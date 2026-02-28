@@ -97,6 +97,9 @@
                 position: static;
             }
         }
+        &__features{
+            grid-template-columns: 1fr 1fr;
+        }
     }
 }
 
@@ -220,6 +223,12 @@
             &-gallery{
                 column-count: 1;
             }
+        }
+        &__features{
+            grid-template-columns: 1fr;
+        }
+        &__techs{
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
         }
     }
 

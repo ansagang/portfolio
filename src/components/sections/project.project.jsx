@@ -1,17 +1,13 @@
 "use client"
 
 import { getProjectMedia } from "@/actions/actions"
-import Image from "next/image"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import Chip from "../ui/chip"
 import Button from "../ui/button"
-import { Icons } from "@/config/icons"
+import Video from "../ui/video"
 
 export default function Project({ language, project }) {
 
-    const [paused, setPaused] = useState(true)
-    const [loading, setLoading] = useState(false)
-    const videoRef = useRef()
     const [video, setVideo] = useState()
 
     useEffect(() => {
@@ -21,7 +17,6 @@ export default function Project({ language, project }) {
             if (project.video) {
                 const { data } = await getProjectMedia(project.video)
 
-
                 if (data) {
                     setVideo(data)
                 }
@@ -30,16 +25,6 @@ export default function Project({ language, project }) {
 
         getProjectMediaUrl()
     }, [project])
-
-
-
-    useEffect(() => {
-        if (paused) {
-            videoRef.current.play()
-        } else {
-            videoRef.current.pause()
-        }
-    }, [paused])
 
     return (
         <section className="project">
@@ -61,43 +46,7 @@ export default function Project({ language, project }) {
                         <div className="project__links">
                         </div>
                     </div>
-                    <div onClick={() => {
-                        setPaused(!paused)
-                    }} className="project__video card">
-                        <video onLoadStart={() => setLoading(true)} onLoadedData={() => setLoading(false)} className={loading ? "video loading" : paused ? "video" : "video paused"} ref={videoRef} loop={true} playsInline muted src={video}>
-                        </video>
-                        {
-                            loading ?
-                                <div className="video__loading"></div>
-                                :
-                                !paused ?
-                                    <div className="video__paused">
-                                        <Icons.play />
-                                    </div>
-                                    :
-                                    null
-                        }
-                    </div>
-                    <div className="project__content">
-                        <div className="project__block">
-                            <div className="project__block-title title">
-                                <h2>{language.app.pages.project.sections.technologies.title}</h2>
-                            </div>
-                            <div className="project__block-tags">
-                                {
-                                    project.tags ?
-                                        project.tags.length !== 0 ?
-                                            project.tags.map((tag) => (
-                                                <Chip className={'project__block-tag'} type={'primary'}>{tag}</Chip>
-                                            ))
-                                            :
-                                            null
-                                        :
-                                        null
-                                }
-                            </div>
-                        </div>
-                    </div>
+                    <Video className="project__video card" src={video} />
                 </div>
             </div>
         </section>

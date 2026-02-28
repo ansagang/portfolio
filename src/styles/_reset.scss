@@ -194,6 +194,9 @@ button[type="submit"]{
             }
         }
     }
+    & video{
+        width: 100%;
+    }
 }
 
 @keyframes skeleton-loading {

@@ -110,7 +110,18 @@
                 }
             },
             "project": {
+                "meta": {
+                    "title": "Project"
+                },
                 "sections": {
+                    "keyFeatures": {
+                        "title": "Key Features",
+                        "description": "Core functionalities that define this project"
+                    },
+                    "techStack": {
+                        "title": "Technology Stack",
+                        "description": "Tools and technologies used to build this project"
+                    },
                     "technologies": {
                         "title": "Technologies"
                     },

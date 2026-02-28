@@ -15,7 +15,7 @@ export default async function Home() {
   return (
     <>
       <section className="landing">
-        <Scene quantity={70} />
+        <Scene quantity={50} />
         <div className="container__mini">
           <div className="landing__inner inner__big">
             <div className="landing__signature">

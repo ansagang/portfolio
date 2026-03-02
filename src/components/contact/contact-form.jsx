@@ -40,62 +40,29 @@ export default function ContactForm({ language }) {
     }
 
     return (
-        <div className="contact__container">
-            <form onSubmit={(e) => {
-                e.preventDefault()
-                post({ first_name, last_name, email, message })
-            }} className="contact__form">
-                <div className="contact__form-inputs">
-                    <div className="contact__form-input">
-                        <label>{language.app.labels.firstName}</label>
-                        <Input onChange={(e) => setFirstname(e.target.value)} value={first_name} placeholder={language.app.labels.firstNamePlaceholder} type={'text'} />
-                    </div>
-                    <div className="contact__form-input">
-                        <label>{language.app.labels.lastName}</label>
-                        <Input onChange={(e) => setLastname(e.target.value)} value={last_name} placeholder={language.app.labels.lastNamePlaceholder} type={'text'} />
-                    </div>
+        <form onSubmit={(e) => {
+            e.preventDefault()
+            post({ first_name, last_name, email, message })
+        }} className="contact__form">
+            <div className="contact__form-inputs">
+                <div className="contact__form-input">
+                    <label>{language.app.labels.firstName}</label>
+                    <Input onChange={(e) => setFirstname(e.target.value)} value={first_name} placeholder={language.app.labels.firstNamePlaceholder} type={'text'} />
                 </div>
                 <div className="contact__form-input">
-                    <label>{language.app.labels.email}</label>
-                    <Input onChange={(e) => setEmail(e.target.value)} value={email} placeholder={language.app.labels.emailPlaceholder} type={'text'} />
-                </div>
-                <div className="contact__form-input">
-                    <label>{language.app.labels.message}</label>
-                    <textarea onChange={(e) => setMessage(e.target.value)} placeholder={language.app.labels.messagePlaceholder} value={message} />
-                </div>
-                <Button disabled={isPending} form={true} className={'contact__form-button'} type={'primary'}>{language.app.buttons.send}</Button>
-            </form>
-            <div className="contact__social">
-                <div className="contact__social-links">
-                    {
-                        socials ?
-                            socials.length !== 0 ?
-                                socials.map((social, k) => (
-                                    social.link.startsWith('http') ?
-                                        (
-
-                                            <Link key={k} title={social.title} className="contact__social-link" href={social.link}>
-                                                <Image alt={social.title} width={1} height={1} unoptimized src={social.logo} />
-                                            </Link>
-                                        )
-                                        :
-                                        (
-
-                                            <div key={k} onClick={() => {
-                                                navigator.clipboard.writeText(social.link)
-                                                notification({ message: language.res.linkCopied, language: language })
-                                            }} title={social.title} className="contact__social-link">
-                                                <Image alt={social.title} width={1} height={1} unoptimized src={social.logo} />
-                                            </div>
-                                        )
-                                ))
-                                :
-                                null
-                            :
-                            null
-                    }
+                    <label>{language.app.labels.lastName}</label>
+                    <Input onChange={(e) => setLastname(e.target.value)} value={last_name} placeholder={language.app.labels.lastNamePlaceholder} type={'text'} />
                 </div>
             </div>
-        </div>
+            <div className="contact__form-input">
+                <label>{language.app.labels.email}</label>
+                <Input onChange={(e) => setEmail(e.target.value)} value={email} placeholder={language.app.labels.emailPlaceholder} type={'text'} />
+            </div>
+            <div className="contact__form-input">
+                <label>{language.app.labels.message}</label>
+                <textarea onChange={(e) => setMessage(e.target.value)} placeholder={language.app.labels.messagePlaceholder} value={message} />
+            </div>
+            <Button disabled={isPending} form={true} className={'contact__form-button'} type={'primary'}>{language.app.buttons.send}</Button>
+        </form>
     )
 }

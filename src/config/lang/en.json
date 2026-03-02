@@ -30,15 +30,19 @@
                 },
                 "sections": {   
                     "landing": {
-                        "title": "Quality design & development for impactful solutions",
-                        "info": "I develop intuitive solutions that benefit the society, enhancing user experience and key metrics."
+                        "title": "Turning ideas into products people actually use",
+                        "info": "I design and build digital products that feel effortless — and perform."
                     },
                     "about": {
-                        "title": "Crafting appealing products, dynamic web apps, and digital platforms that empower communities and create lasting impact.",
+                        "title": "I build products that look sharp, work flawlessly, and leave a mark.",
                         "info": "Every project is an opportunity to express myself and give people a cool product. I do what I love and it benefits me and the people around me. Making the best designs and exceeding market expectations. I am constantly evolving, helping other developers.",
                         "yearsInDev": "years in development",
                         "completedProjects": "completed projects",
                         "passion": "passion"
+                    },
+                    "experience": {
+                        "title": "Experience",
+                        "button": "Right now"
                     }
                 },
                 "pages": {}
@@ -57,8 +61,8 @@
                     "sections": {
                         "about": {
                             "words": ["me", "web-development", "front-end", "grace", "gratitude", "dedication", "hard work", "dombra", "sport", "gym", "goal", "back-end", "design", "resilience", "tough", "work", "family", "love", "empathy", "me", "web-development", "front-end", "grace", "gratitude", "dedication", "hard work", "dombra", "sport", "gym", "goal", "back-end", "design", "resilience", "tough", "work", "family", "love", "empathy"],
-                            "info1": "Born in Astana, Kazakhstan. Since 2020, I’ve focused on developing projects that improve the lives of others. I build products that shine and resonate with users 💡.",
-                            "info2": "Outside of coding, I love doing sports 🏀 ⚽️ 🏋🏽‍♂️, playing video games, and volunteering. I’m constantly exploring new ways to leverage technology for positive impact."
+                            "info1": "Born and raised in Astana, Kazakhstan. Since 2020, I've been building products that actually matter — things that help people, not just impress them. 💡",
+                            "info2": "Currently studying Computer Science & Artifical Intelligence at IE University, Madrid 🇪🇸. I love doing sports 🥊, studying, and travelling."
                         },
                         "skills": {
                             "title": "Skills"
@@ -95,12 +99,12 @@
                 },
                 "sections": {
                     "banner": {
-                        "title": "You’ve got a challenge? Let's talk!",
-                        "info": "Leave a request on the website or contact me in any convenient way"
+                        "title": "Got a project in mind? Let's build it.",
+                        "info": "Drop me a message here or reach out however works best for you."
                     },
                     "contact": {
                         "title": "Get in Touch!",
-                        "info": "I’d love to hear from you! Whether you have a question, want to collaborate, or just want to say hello, feel free to reach out. You can use the contact form below, and I’ll get back to you as soon as possible."
+                        "info": "Got a project in mind or just want to chat? Fill out the form below and I'll get back to you as soon as possible."
                     }
                 }
             },

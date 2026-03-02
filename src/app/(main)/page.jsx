@@ -7,6 +7,8 @@ import Button from "@/components/ui/button";
 import ContactBanner from "@/components/home/contact-banner";
 import { Suspense } from "react";
 import SkeletonProjects from "@/components/skeletons/skeleton-projects";
+import Currently from "@/components/home/experience";
+import Experience from "@/components/home/experience";
 
 export default async function Home() {
 
@@ -49,11 +51,25 @@ export default async function Home() {
           <div className="block__inner inner">
             <div className="block__heading">
               <div className="block__heading-title title">
+                <h2>{language.app.pages.home.sections.experience.title}</h2>
+              </div>
+            </div>
+            <div className="block__content">
+              <Experience language={language} />
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="block">
+        <div className="container__fluid">
+          <div className="block__inner inner">
+            <div className="block__heading">
+              <div className="block__heading-title title">
                 <h2>{language.app.pages.projects.meta.title}</h2>
               </div>
             </div>
             <div className="block__content">
-              <Suspense fallback={<SkeletonProjects className={'list__mini'} number={2} />}>
+              <Suspense fallback={<SkeletonProjects className={'list__mini'} number={4} />}>
                 <ProjectsList language={language} />
               </Suspense>
               <Button href={'/projects'} type={'secondary'} className={'block__content-button'}>{language.app.buttons.otherProjects}<Icons.arrow /></Button>

@@ -9,7 +9,7 @@ export default async function ProjectsList({ language, searchParams }) {
     const searchQ = await params?.search ? params.search : ''
     const categoriesQ = await params?.categories ? params.categories.split(',') : []
 
-    const { data: projects, facets: categories } = await getProjects({ lang: language.lang, search: searchQ, categories: categoriesQ, cache: 'no-store' })
+    const { data: projects, facets: categories } = await getProjects({ lang: language.lang, search: searchQ, categories: categoriesQ, revalidate: 0})
 
     return (
         <>

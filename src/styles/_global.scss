@@ -105,6 +105,7 @@ button {
     align-items: center;
     justify-content: center;
     background: transparent;
+    white-space: nowrap;
     &.primary {
         border: 2px solid $primary_color;
         background-color: $primary_color;
@@ -131,10 +132,11 @@ button {
     }
 
     &.blurred {
-        background-color: $bg_color;
+        background-color: rgba(255, 255, 255, 1);
         color: $primary_color;
-        border: 2px solid $secondary_color_2;
+        border: 2px solid $secondary_color_3;
         border-radius: $button_radius;
+        backdrop-filter: blur(30px);
         & svg{
             margin-left: 10px;
             fill: $primary_color;
@@ -154,7 +156,7 @@ button {
             backdrop-filter: blur(20px);
             background: rgba(0, 0, 0, 0.3) !important;
             color: $bg_color;
-            border: 2px solid $primary_color;
+            // border: 2px solid $primary_color;
             & svg{
                 fill: $bg_color;
             }
@@ -221,7 +223,7 @@ button {
     color: $fg_color;
     transition: color 0.15s ease;
     font-size: $p_font_size;
-    font-weight: $light_font_weight;
+    font-weight: $lighter_font_weight;
     &.active{
         color: $primary_color;
     }

@@ -96,8 +96,7 @@ export default function Header({ language }) {
                         </nav>
                         <nav className="header__nav">
                             <div className="header__nav-link">
-                            <DownloadLink file={'/files/' + language.app.files.cv}><span>{language.app.labels.downloadCV}</span></DownloadLink>
-
+                                <DownloadLink file={'/files/' + language.app.files.cv}><span>{language.app.labels.downloadCV}</span></DownloadLink>
                             </div>
                             <div className="header__nav-menu">
                                 <div className={show ? "header__nav-menu_icon active" : "header__nav-menu_icon"} onClick={() => setShow(!show)}>

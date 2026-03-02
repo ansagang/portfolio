@@ -3,7 +3,9 @@
 import useDebounce from "@/hooks/use-debounce"
 import useInView from "@/hooks/use-in-view"
 import useScrollPosition from "@/hooks/use-scroll-position"
+import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
+import NavLink from "../ui/nav-link"
 
 function ExperienceItem({ experience }) {
     const [itemRef, inView] = useInView(false, 1, '0px 0px -200px 0px')
@@ -23,10 +25,17 @@ function ExperienceItem({ experience }) {
                         </h3>
                     </div>
                     {
-                        experience.organization &&
-                        <div className="experience__card-org">
-                            <p>{experience.organization}</p>
-                        </div>
+                        experience.organization ?
+                            experience.link ?
+                                <NavLink href={experience.link} className="experience__card-org">
+                                    {experience.organization}
+                                </NavLink>
+                                :
+                                <div className="experience__card-org">
+                                    <p>{experience.organization}</p>
+                                </div>
+                            :
+                            null
                     }
                     <div className="experience__card-info info">
                         <p>{experience.description}</p>
@@ -39,7 +48,7 @@ function ExperienceItem({ experience }) {
 
 export default function ExperienceList({ experiences = [] }) {
 
-    const {scrollY} = useScrollPosition()
+    const { scrollY } = useScrollPosition()
     const listRef = useRef(null)
     const [lineHeight, setLineHeight] = useState(0)
 

@@ -4,7 +4,7 @@ import Button from "../ui/button"
 
 export default async function ServicesList({ language }) {
 
-    const { data: services } = await getServices({ lang: language.lang, revalidate: 3600 })
+    const { data: services } = await getServices({ lang: language.lang, revalidate: 0 })
 
 
 

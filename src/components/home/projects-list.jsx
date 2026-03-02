@@ -4,7 +4,7 @@ import ProjectCard from "../ui/project-card"
 
 export default async function ProjectsList({ language }) {
 
-    const { data: projects } = await getProjects({ lang: language.lang, limit: 2, revalidate: 3600 })
+    const { data: projects } = await getProjects({ lang: language.lang, revalidate: 3600, favorite: true })
 
     return (
         <div className="block__content-projects">

@@ -5,33 +5,6 @@ import { isDev } from "./lib/utils";
 export async function proxy(request) {
   const dev = isDev();
 
-  // const { data: user } = await getUser()
-  // for (let route of routes) {
-  //     for (let rout of route.routes)
-  //         if (request.nextUrl.pathname.startsWith(rout)) {
-  //             if (user) {
-  //                 if (route.access) {
-  //                     if (!route.access.includes(user.role)) {
-  //                         return NextResponse.rewrite(new URL('/404', request.url))
-  //                     }
-  //                 } else {
-  //                     return NextResponse.rewrite(new URL('/404', request.url))
-  //                 }
-  //             } else {
-  //                 if (route.access) {
-  //                     return NextResponse.rewrite(new URL('/404', request.url))
-  //                 }
-  //             }
-  //         }
-  //         // } else if (request.nextUrl.pathname.startsWith('/@')) {
-  //         //     const { data: profile } = await getUsers({ username: request.nextUrl.pathname.split('/@')[1] })
-  //         //     if (!profile) {
-  //         //         console.log('a');
-  //         //         return NextResponse.rewrite(new URL('/404', request.url))
-  //         //     }
-  //         // }
-  // }
-
   if (request.nextUrl.pathname.startsWith("/api")) {
     const api_key = request.headers.get("x-api-key");
     if (!isDev) {

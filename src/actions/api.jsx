@@ -17,7 +17,7 @@ export async function getSkills({ lang = '', revalidate}) {
 
         return data
     } catch (err) {
-        console.log(err);
+
 
     }
 }
@@ -39,7 +39,7 @@ export async function getServices({ lang = '', revalidate}) {
 
         return data
     } catch (err) {
-        console.log(err);
+
 
     }
 }
@@ -61,7 +61,7 @@ export async function getExperience({ lang = '', revalidate}) {
 
         return data
     } catch (err) {
-        console.log(err);
+
 
     }
 }
@@ -83,20 +83,20 @@ export async function postContact({ first_name, last_name, email, message, lang 
 
         return data
     } catch (err) {
-        console.log(err);
+
 
     }
 }
 
-export async function getProjects({ search = '', categories = [], lang = '', limit = '', sort = '', revalidate, cache = 'no-cache'}) {
+export async function getProjects({ search = '', categories = [], lang = '', limit = '', sort = '', revalidate, favorite = ''}) {
     try {
         const sortQ = sort ? `${sort.code}.${sort.ascending ? 'asc' : 'desc'}` : ''
-        const res = await fetch(`${process.env.URL}/api/projects?search=${search}&categories=${categories.join(',')}&lang=${lang}&sort=${sortQ}&limit=${limit}`, {
+                
+        const res = await fetch(`${process.env.URL}/api/projects?search=${search}&categories=${categories.join(',')}&lang=${lang}&sort=${sortQ}&limit=${limit}&favorite=${favorite}`, {
             method: 'GET',
             headers: {
                 'x-api-key': process.env.API_KEY
             },
-            cache: cache,                                                                                                                                                                                                                                               
             next: {
                 revalidate: revalidate,
                 tags: ['projects']
@@ -107,7 +107,7 @@ export async function getProjects({ search = '', categories = [], lang = '', lim
 
         return data
     } catch (err) {
-        console.log(err);
+
 
     }
 }
@@ -129,7 +129,29 @@ export async function getProject({ lang, slug, revalidate }) {
 
         return data
     } catch (err) {
-        console.log(err);
+
+
+    }
+}
+
+export async function getStatus({ lang, revalidate }) {
+    try {
+        const res = await fetch(`${process.env.URL}/api/settings?lang=${lang}`, {
+            method: 'GET',
+            headers: {
+                'x-api-key': process.env.API_KEY
+            },                                                                                                                                                                                                                                               
+            next: {
+                revalidate: revalidate,
+                tags: ['status']
+            }
+        })
+
+        const data = await res.json()
+
+        return data
+    } catch (err) {
+
 
     }
 }
@@ -183,7 +205,7 @@ export async function getBlogs({ search, category, lang, limit, sort }) {
         }
 
     } catch (err) {
-        console.log(err);
+
     }
 }
 

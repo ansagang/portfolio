@@ -20,42 +20,6 @@ export default function AboutStats({ language }) {
             <div className="block__content-info info">
                 <p>{language.app.pages.home.sections.about.info}</p>
             </div>
-            {/* <div className="block__content-stats" ref={statsRef}>
-                <div className="block__content-stat">
-                    <div className="block__content-stat_number">
-                        {
-                            statsInView ?
-                                <span><IncrementingNumber end={yearsPassed} /></span>
-                                :
-                                <span>0</span>
-                        }
-                    </div>
-                    <div className="block__content-stat_title title">
-                        <h4>{language.app.pages.home.sections.about.yearsInDev}</h4>
-                    </div>
-                </div>
-                <div className="block__content-stat">
-                    <div className="block__content-stat_number">
-                        {
-                            statsInView ?
-                                <span><IncrementingNumber end={30} />+</span>
-                                :
-                                <span>0+</span>
-                        }
-                    </div>
-                    <div className="block__content-stat_title title">
-                        <h4>{language.app.pages.home.sections.about.completedProjects}</h4>
-                    </div>
-                </div>
-                <div className="block__content-stat">
-                    <div className="block__content-stat_number">
-                        <Icons.infinity width="50px" height="50px" />
-                    </div>
-                    <div className="block__content-stat_title title">
-                        <h4>{language.app.pages.home.sections.about.passion}</h4>
-                    </div>
-                </div>
-            </div> */}
         </>
     )
 }

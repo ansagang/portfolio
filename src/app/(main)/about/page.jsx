@@ -45,19 +45,6 @@ export default async function About() {
           </div>
         </div>
       </section>
-      {/* <section className="achievements">
-        <div className="container">
-          <div className="achievements__inner inner">
-            <div className="achievements__title title">
-              <h2>{language.app.pages.about.sections.achievements.title}</h2>
-            </div>
-            <div className="achievements__info info">
-              <p>{language.app.pages.about.sections.achievements.description}</p>
-            </div>
-            <AchievementsList language={language} />
-          </div>
-        </div>
-      </section> */}
       <div className="experience">
         <div className="container">
           <div className="experience__inner inner">

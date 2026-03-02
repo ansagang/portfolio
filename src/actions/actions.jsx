@@ -23,13 +23,10 @@ export async function revalidateData({tag}) {
 export default async function changeLanguage({ lang, path = '/' }) {
     try {
         const cookiesList = await cookies()
-        console.log(path);
-        
         cookiesList.set("lang", lang)
         revalidatePath(path)
 
     } catch (err) {
-        console.log(err);
     }
 }
 

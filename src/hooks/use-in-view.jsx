@@ -42,35 +42,5 @@ export default function useInView(repeat, delay = 0, position = '0px 0px 0px 0px
         };
     }, []);
 
-    // useEffect(() => {
-    //     const observer = new IntersectionObserver((entries) => {
-    //         const entry = entries[0]
-    //         if (repeat) {
-    //             if (entry.isIntersecting) {
-    //                 setVisible(true)
-    //             } else {
-    //                 setVisible(false)
-    //             }
-    //         } else {
-    //             if (entry.intersectionRatio > 0) {
-    //                 if (entry.isIntersecting) {
-    //                     setVisible(true)
-    //                 } else {
-    //                     setVisible(false)
-    //                 }
-    //             }
-    //         }
-    //     })
-    //     if (element) {
-    //         observer.observe(element)
-    //     }
-
-    //     return () => {
-    //         observer.disconnect();
-    //     };
-
-    // }, [element, repeat])
-
-
     return [ref, inView]
 }

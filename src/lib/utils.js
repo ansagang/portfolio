@@ -30,8 +30,6 @@ export function languageDecode(lang) {
 export function createdAtDecode(createdAt) {
   const date = new Date(createdAt).toLocaleDateString();
   const time = new Date(createdAt).toLocaleTimeString();
-  // const day = new Date(createdAt).();
-  // console.log(day);
 
   return {
     time,
@@ -115,26 +113,6 @@ export function findCommonElement(array1, array2) {
   // Return if no common element exist
   return false;
 }
-
-// export default async function facetsFinder(array, value) {
-//   const values = [];
-//   if (array) {
-//     array.forEach((element) => {
-//       if (element[value]) {
-//         element[value].forEach((category) => {
-//           if (!values.find((val) => val.slug == category.slug)) {
-//             values.push({
-//               title: category.title,
-//               slug: category.slug,
-//             });
-//           }
-//         });
-//       }
-//     });
-//   }
-
-//   return values;
-// }
 
 export default async function facetsFinder(array, value) {
   const values = [];

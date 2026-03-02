@@ -9,8 +9,7 @@ export async function GET(request) {
 
         const { searchParams } = new URL(request.url)
         const lang = searchParams.get('lang') ? searchParams.get('lang') : null
-        const {data, error} = await supabase.from("skills").select('*').match({ lang: lang }) 
-        console.log(data);
+        const {data, error} = await supabase.from("skills").select('*').match({ lang: lang })
         
         if (!error) {
             return NextResponse.json({

@@ -18,7 +18,6 @@ export default function Translator({ language }) {
                             <span key={key} onClick={() => {
                                changeLanguage({lang: lang.code, path: pathname}).then(() => {
                                     window.location.reload()
-                                    // router.push(pathname)
                                })
                             }} className={language.lang === lang.code ? "active" : null}>{lang.title_short}</span>
                         ))

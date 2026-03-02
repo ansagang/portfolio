@@ -13,7 +13,6 @@ export default async function ProjectsList({ language, searchParams }) {
 
     return (
         <>
-            {/* <ProjectsChips categories={categories} language={language} searchParams={searchParams} /> */}
             <div className="projects__list list">
                 {
                     projects ?

@@ -50,27 +50,7 @@ function Notification(props) {
 
     return (
         <div onMouseEnter={handlePauseTimer} onMouseLeave={handleStartTimer} className={`notification ${exit ? "exit" : ""}`} >
-            {/* <div className="notification__img">
-                {
-                    props.type === "success" ?
-                        <Icons.success />
-                        :
-                        props.type === "info" ?
-                            <Icons.info />
-                            :
-                            props.type === "warning" ?
-                                <Icons.warning />
-                                :
-                                props.type === "error" ?
-                                    <Icons.error />
-                                    :
-                                    null
-                }
-            </div> */}
             <div className="notification__content">
-                {/* <div className="notification__title title">
-                    <h3>{props.title}</h3>
-                </div> */}
                 <div className="notification__info info">
                     <p>{props.message}</p>
                 </div>

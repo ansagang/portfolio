@@ -17,9 +17,6 @@ export async function generateStaticParams() {
         slug: project.slug,
     }))
 
-    console.log(slugs);
-
-
     return slugs
 }
 
@@ -39,7 +36,7 @@ export async function generateMetadata({ params }) {
 export default async function ProjectPage({ params }) {
     const { slug } = await params
     const language = await getLanguage({})
-    const { data: project } = await getProject({ lang: language.lang, slug: slug, revalidate: 3600 })
+    const { data: project } = await getProject({ lang: language.lang, slug: slug, revalidate: 0 })
 
     if (!project) {
         notFound()
@@ -100,7 +97,7 @@ export default async function ProjectPage({ params }) {
                                                         <span>✓</span>
                                                     </div>
                                                     <div className="project__feature-info info">
-                                                        <p>{feature.title}</p>
+                                                        <p>{feature}</p>
                                                     </div>
                                                 </div>
                                             ))
@@ -122,12 +119,7 @@ export default async function ProjectPage({ params }) {
                                     <div className="project__techs">
                                         {
                                             project.tech_stack.map((tech, index) => (
-                                                // <div className="project__tech" key={index}>
-                                                //     <div className="project__tech-name title">
-                                                //         <h4>{tech.name}</h4>
-                                                //     </div>
-                                                // </div>
-                                                <Chip key={index}>{tech.name}</Chip>
+                                                <Chip key={index}>{tech}</Chip>
                                             ))
                                         }
                                     </div>

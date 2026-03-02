@@ -17,7 +17,6 @@ export default function Scene({ quantity = 0 }) {
         <div className="scene__inner">
           <Canvas shadows gl={{ antialias: false }} dpr={[1, 1.5]} camera={{ position: [0, 0, 20], fov: 35, near: 1, far: 40 }}>
             <ambientLight intensity={1} />
-            {/* <color attach="background" args={["#fff"]} /> */}
             <spotLight intensity={1} angle={0.2} penumbra={1} position={[30, 30, 30]} shadow-mapSize={[512, 512]} />
             <directionalLight position={[30, 30, 30]} />
             <Physics gravity={[0, 0, 0]} iterations={10}>
@@ -32,7 +31,6 @@ export default function Scene({ quantity = 0 }) {
 }
 
 function Clump({ quantity, mat = new THREE.Matrix4(), vec = new THREE.Vector3(), ...props }) {
-  // const { outlines } = useControls({ outlines: { value: 0.0, step: 0.01, min: 0, max: 0.05 } })
   const [ref, api] = useSphere(() => ({ args: [0.7], mass: 1.3, angularDamping: 0.1, linearDamping: 0.65, position: [rfs(20), rfs(20), rfs(20)] }))
   useFrame((state) => {
     for (let i = 0; i < quantity; i++) {

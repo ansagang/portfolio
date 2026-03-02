@@ -5,156 +5,95 @@ import {
   useCallback,
   useEffect,
   useImperativeHandle,
-  useMemo,
   useRef,
   useState,
 } from "react"
+import dynamic from "next/dynamic"
 import { Icons } from "@/config/icons"
 import { getProjectMedia } from "@/actions/actions"
 
-function withBust(url) {
-  if (!url) return url
-  const u = new URL(url, typeof window !== "undefined" ? window.location.origin : "http://localhost")
-  u.searchParams.set("__v", String(Date.now()))
-  return u.toString()
-}
+const ReactPlayer = dynamic(() => import("react-player/file"), { ssr: false })
 
 const Video = forwardRef(function Video(
   { className = "", src, interactive = true, ...props },
   ref
 ) {
-  const videoRef = useRef(null)
+  const playerRef = useRef(null)
 
-  const [loading, setLoading] = useState(false)
-  const [paused, setPaused] = useState(true)
-  const [videoUrl, setVideoUrl] = useState(undefined)
+  const [loading, setLoading] = useState(true)
+  const [playing, setPlaying] = useState(false)
+  const [videoUrl, setVideoUrl] = useState(null)
 
-  // Used to force-remount the <video> element when needed
-  const [mountKey, setMountKey] = useState(0)
-
-  const safePlay = useCallback(() => {
-    const el = videoRef.current
-    if (!el) return
-    const p = el.play()
-    if (p && typeof p.catch === "function") p.catch(() => {})
-  }, [])
-
-  const forceReloadElement = useCallback(() => {
-    // Remount is the most reliable "video source is stuck" fix across browsers
-    setMountKey((k) => k + 1)
-  }, [])
-
-  const fetchUrl = useCallback(async () => {
-    if (!src) {
-      setVideoUrl(undefined)
-      return
-    }
-
-    try {
-      const { data } = await getProjectMedia(src)
-      // If your URLs can be cached/stale, busting helps.
-      // If your URLs are already stable, busting is harmless.
-      setVideoUrl(data ? withBust(data) : undefined)
-    } catch {
-      setVideoUrl(undefined)
-    }
-  }, [src])
-
-  // Initial + on src change
+  // Fetch public URL from Supabase storage
   useEffect(() => {
     let cancelled = false
 
-    ;(async () => {
-      setVideoUrl(undefined)
-      await fetchUrl()
-      if (!cancelled) forceReloadElement()
-    })()
+    async function fetchUrl() {
+      if (!src) {
+        setVideoUrl(null)
+        return
+      }
+
+      try {
+        const { data } = await getProjectMedia(src)
+        if (!cancelled && data) {
+          setVideoUrl(data)
+        }
+      } catch {
+        if (!cancelled) setVideoUrl(null)
+      }
+    }
+
+    fetchUrl()
 
     return () => {
       cancelled = true
     }
-  }, [fetchUrl, forceReloadElement])
+  }, [src])
 
-  // When videoUrl changes, load + respect paused state
-  useEffect(() => {
-    const el = videoRef.current
-    if (!el || !videoUrl) return
-
-    // Ensure the element actually reloads the new source
-    el.load()
-    if (!paused) safePlay()
-    else el.pause()
-  }, [videoUrl, paused, safePlay])
-
-  // BIG FIX: on Back/Forward restore + tab visibility restore, refetch URL + remount video
-  useEffect(() => {
-    const onPageShow = async () => {
-      // When coming back, force a fresh URL + fresh <video> element
-      await fetchUrl()
-      forceReloadElement()
-    }
-
-    const onVis = async () => {
-      if (document.visibilityState !== "visible") return
-      await fetchUrl()
-      forceReloadElement()
-    }
-
-    window.addEventListener("pageshow", onPageShow)
-    document.addEventListener("visibilitychange", onVis)
-
-    return () => {
-      window.removeEventListener("pageshow", onPageShow)
-      document.removeEventListener("visibilitychange", onVis)
-    }
-  }, [fetchUrl, forceReloadElement])
-
-  // Click / hover behaviors (same as your intent)
-  const handleClick = useCallback(() => {
-    if (!interactive) return
-    setPaused((p) => !p)
-  }, [interactive])
-
-  const handleMouseEnter = useCallback(() => {
-    if (interactive) return
-    if (!videoUrl) return
-    safePlay()
-  }, [interactive, videoUrl, safePlay])
-
-  const handleMouseLeave = useCallback(() => {
-    if (interactive) return
-    const el = videoRef.current
-    if (!el) return
-    el.currentTime = 0
-    el.pause()
-  }, [interactive])
-
+  // Imperative API for parent components
   useImperativeHandle(ref, () => ({
     play() {
-      setPaused(false)
+      setPlaying(true)
     },
     pause() {
-      setPaused(true)
+      setPlaying(false)
     },
     toggle() {
-      setPaused((p) => !p)
+      setPlaying((p) => !p)
     },
     load() {
-      videoRef.current?.load()
+      const internal = playerRef.current?.getInternalPlayer()
+      if (internal) internal.load()
     },
     get element() {
-      return videoRef.current
+      return playerRef.current?.getInternalPlayer() || null
     },
     set currentTime(t) {
-      if (videoRef.current) videoRef.current.currentTime = t
+      playerRef.current?.seekTo(t, "seconds")
     },
   }))
 
-  const videoClassName = useMemo(() => {
-    return ["video", loading && "loading", interactive && paused && "paused"]
-      .filter(Boolean)
-      .join(" ")
-  }, [loading, interactive, paused])
+  // Interactive mode: click to toggle play/pause
+  const handleClick = useCallback(() => {
+    if (!interactive) return
+    setPlaying((p) => !p)
+  }, [interactive])
+
+  // Non-interactive mode: hover to play
+  const handleMouseEnter = useCallback(() => {
+    if (interactive || !videoUrl) return
+    setPlaying(true)
+  }, [interactive, videoUrl])
+
+  // Non-interactive mode: mouse leave to pause & reset
+  const handleMouseLeave = useCallback(() => {
+    if (interactive) return
+    setPlaying(false)
+    playerRef.current?.seekTo(0, "seconds")
+  }, [interactive])
+
+  const paused = !playing
 
   return (
     <div
@@ -163,27 +102,39 @@ const Video = forwardRef(function Video(
       onMouseEnter={!interactive ? handleMouseEnter : undefined}
       onMouseLeave={!interactive ? handleMouseLeave : undefined}
     >
-      <video
-        key={mountKey}                 // <-- forces a fresh element after back
-        ref={videoRef}
-        className={videoClassName}
-        playsInline
-        muted
-        loop={interactive}
-        preload="metadata"
-        onLoadStart={() => setLoading(true)}
-        onLoadedData={() => setLoading(false)}
-        {...props}
-      >
-        {videoUrl ? <source src={videoUrl} /> : null}
-      </video>
+      <div className={`video ${loading ? "loading" : ""} ${interactive && paused ? "paused" : ""}`}>
+        {videoUrl && (
+          <ReactPlayer
+            ref={playerRef}
+            className="react-player"
+            url={videoUrl}
+            playing={playing}
+            loop={interactive}
+            muted
+            playsInline
+            width="100%"
+            height="100%"
+            onReady={() => setLoading(false)}
+            onBuffer={() => setLoading(true)}
+            onBufferEnd={() => setLoading(false)}
+            config={{
+              file: {
+                attributes: {
+                  preload: "metadata",
+                },
+              },
+            }}
+            {...props}
+          />
+        )}
 
-      {interactive && loading && <div className="video__loading" />}
-      {interactive && !loading && paused && (
-        <div className="video__paused">
-          <Icons.play />
-        </div>
-      )}
+        {interactive && loading && <div className="video__loading" />}
+        {interactive && !loading && paused && (
+          <div className="video__paused">
+            <Icons.play />
+          </div>
+        )}
+      </div>
     </div>
   )
 })

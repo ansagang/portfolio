@@ -197,10 +197,6 @@ button[type="submit"]{
     & video{
         width: 100%;
     }
-    & .react-player{
-        width: 100% !important;
-        height: 100% !important;
-    }
 }
 
 @keyframes skeleton-loading {

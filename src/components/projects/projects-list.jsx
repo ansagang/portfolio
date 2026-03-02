@@ -1,7 +1,5 @@
 import { getProjects } from "@/actions/api"
 import ProjectCard from "../ui/project-card"
-import ProjectsChipsShell from "./projects-chips-shell"
-import ProjectsChips from "./projects-chips"
 
 export default async function ProjectsList({ language, searchParams }) {
 
@@ -9,7 +7,7 @@ export default async function ProjectsList({ language, searchParams }) {
     const searchQ = await params?.search ? params.search : ''
     const categoriesQ = await params?.categories ? params.categories.split(',') : []
 
-    const { data: projects, facets: categories } = await getProjects({ lang: language.lang, search: searchQ, categories: categoriesQ, revalidate: 0})
+    const { data: projects } = await getProjects({ lang: language.lang, search: searchQ, categories: categoriesQ, revalidate: 3600})
 
     return (
         <>

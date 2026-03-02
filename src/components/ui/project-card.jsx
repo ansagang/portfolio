@@ -2,8 +2,6 @@
 
 import { TiltCard } from "@/components/ui/tilt-card"
 import Link from "next/link"
-import { useEffect, useRef, useState } from "react"
-import { getProjectMedia } from "@/actions/actions"
 import Chip from "./chip"
 import Video from "./video"
 import { Icons } from "@/config/icons"

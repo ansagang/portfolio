@@ -16,13 +16,12 @@ export async function generateMetadata() {
     title: language.app.pages.projects.meta.title
   }
 }
-
 export default async function Projects({ searchParams }) {
 
   const language = await getLanguage({})
 
   const searchQuery = await searchParams
-  
+
   return (
     <>
       <section className="projects">

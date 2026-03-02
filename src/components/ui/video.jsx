@@ -1,142 +1,101 @@
 "use client"
 
-import {
-  forwardRef,
-  useCallback,
-  useEffect,
-  useImperativeHandle,
-  useRef,
-  useState,
-} from "react"
-import dynamic from "next/dynamic"
+import { useCallback, useEffect, useRef, useState } from "react"
 import { Icons } from "@/config/icons"
 import { getProjectMedia } from "@/actions/actions"
+import { useRouter } from "next/navigation"
+import { usePathname } from "next/navigation"
+import { createClient } from "@/lib/supabase/client"
 
-const ReactPlayer = dynamic(() => import("react-player/file"), { ssr: false })
+export default function Video({ className = "", src, interactive = true, ...props }) {
+    const videoRef = useRef(null)
+    const [loading, setLoading] = useState(false)
+    const [paused, setPaused] = useState(true)
+    const [videoUrl, setVideoUrl] = useState()
+    const pathname = usePathname()
 
-const Video = forwardRef(function Video(
-  { className = "", src, interactive = true, ...props },
-  ref
-) {
-  const playerRef = useRef(null)
-
-  const [loading, setLoading] = useState(true)
-  const [playing, setPlaying] = useState(false)
-  const [videoUrl, setVideoUrl] = useState(null)
-
-  // Fetch public URL from Supabase storage
-  useEffect(() => {
-    let cancelled = false
-
-    async function fetchUrl() {
-      if (!src) {
-        setVideoUrl(null)
-        return
-      }
-
-      try {
-        const { data } = await getProjectMedia(src)
-        if (!cancelled && data) {
-          setVideoUrl(data)
+    useEffect(() => {
+        if (videoRef.current) {
+            videoRef.current.load()
         }
-      } catch {
-        if (!cancelled) setVideoUrl(null)
-      }
+        async function getProjectMediaUrl() {
+            const supabase = createClient()
+            const { data } = supabase.storage.from('portfolio').getPublicUrl('projects/' + src)
+
+            if (data) {
+                setVideoUrl(data.publicUrl)
+            }
+        }
+        getProjectMediaUrl()
+        console.log(videoUrl);
+
+
+    }, [src, pathname])
+
+    useEffect(() => {
+        const onPageShow = (e) => {
+            if (e.persisted && videoRef.current) {
+                videoRef.current.load()
+            }
+        }
+        window.addEventListener("pageshow", onPageShow)
+        return () => window.removeEventListener("pageshow", onPageShow)
+    }, [])
+
+    useEffect(() => {
+        if (!videoRef.current) return
+        if (paused) {
+            videoRef.current.pause()
+        } else {
+            videoRef.current.play()
+        }
+    }, [paused])
+
+    const handleClick = () => setPaused(p => !p)
+
+    const handleMouseEnter = () => {
+        if (videoUrl) videoRef.current?.play()
     }
 
-    fetchUrl()
-
-    return () => {
-      cancelled = true
+    const handleMouseLeave = () => {
+        if (videoUrl && videoRef.current) {
+            videoRef.current.currentTime = 0
+            videoRef.current.pause()
+        }
     }
-  }, [src])
 
-  // Imperative API for parent components
-  useImperativeHandle(ref, () => ({
-    play() {
-      setPlaying(true)
-    },
-    pause() {
-      setPlaying(false)
-    },
-    toggle() {
-      setPlaying((p) => !p)
-    },
-    load() {
-      const internal = playerRef.current?.getInternalPlayer()
-      if (internal) internal.load()
-    },
-    get element() {
-      return playerRef.current?.getInternalPlayer() || null
-    },
-    set currentTime(t) {
-      playerRef.current?.seekTo(t, "seconds")
-    },
-  }))
+    const videoClassName = [
+        "video",
+        loading && "loading",
+        interactive && paused && "paused",
+    ].filter(Boolean).join(" ")
 
-  // Interactive mode: click to toggle play/pause
-  const handleClick = useCallback(() => {
-    if (!interactive) return
-    setPlaying((p) => !p)
-  }, [interactive])
 
-  // Non-interactive mode: hover to play
-  const handleMouseEnter = useCallback(() => {
-    if (interactive || !videoUrl) return
-    setPlaying(true)
-  }, [interactive, videoUrl])
 
-  // Non-interactive mode: mouse leave to pause & reset
-  const handleMouseLeave = useCallback(() => {
-    if (interactive) return
-    setPlaying(false)
-    playerRef.current?.seekTo(0, "seconds")
-  }, [interactive])
-
-  const paused = !playing
-
-  return (
-    <div
-      className={className}
-      onClick={interactive ? handleClick : undefined}
-      onMouseEnter={!interactive ? handleMouseEnter : undefined}
-      onMouseLeave={!interactive ? handleMouseLeave : undefined}
-    >
-      <div className={`video ${loading ? "loading" : ""} ${interactive && paused ? "paused" : ""}`}>
-        {videoUrl && (
-          <ReactPlayer
-            ref={playerRef}
-            className="react-player"
-            url={videoUrl}
-            playing={playing}
-            loop={interactive}
-            muted
-            playsInline
-            width="100%"
-            height="100%"
-            onReady={() => setLoading(false)}
-            onBuffer={() => setLoading(true)}
-            onBufferEnd={() => setLoading(false)}
-            config={{
-              file: {
-                attributes: {
-                  preload: "metadata",
-                },
-              },
-            }}
-            {...props}
-          />
-        )}
-
-        {interactive && loading && <div className="video__loading" />}
-        {interactive && !loading && paused && (
-          <div className="video__paused">
-            <Icons.play />
-          </div>
-        )}
-      </div>
-    </div>
-  )
-})
-
-export default Video
+    return (
+        <div onClick={interactive ? handleClick : undefined} className={className}>
+            <video
+                ref={videoRef}
+                className={videoClassName}
+                src={videoUrl}
+                playsInline
+                muted
+                loop={interactive}
+                onLoadStart={() => setLoading(true)}
+                onLoadedData={() => {
+                    setLoading(false)
+                    if (!paused) videoRef.current?.play()
+                }}
+                onMouseEnter={interactive ? null : handleMouseEnter}
+                onMouseLeave={interactive ? null : handleMouseLeave}
+                {...props}
+            />
+            {interactive && loading && <div className="video__loading" />}
+            {interactive && !loading && paused && (
+                <div className="video__paused">
+                    <Icons.play />
+                </div>
+            )}
+        </div>
+    )
+}

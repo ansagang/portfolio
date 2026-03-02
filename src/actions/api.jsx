@@ -99,7 +99,7 @@ export async function getProjects({ search = '', categories = [], lang = '', lim
             },
             next: {
                 revalidate: revalidate,
-                tags: ['projects']
+                tags: ['projects'],
             }
         })
 

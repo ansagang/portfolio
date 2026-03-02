@@ -66,7 +66,6 @@ export async function GET(request) {
         const { data: dataSearch } = await querySearch
 
         const facets = await facetsFinder(dataSearch, "categories")
-        console.log(facets);
 
 
         if (!error) {

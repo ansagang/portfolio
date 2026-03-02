@@ -23,6 +23,9 @@
             grid-template-columns: 1fr 1fr;
         }
     }
+    .list{
+        grid-template-columns: 1fr 1fr;
+    }
     .header{
         &__nav{
             &-ol{
@@ -95,6 +98,11 @@
         &__right{
             width: 100%;
         }
+        &__card{
+            &-content{
+                width: 100%;
+            }
+        }
     }
 
     .services{
@@ -161,6 +169,10 @@
         &__list{
             grid-template-columns: 1fr;
         }
+    }
+
+    .list{
+        grid-template-columns: 1fr;
     }
 
     .contact{
@@ -467,34 +479,6 @@
         &__form{
             &-inputs{
                 flex-direction: column;
-            }
-        }
-    }
-
-    .chip{
-        &.primary {
-            & .chip__button{
-                &:hover{
-                    border: 2px solid $secondary_color_2;
-                    background-color: $bg_color;
-                    color: $primary_color;
-                }
-            }
-    
-            // &.img{
-            //     & .chip__button{
-            //         padding: 15px;
-            //         border-radius: 50%;
-            //         line
-            //     }
-            // }
-        }
-    
-        &.secondary{
-            & .chip__button{
-                &:hover{
-                    background-color: rgba(255, 255, 255, 0.6);
-                }
             }
         }
     }

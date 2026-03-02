@@ -1089,20 +1089,11 @@ body{
             transition: 0.7s ease all;
         }
         &-org{
-            padding-left: 20px;
             position: relative;
             margin-top: 10px;
-            &::before{
-                content: '';
-                position: absolute;
-                left: 0;
-                top: 50%;
-                transform: translateY(-50%);
-                width: 10px;
-                height: 10px;
-                border-radius: 50%;
-                background-color: $secondary_color_2;
-            }
+            text-underline-offset: 5px;
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
         }
     }
 }
@@ -1981,19 +1972,9 @@ body{
     }
     &__card{
         &-org{
-            padding-left: 20px;
-            position: relative;
-            &::before{
-                content: '';
-                position: absolute;
-                left: 0;
-                top: 50%;
-                transform: translateY(-50%);
-                width: 10px;
-                height: 10px;
-                border-radius: 50%;
-                background-color: $secondary_color_2;
-            }
+            text-underline-offset: 5px;
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
         }
         &-date{
             pointer-events: none;

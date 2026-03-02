@@ -6,6 +6,7 @@ import useScrollPosition from "@/hooks/use-scroll-position"
 import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
 import NavLink from "../ui/nav-link"
+import Chip from "../ui/chip"
 
 function ExperienceItem({ experience }) {
     const [itemRef, inView] = useInView(false, 1, '0px 0px -200px 0px')

@@ -14,7 +14,7 @@ export async function GET(request) {
         const lang = searchParams.get('lang') ? searchParams.get('lang') : null
         const limit = searchParams.get('limit') ? parseInt(searchParams.get('limit')) : null
         const favorite = searchParams.get('favorite') ? searchParams.get('favorite') : null
-        
+
 
         let query = supabase.from("projects").select('*')
         if (search) {
@@ -39,7 +39,7 @@ export async function GET(request) {
         if (favorite) {
             query = query.eq('favorite', favorite)
         }
-        
+
 
         let { data, error, count } = await query
 
@@ -54,12 +54,19 @@ export async function GET(request) {
 
         let querySearch = supabase.from("projects").select('*').match({ lang: lang })
         if (search) {
-            querySearch = querySearch.textSearch('fts', `${search}`,)
+            const searchTerm = search
+                .trim()
+                .split(/\s+/)
+                .map(t => `${t.replace(/'/g, "")}:*`)
+                .join(" & ");
+
+            querySearch = querySearch.textSearch("search_vector", searchTerm, { type: "raw", config: "simple" });
         }
 
         const { data: dataSearch } = await querySearch
 
         const facets = await facetsFinder(dataSearch, "categories")
+        console.log(facets);
 
 
         if (!error) {

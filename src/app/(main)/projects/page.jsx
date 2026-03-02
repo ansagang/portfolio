@@ -1,5 +1,3 @@
-
-import ProjectsRefreshOnBack from "@/components/goBackBug";
 import ProjectsChipsShell from "@/components/projects/projects-chips-shell";
 import ProjectsList from "@/components/projects/projects-list";
 import ProjectsSearch from "@/components/projects/projects-search";

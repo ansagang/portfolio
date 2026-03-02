@@ -10,21 +10,11 @@ import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 
-export async function generateStaticParams() {
-    const { data: projects } = await getProjects({ revalidate: 0 })
-
-    const slugs = projects.map((project) => ({
-        slug: project.slug,
-    }))
-
-    return slugs
-}
-
 export async function generateMetadata({ params }) {
 
     const { slug } = await params
     const language = await getLanguage({})
-    const { data: project } = await getProject({ lang: language.lang, slug: slug, revalidate: 3600 })
+    const { data: project } = await getProject({ lang: language.lang, slug: slug, revalidate: 0 })
 
     if (project) {
         return {

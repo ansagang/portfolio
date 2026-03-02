@@ -7,7 +7,6 @@ import { useRouter, useSearchParams } from "next/navigation"
 import { usePathname } from "next/navigation"
 import { revalidateData } from "@/actions/actions"
 import Chip from "../ui/chip"
-import { slugify } from "@/lib/utils"
 
 export default function ProjectsChips({ language, searchParams, categories }) {
 
@@ -48,11 +47,11 @@ export default function ProjectsChips({ language, searchParams, categories }) {
     }, [categoriesQ])
 
     function updateCategory(category) {
-        if (categoriesQ.includes(slugify(category))) {
-            const arr = categoriesQ.filter((categoryQ) => categoryQ !== slugify(category))
+        if (categoriesQ.includes(category.slug)) {
+            const arr = categoriesQ.filter((categoryQ) => categoryQ !== category.slug)
             setCategoriesQ(arr)
         } else {
-            setCategoriesQ([...categoriesQ, slugify(category)])
+            setCategoriesQ([...categoriesQ, category.slug])
         }
     }
 
@@ -63,7 +62,7 @@ export default function ProjectsChips({ language, searchParams, categories }) {
                     categories ?
                         categories.length > 0 ?
                             categories.map((category, k) => (
-                                <Chip key={k} active={categoriesQ.includes(slugify(category))} onClick={() => updateCategory(category)} className={'project__chip'} type="secondary">{category}</Chip>
+                                <Chip key={k} active={categoriesQ.includes(category.slug)} onClick={() => updateCategory(category)} className={'project__chip'} type="secondary">{category.title}</Chip>
                             ))
                             :
                             null

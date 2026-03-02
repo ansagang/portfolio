@@ -23,7 +23,7 @@ export default function ProjectCard({ project, tilt, ...props }) {
                                             project.categories.map((category, k) => (
                                                 k < 2 ?
                                                     <div key={k} className="project-card__category">
-                                                        <Chip type={'secondary'}>{category}</Chip>
+                                                        <Chip type={'secondary'}>{category.title}</Chip>
                                                     </div>
                                                     :
                                                     null

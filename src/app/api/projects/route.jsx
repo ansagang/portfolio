@@ -2,7 +2,6 @@ import supabaseErrors from "@/lib/supabase/errors"
 import { createClient } from "@/lib/supabase/server"
 import facetsFinder from "@/lib/utils"
 import { NextResponse } from "next/server"
-import { slugify } from "@/lib/utils"
 
 export async function GET(request) {
     try {
@@ -14,6 +13,8 @@ export async function GET(request) {
         const sort = searchParams.get('sort') ? { code: searchParams.get('sort').split('.')[0], ascending: searchParams.get('sort').split('.')[1] == 'asc' ? true : false } : null
         const lang = searchParams.get('lang') ? searchParams.get('lang') : null
         const limit = searchParams.get('limit') ? parseInt(searchParams.get('limit')) : null
+        const favorite = searchParams.get('favorite') ? searchParams.get('favorite') : null
+        
 
         let query = supabase.from("projects").select('*')
         if (search) {
@@ -35,12 +36,17 @@ export async function GET(request) {
             query = query.limit(limit)
         }
 
+        if (favorite) {
+            query = query.eq('favorite', favorite)
+        }
+        
+
         let { data, error, count } = await query
 
         if (categories) {
             data = data.filter(row =>
                 row.categories.some(category => {
-                    return categories.includes(slugify(category))
+                    return categories.includes(category.slug)
                 })
             )
         }

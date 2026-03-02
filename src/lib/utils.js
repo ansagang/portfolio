@@ -120,7 +120,7 @@ export default async function facetsFinder(array, value) {
     array.forEach((element) => {
       if (element[value]) {
         element[value].forEach((category) => {
-          if (!values.find((val) => val == category)) {
+          if (!values.find((val) => val.slug === category.slug)) {
             values.push(category);
           }
         });

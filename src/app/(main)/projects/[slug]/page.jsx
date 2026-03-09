@@ -18,7 +18,8 @@ export async function generateMetadata({ params }) {
 
     if (project) {
         return {
-            title: project.title
+            title: project.title,
+            description: project.description
         }
     }
 }

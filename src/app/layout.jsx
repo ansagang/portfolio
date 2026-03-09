@@ -35,6 +35,7 @@ export async function generateMetadata() {
       title: language.app.meta.title,
       description: language.app.meta.description,
       siteName: language.app.meta.title,
+      images: ["https://www.angsar-aben.kz/images/banner-one.png"]
     },
     twitter: {
       card: "summary_large_image",

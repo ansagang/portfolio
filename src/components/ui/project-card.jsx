@@ -5,14 +5,18 @@ import Link from "next/link"
 import Chip from "./chip"
 import Video from "./video"
 import { Icons } from "@/config/icons"
+import useIsMobile from "@/hooks/use-is-mobile"
 
 export default function ProjectCard({ project, tilt, ...props }) {
+
+    const isMobile = useIsMobile(615)
+    
 
     return (
         <div className="project-card" {...props}>
             <Link className="card" href={`/projects/${project.slug}`}>
                 {
-                    tilt ?
+                    tilt && !isMobile ?
                         <TiltCard>
                             <Video className="project-card__visual" interactive={false} src={project} />
                         </TiltCard>

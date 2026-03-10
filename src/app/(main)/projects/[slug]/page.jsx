@@ -1,3 +1,4 @@
+import { getProjectMedia } from "@/actions/actions"
 import { getProject, getProjects } from "@/actions/api"
 import Project from "@/components/sections/project.project"
 import Button from "@/components/ui/button"
@@ -15,12 +16,26 @@ export async function generateMetadata({ params }) {
     const { slug } = await params
     const language = await getLanguage({})
     const { data: project } = await getProject({ lang: language.lang, slug: slug, revalidate: 0 })
+    const { data: banner } = await getProjectMedia(project.banner)
+
+    const metadata = {
+        title: project.title,
+        description: project.description,
+        openGraph: {
+            type: "website",
+            locale: "en_US",
+            title: project.title,
+            description: project.description,
+            siteName: language.app.meta.title
+        }
+    }
+
+    if (banner) {
+        metadata.openGraph['images'] = [banner]
+    }
 
     if (project) {
-        return {
-            title: project.title,
-            description: project.description
-        }
+        return metadata
     }
 }
 

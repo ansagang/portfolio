@@ -10,45 +10,14 @@ export default function ProjectCard({ project, tilt, ...props }) {
 
     return (
         <div className="project-card" {...props}>
-            <Link className="project-card__visual card" href={`/projects/${project.slug}`}>
+            <Link className="card" href={`/projects/${project.slug}`}>
                 {
                     tilt ?
                         <TiltCard>
-                            <div className="project-card__categories">
-                                {
-                                    project.categories ?
-                                        project.categories.length > 0 ?
-                                            project.categories.map((category, k) => (
-                                                k < 2 ?
-                                                    <div key={k} className="project-card__category">
-                                                        <Chip type={'secondary'}>{category.title}</Chip>
-                                                    </div>
-                                                    :
-                                                    null
-                                            ))
-                                            :
-                                            null
-
-                                        :
-                                        null
-                                }
-                                {
-                                    project.categories ?
-                                        project.categories.length > 2 ?
-                                            <div className="project-card__category">
-                                                <Chip className={'circle'} type={'secondary'}><Icons.arrow /></Chip>
-                                            </div>
-                                            :
-                                            null
-
-                                        :
-                                        null
-                                }
-                            </div>
-                            <Video interactive={false} src={project.video} />
+                            <Video className="project-card__visual" interactive={false} src={project} />
                         </TiltCard>
                         :
-                        <Video interactive={false} src={project.video} />
+                        <Video className="project-card__visual" interactive={false} src={project} />
                 }
             </Link>
             <div className="project-card__content">

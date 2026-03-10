@@ -44,32 +44,33 @@ export default async function ProjectPage({ params }) {
                         <Icons.arrow />
                         <p>{project.title}</p>
                     </div>
-                    <div className="project__header">
-                        <div className="project__header-left">
-                            <div className="project__title title">
-                                <h1>{project.title}</h1>
+                    <div className="project__container">
+                        <div className="project__header">
+                            <div className="project__header-left">
+                                <div className="project__title title">
+                                    <h1>{project.title}</h1>
+                                </div>
+                                <div className="project__info info">
+                                    <p>{project.description}</p>
+                                </div>
                             </div>
-                            <div className="project__info info">
-                                <p>{project.description}</p>
+                            <div className="project__header-right">
+                                <div className="project__buttons">
+                                    {
+                                        project.github && (
+                                            <Button className={'project__button'} type={'primary'} href={project.github}><Image alt={social.title} width={1} height={1} unoptimized src={social.logo} />Github</Button>
+                                        )
+                                    }
+                                    {
+                                        project.link && (
+                                            <Button type={'secondary'} href={project.link}>{language.app.pages.project.meta.title}<Icons.arrow /></Button>
+                                        )
+                                    }
+                                </div>
                             </div>
                         </div>
-                        <div className="project__header-right">
-                            <div className="project__buttons">
-                                {
-                                    project.github && (
-                                        <Button className={'project__button'} type={'primary'} href={project.github}><Image alt={social.title} width={1} height={1} unoptimized src={social.logo} />Github</Button>
-                                    )
-                                }
-                                {
-                                    project.link && (
-                                        <Button type={'secondary'} href={project.link}>{language.app.pages.project.meta.title}<Icons.arrow /></Button>
-                                    )
-                                }
-                            </div>
-                        </div>
+                        <Video className="project__video video card" src={project} interactive={true} />
                     </div>
-                    <Video className="project__video video card" src={project.video} interactive={true} />
-
                     <div className="project__footer">
                         {
                             project.key_features && project.key_features.length > 0 ?

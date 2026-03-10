@@ -1,46 +1,49 @@
 "use client"
 
-import { useCallback, useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Icons } from "@/config/icons"
-import { getProjectMedia } from "@/actions/actions"
-import { useRouter } from "next/navigation"
 import { usePathname } from "next/navigation"
 import { createClient } from "@/lib/supabase/client"
+import Image from "next/image"
 
 export default function Video({ className = "", src, interactive = true, ...props }) {
     const videoRef = useRef(null)
+    const bannerRef = useRef(null)
+    const ref = useRef(null)
     const [loading, setLoading] = useState(false)
     const [paused, setPaused] = useState(true)
     const [videoUrl, setVideoUrl] = useState()
+    const [bannerUrl, setBannerUrl] = useState()
     const pathname = usePathname()
 
     useEffect(() => {
-        if (videoRef.current) {
-            videoRef.current.load()
-        }
         async function getProjectMediaUrl() {
             const supabase = createClient()
-            const { data } = supabase.storage.from('portfolio').getPublicUrl('projects/' + src)
-
-            if (data) {
-                setVideoUrl(data.publicUrl)
+            const { data: video } = supabase.storage.from('portfolio').getPublicUrl('projects/' + src.video)
+            
+            if (video) {
+                setVideoUrl(video.publicUrl)
+            }
+            if (src.banner) {
+                const { data: banner } = supabase.storage.from('portfolio').getPublicUrl('projects/' + src.banner)
+                setBannerUrl(banner.publicUrl)
             }
         }
         getProjectMediaUrl()
-        console.log(videoUrl);
-
 
     }, [src, pathname])
 
     useEffect(() => {
-        const onPageShow = (e) => {
-            if (e.persisted && videoRef.current) {
-                videoRef.current.load()
-            }
+        if (videoRef.current && videoUrl) {
+            videoRef.current.load()
         }
-        window.addEventListener("pageshow", onPageShow)
-        return () => window.removeEventListener("pageshow", onPageShow)
-    }, [])
+    }, [videoUrl])
+
+    useEffect(() => {
+        if (videoRef.current && bannerUrl) {
+            videoRef.current.poster = bannerUrl
+        }
+    }, [bannerUrl])
 
     useEffect(() => {
         if (!videoRef.current) return
@@ -51,17 +54,25 @@ export default function Video({ className = "", src, interactive = true, ...prop
         }
     }, [paused])
 
-    const handleClick = () => setPaused(p => !p)
+    const handleClick = () => {
+        setPaused(p => !p)
+        if (bannerUrl) {
+            if (paused) {
+                bannerRef.current.style.display = 'none'
+            }
+        }
+    }
 
     const handleMouseEnter = () => {
         if (videoUrl) videoRef.current?.play()
+        if (bannerUrl) bannerRef.current.style.opacity = 0
     }
-
     const handleMouseLeave = () => {
         if (videoUrl && videoRef.current) {
             videoRef.current.currentTime = 0
             videoRef.current.pause()
         }
+        if (bannerUrl) bannerRef.current.style.opacity = 1
     }
 
     const videoClassName = [
@@ -73,7 +84,9 @@ export default function Video({ className = "", src, interactive = true, ...prop
 
 
     return (
-        <div onClick={interactive ? handleClick : undefined} className={className}>
+        <div
+            onMouseEnter={interactive ? null : handleMouseEnter}
+            onMouseLeave={interactive ? null : handleMouseLeave} ref={ref} onClick={interactive ? handleClick : undefined} className={className}>
             <video
                 ref={videoRef}
                 className={videoClassName}
@@ -82,12 +95,7 @@ export default function Video({ className = "", src, interactive = true, ...prop
                 muted
                 loop={interactive}
                 onLoadStart={() => setLoading(true)}
-                onLoadedData={() => {
-                    setLoading(false)
-                    if (!paused) videoRef.current?.play()
-                }}
-                onMouseEnter={interactive ? null : handleMouseEnter}
-                onMouseLeave={interactive ? null : handleMouseLeave}
+                onLoadedData={() => setLoading(false)}
                 {...props}
             />
             {interactive && loading && <div className="video__loading" />}
@@ -96,6 +104,9 @@ export default function Video({ className = "", src, interactive = true, ...prop
                     <Icons.play />
                 </div>
             )}
+            {bannerUrl &&
+                <Image ref={bannerRef} className="video__banner" alt={src.title} width={1} height={1} unoptimized src={bannerUrl} />
+            }
         </div>
     )
 }

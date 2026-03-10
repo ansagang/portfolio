@@ -26,7 +26,8 @@ export async function generateMetadata({ params }) {
             locale: "en_US",
             title: project.title,
             description: project.description,
-            siteName: language.app.meta.title
+            siteName: language.app.meta.title,
+            images: ["https://www.angsar-aben.kz/images/banner-one.png"]
         }
     }
 

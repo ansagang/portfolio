@@ -7,7 +7,7 @@ export async function proxy(request) {
 
   if (request.nextUrl.pathname.startsWith("/api")) {
     const api_key = request.headers.get("x-api-key");
-    if (!isDev) {
+    if (!dev) {
       if (api_key !== process.env.API_KEY) {
         return NextResponse.json({
           success: false,
@@ -17,22 +17,27 @@ export async function proxy(request) {
         return NextResponse.next();
       }
     }
-  }
+  }  
 
   const headersList = await headers();
-  const headerLanguage = headersList
-    .get("accept-language")
-    .split(",")[0]
-    .split("-")[0];
-  const response = NextResponse.next();
+  const acceptLanguage = headersList
+      .get("accept-language")
+  if (acceptLanguage) {
+    const headerLanguage = acceptLanguage
+      .split(",")[0]
+      .split("-")[0];
+    const response = NextResponse.next();
 
-  const language = request.cookies.get("lang");
+    const language = request.cookies.get("lang");
 
-  if (!language) {
-    response.cookies.set("lang", headerLanguage);
-    return response;
+    if (!language) {
+      response.cookies.set("lang", headerLanguage);
+      return response;
+    } else {
+      return response;
+    }
   } else {
-    return response;
+    return NextResponse.next();
   }
 }
 

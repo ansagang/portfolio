@@ -130,6 +130,9 @@ export async function POST(request) {
         const videoFile = formData.get('video')
         const bannerFile = formData.get('banner')
 
+        console.log(request, formData);
+        
+
         const lang = searchParams.get('lang') ? searchParams.get('lang') : null
         const language = await getLanguage({ locale: lang })
         const errors = projectValidation({ title, description, slug, language })

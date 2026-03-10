@@ -34,17 +34,21 @@ export async function getProjectMedia(media) {
     try {
         const supabase = await createClient()
         if (media) {
-            const { data } = supabase.storage.from('portfolio').getPublicUrl('projects/'+media)
+            const { error, data } = supabase.storage.from('portfolio').getPublicUrl('projects/'+media)
 
-            if (data) {
+            if (!error) {
                 return {
                     data: data.publicUrl
+                }
+            } else {
+                return {
+                    data: data
                 }
             }
         }
     } catch (err) {
         return {
-            success: false,
+            success: false
         }
     }
 }

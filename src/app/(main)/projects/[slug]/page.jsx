@@ -16,7 +16,7 @@ export async function generateMetadata({ params }) {
     const { slug } = await params
     const language = await getLanguage({})
     const { data: project } = await getProject({ lang: language.lang, slug: slug, revalidate: 0 })
-    const { data: banner } = await getProjectMedia(project.banner)
+    const banner = await getProjectMedia(project.banner)
 
     const metadata = {
         title: project.title,
@@ -32,7 +32,7 @@ export async function generateMetadata({ params }) {
     }
 
     if (banner) {
-        metadata.openGraph['images'] = [banner]
+        metadata.openGraph['images'] = [banner.data]
     }
 
     if (project) {

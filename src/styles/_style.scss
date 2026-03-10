@@ -895,13 +895,15 @@ body{
         justify-content: center;
         &-one,
         &-two{
-            border: 1px solid $secondary_color;
-            padding: 10px;
+            border: 1px solid $secondary_color_2;
             // position: absolute;
             height: 300px;
             width: 250px;
             background-color: $bg_color;
             top: 50%;
+            & img{
+                padding: 10px;
+            }
         }
         &-two{
             transform: translate(-100px, -50px) rotate(6deg);

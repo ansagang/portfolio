@@ -81,3 +81,58 @@ export const commentValidation = ({ user_id, post_id, comment, language }) => {
         return errors
     }
 }
+
+export const projectValidation = ({ title, description, slug, language }) => {
+    const errors = []
+
+    if (title && description && slug) {
+    } else {
+        errors.push(language.res.missingFields)
+    }
+
+    return errors
+}
+
+export const skillValidation = ({ title, tags, language }) => {
+    const errors = []
+
+    if (title && tags) {
+    } else {
+        errors.push(language.res.missingFields)
+    }
+
+    return errors
+}
+
+export const experienceValidation = ({ title, organization, year, language }) => {
+    const errors = []
+
+    if (title && organization && year) {
+    } else {
+        errors.push(language.res.missingFields)
+    }
+
+    return errors
+}
+
+export const serviceValidation = ({ title, description, language }) => {
+    const errors = []
+
+    if (title && description) {
+    } else {
+        errors.push(language.res.missingFields)
+    }
+
+    return errors
+}
+
+export const settingsValidation = ({ lang, language }) => {
+    const errors = []
+
+    if (lang) {
+    } else {
+        errors.push(language.res.missingFields)
+    }
+
+    return errors
+}

@@ -1,45 +1,33 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState, useMemo } from "react"
 import { Icons } from "@/config/icons"
-import { usePathname } from "next/navigation"
 import { createClient } from "@/lib/supabase/client"
 import Image from "next/image"
 import useInView from "@/hooks/use-in-view"
 import useIsMobile from "@/hooks/use-is-mobile"
-import { getMedia } from "@/actions/api"
 
 export default function Video({ className = "", src, interactive = true, ...props }) {
     const videoRef = useRef(null)
     const bannerRef = useRef(null)
     const [loading, setLoading] = useState(false)
     const [paused, setPaused] = useState(true)
-    const [videoUrl, setVideoUrl] = useState()
-    const [bannerUrl, setBannerUrl] = useState()
     const [viewRef, inView] = useInView(true, 0.5, '0px 0px -200px 0px')
-    const pathname = usePathname()
     const isMobile = useIsMobile(615)
 
-    useEffect(() => {
-        async function getProjectMediaUrl() {
-            // const { data: video } = supabase.storage.from('portfolio').getPublicUrl('projects/' + src.video)
-            const data = await getMedia({ media: src.video, revalidate: 3600 })
+    const supabase = useMemo(() => createClient(), [])
 
-            if (data) {
-                setVideoUrl(data.data)
+    const videoUrl = useMemo(() => {
+        if (!src.video) return undefined
+        const { data } = supabase.storage.from('portfolio').getPublicUrl('projects/' + src.video)
+        return data?.publicUrl
+    }, [src.video, supabase])
 
-            }
-            if (src.banner) {
-                // const { data: banner } = supabase.storage.from('portfolio').getPublicUrl('projects/' + src.banner)
-                const data = await getMedia({ media: src.banner, revalidate: 3600 })
-                if (data) {
-                    setBannerUrl(data.data)
-                }
-            }
-        }
-        getProjectMediaUrl()
-
-    }, [src, pathname])
+    const bannerUrl = useMemo(() => {
+        if (!src.banner) return undefined
+        const { data } = supabase.storage.from('portfolio').getPublicUrl('projects/' + src.banner)
+        return data?.publicUrl
+    }, [src.banner, supabase])
 
     useEffect(() => {
         if (videoRef.current && videoUrl) {

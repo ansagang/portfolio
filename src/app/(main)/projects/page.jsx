@@ -12,7 +12,15 @@ export async function generateMetadata() {
 
   return {
     title: language.app.pages.projects.meta.title,
-    description: language.app.pages.projects.meta.description
+    description: language.app.pages.projects.meta.description,
+    openGraph: {
+      type: "website",
+      locale: "en_US",
+      title: language.app.pages.projects.meta.title,
+      description: language.app.pages.projects.meta.description,
+      siteName: language.app.meta.title,
+      images: ["https://www.angsar-aben.kz/images/banner-one.png"]
+    }
   }
 }
 export default async function Projects({ searchParams }) {

@@ -134,6 +134,27 @@ export async function getProject({ lang, slug, revalidate }) {
     }
 }
 
+export async function getMedia({ media, revalidate }) {
+    try {
+        const res = await fetch(`${process.env.URL}/api/media/${media}`, {
+            method: 'GET',
+            headers: {
+                'x-api-key': process.env.API_KEY
+            },                                                                                                                                                                                                                                               
+            next: {
+                revalidate: revalidate,
+                tags: ['media']
+            }
+        })
+
+        const data = await res.json()
+
+        return data
+    } catch (err) {
+
+    }
+}
+
 export async function getStatus({ lang, revalidate }) {
     try {
         const res = await fetch(`${process.env.URL}/api/settings?lang=${lang}`, {

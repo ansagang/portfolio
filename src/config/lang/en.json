@@ -56,7 +56,8 @@
             },
             "about": {
                 "meta": {
-                    "title": "About me"
+                    "title": "About me",
+                    "description": "Learn more about me — a web developer passionate about building modern websites, web applications, and intuitive user experiences."
                     },
                     "sections": {
                         "about": {
@@ -88,14 +89,10 @@
                     "description": "A collection of things I've built — from full-stack platforms to bots and landing pages."
                 }
             },
-            "services": {
-                "meta": {
-                    "title": "Services"
-                }
-            },
             "contact": {
                 "meta": {
-                    "title": "Contact"
+                    "title": "Contact",
+                    "description": "Get in touch with me for your next web project. Available for freelance, collaboration, and business inquiries."
                 },
                 "sections": {
                     "banner": {

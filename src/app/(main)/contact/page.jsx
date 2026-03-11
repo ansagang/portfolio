@@ -9,14 +9,15 @@ export async function generateMetadata() {
   const language = await getLanguage({})
 
   return {
-    title: language.app.pages.contact.meta.title
+    title: language.app.pages.contact.meta.title,
+    description: language.app.pages.contact.meta.description
   }
 }
 
 export default async function Contact() {
 
   const language = await getLanguage({})
-  const { data: status } = await getStatus({ lang: language.lang, revalidate: 0 })
+  const { data: status } = await getStatus({ lang: language.lang, revalidate: 3600 })
 
   return (
     <section className="contact">

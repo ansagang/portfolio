@@ -1,5 +1,5 @@
 import { getProjectMedia } from "@/actions/actions"
-import { getProject, getProjects } from "@/actions/api"
+import { getMedia, getProject, getProjects } from "@/actions/api"
 import Project from "@/components/sections/project.project"
 import Button from "@/components/ui/button"
 import Chip from "@/components/ui/chip"
@@ -15,8 +15,8 @@ export async function generateMetadata({ params }) {
 
     const { slug } = await params
     const language = await getLanguage({})
-    const { data: project } = await getProject({ lang: language.lang, slug: slug, revalidate: 0 })
-    const banner = await getProjectMedia(project.banner)
+    const { data: project } = await getProject({ lang: language.lang, slug: slug, revalidate: 3600 })
+    const banner = await getMedia({media: project.banner})
 
     const metadata = {
         title: project.title,
@@ -43,7 +43,7 @@ export async function generateMetadata({ params }) {
 export default async function ProjectPage({ params }) {
     const { slug } = await params
     const language = await getLanguage({})
-    const { data: project } = await getProject({ lang: language.lang, slug: slug, revalidate: 0 })
+    const { data: project } = await getProject({ lang: language.lang, slug: slug, revalidate: 3600 })
 
     if (!project) {
         notFound()

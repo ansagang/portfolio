@@ -7,6 +7,7 @@ import { createClient } from "@/lib/supabase/client"
 import Image from "next/image"
 import useInView from "@/hooks/use-in-view"
 import useIsMobile from "@/hooks/use-is-mobile"
+import { getMedia } from "@/actions/api"
 
 export default function Video({ className = "", src, interactive = true, ...props }) {
     const videoRef = useRef(null)
@@ -21,15 +22,19 @@ export default function Video({ className = "", src, interactive = true, ...prop
 
     useEffect(() => {
         async function getProjectMediaUrl() {
-            const supabase = createClient()
-            const { data: video } = supabase.storage.from('portfolio').getPublicUrl('projects/' + src.video)
+            // const { data: video } = supabase.storage.from('portfolio').getPublicUrl('projects/' + src.video)
+            const data = await getMedia({ media: src.video, revalidate: 3600 })
 
-            if (video) {
-                setVideoUrl(video.publicUrl)
+            if (data) {
+                setVideoUrl(data.data)
+
             }
             if (src.banner) {
-                const { data: banner } = supabase.storage.from('portfolio').getPublicUrl('projects/' + src.banner)
-                setBannerUrl(banner.publicUrl)
+                // const { data: banner } = supabase.storage.from('portfolio').getPublicUrl('projects/' + src.banner)
+                const data = await getMedia({ media: src.banner, revalidate: 3600 })
+                if (data) {
+                    setBannerUrl(data.data)
+                }
             }
         }
         getProjectMediaUrl()

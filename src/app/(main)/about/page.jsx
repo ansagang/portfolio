@@ -11,7 +11,8 @@ export async function generateMetadata() {
   const language = await getLanguage({})
 
   return {
-    title: language.app.pages.about.meta.title
+    title: language.app.pages.about.meta.title,
+    description: language.app.pages.about.meta.description
   }
 }
 

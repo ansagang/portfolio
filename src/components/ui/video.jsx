@@ -51,13 +51,20 @@ export default function Video({ videoUrl, bannerUrl, className = "", interactive
     return (
         <div
             onMouseEnter={interactive ? null : handleMouseEnter}
-            onMouseLeave={interactive ? null : handleMouseLeave} onClick={interactive ? handleClick : undefined} className={className}>
+            onMouseLeave={interactive ? null : handleMouseLeave}
+            onTouchStart={interactive ? null : handleMouseEnter}
+            onTouchEnd={interactive ? null : handleMouseLeave}
+            onClick={interactive ? handleClick : undefined}
+            className={className}>
             <video
                 ref={videoRef}
                 className={videoClassName}
                 src={videoUrl}
                 playsInline
+                preload="auto"
                 muted
+                autoPlay={interactive ? true : false}
+                poster={bannerUrl}
                 loop={interactive}
                 onLoadStart={() => setLoading(true)}
                 onLoadedData={() => setLoading(false)}

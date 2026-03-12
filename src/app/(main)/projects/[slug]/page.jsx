@@ -19,7 +19,7 @@ export async function generateMetadata({ params }) {
 
     if (!project) return {}
 
-    const banner = await getMedia({ media: project.banner })
+    const {data: banner} = await getMedia({ media: project.banner })
 
     const metadata = {
         title: project.title,
@@ -29,14 +29,17 @@ export async function generateMetadata({ params }) {
             locale: "en_US",
             title: project.title,
             description: project.description,
-            siteName: language.app.meta.title,
-            images: ["https://www.angsar-aben.kz/images/banner-one.png"]
+            siteName: language.app.meta.title
         }
     }
 
     if (banner) {
-        metadata.openGraph['images'] = [banner.data]
+        metadata.openGraph['images'] = [banner]
+    } else {
+        ["https://www.angsar-aben.kz/images/banner-one.png"]
     }
+
+    
 
     return metadata
 }

@@ -4,7 +4,7 @@ import Chip from "../ui/chip"
 
 export default async function Experience({ language }) {
 
-    const { data: experiences } = await getExperience({ lang: language.lang, revalidate: 3600 }) ?? {}
+    const { data: experiences } = await getExperience({ lang: language.lang, revalidate: 3600 })
     const experience = experiences?.length > 0 ? experiences[experiences.length - 1] : null
 
     return (

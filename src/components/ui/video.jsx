@@ -1,24 +1,14 @@
 "use client"
 
-import { useEffect, useRef, useState, useMemo } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Icons } from "@/config/icons"
-import { createClient } from "@/lib/supabase/client"
 import Image from "next/image"
-import useInView from "@/hooks/use-in-view"
-import useIsMobile from "@/hooks/use-is-mobile"
 
 export default function Video({ videoUrl, bannerUrl, className = "", interactive = true, ...props }) {
     const videoRef = useRef(null)
     const bannerRef = useRef(null)
     const [loading, setLoading] = useState(false)
     const [paused, setPaused] = useState(true)
-    const isMobile = useIsMobile(615)
-
-    useEffect(() => {
-        if (videoRef.current && videoUrl) {
-            videoRef.current.load()
-        }
-    }, [videoUrl])
 
     useEffect(() => {
         if (videoRef.current && bannerUrl) {
@@ -72,6 +62,7 @@ export default function Video({ videoUrl, bannerUrl, className = "", interactive
                 ref={videoRef}
                 className={videoClassName}
                 src={videoUrl}
+                preload="metadata"
                 playsInline
                 muted
                 loop={interactive}

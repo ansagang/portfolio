@@ -4,12 +4,10 @@ import Button from "../ui/button"
 
 export default async function ServicesList({ language }) {
 
-    const { data: services } = await getServices({ lang: language.lang, revalidate: 0 })
-
-
+    const { data: services } = await getServices({ lang: language.lang, revalidate: 0 }) ?? {}
 
     const columns = 3;
-    const remainder = services.length % columns;
+    const remainder = services?.length ? services.length % columns : 0;
     const fillers = remainder === 0 ? 0 : columns - remainder;
 
     return (

@@ -173,6 +173,10 @@
 
     .list{
         grid-template-columns: 1fr;
+            &__mini{
+                grid-template-columns: 1fr;
+            }
+
     }
 
     .contact{

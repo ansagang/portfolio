@@ -11,12 +11,6 @@ export default function Video({ videoUrl, bannerUrl, className = "", interactive
     const [paused, setPaused] = useState(true)
 
     useEffect(() => {
-        if (videoRef.current && bannerUrl) {
-            videoRef.current.poster = bannerUrl
-        }
-    }, [bannerUrl])
-
-    useEffect(() => {
         if (!videoRef.current) return
         if (paused) {
             videoRef.current.pause()
@@ -54,8 +48,6 @@ export default function Video({ videoUrl, bannerUrl, className = "", interactive
         interactive && paused && "paused",
     ].filter(Boolean).join(" ")
 
-    console.log(bannerUrl);
-
     return (
         <div
             onMouseEnter={interactive ? null : handleMouseEnter}
@@ -64,7 +56,7 @@ export default function Video({ videoUrl, bannerUrl, className = "", interactive
                 ref={videoRef}
                 className={videoClassName}
                 src={videoUrl}
-                preload="metadata"
+                preload="auto"
                 playsInline
                 muted
                 loop={interactive}

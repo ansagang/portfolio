@@ -7,27 +7,12 @@ import Image from "next/image"
 import useInView from "@/hooks/use-in-view"
 import useIsMobile from "@/hooks/use-is-mobile"
 
-export default function Video({ className = "", src, interactive = true, ...props }) {
+export default function Video({ videoUrl, bannerUrl, className = "", interactive = true, ...props }) {
     const videoRef = useRef(null)
     const bannerRef = useRef(null)
     const [loading, setLoading] = useState(false)
     const [paused, setPaused] = useState(true)
-    const [viewRef, inView] = useInView(true, 0.5, '0px 0px -200px 0px')
     const isMobile = useIsMobile(615)
-
-    const supabase = useMemo(() => createClient(), [])
-
-    const videoUrl = useMemo(() => {
-        if (!src.video) return undefined
-        const { data } = supabase.storage.from('portfolio').getPublicUrl('projects/' + src.video)
-        return data?.publicUrl
-    }, [src.video, supabase])
-
-    const bannerUrl = useMemo(() => {
-        if (!src.banner) return undefined
-        const { data } = supabase.storage.from('portfolio').getPublicUrl('projects/' + src.banner)
-        return data?.publicUrl
-    }, [src.banner, supabase])
 
     useEffect(() => {
         if (videoRef.current && videoUrl) {
@@ -42,22 +27,6 @@ export default function Video({ className = "", src, interactive = true, ...prop
     }, [bannerUrl])
 
     useEffect(() => {
-        if (isMobile) {
-            if (inView) {
-                if (videoUrl) videoRef.current?.play()
-                if (bannerUrl) bannerRef.current.style.opacity = 0
-            } else {
-                if (videoUrl && videoRef.current) {
-                    videoRef.current.currentTime = 0
-                    videoRef.current.pause()
-                }
-                if (bannerUrl) bannerRef.current.style.opacity = 1
-            }
-        }
-
-    }, [inView])
-
-    useEffect(() => {
         if (!videoRef.current) return
         if (paused) {
             videoRef.current.pause()
@@ -70,21 +39,23 @@ export default function Video({ className = "", src, interactive = true, ...prop
         setPaused(p => !p)
         if (bannerUrl) {
             if (paused) {
-                bannerRef.current.style.display = 'none'
+                if (bannerRef.current) bannerRef.current.style.display = 'none'
+            } else {
+                if (bannerRef.current) bannerRef.current.style.display = ''
             }
         }
     }
 
     const handleMouseEnter = () => {
         if (videoUrl) videoRef.current?.play()
-        if (bannerUrl) bannerRef.current.style.opacity = 0
+        if (bannerUrl && bannerRef.current) bannerRef.current.style.opacity = 0
     }
     const handleMouseLeave = () => {
         if (videoUrl && videoRef.current) {
             videoRef.current.currentTime = 0
             videoRef.current.pause()
         }
-        if (bannerUrl) bannerRef.current.style.opacity = 1
+        if (bannerUrl && bannerRef.current) bannerRef.current.style.opacity = 1
     }
 
     const videoClassName = [
@@ -93,12 +64,10 @@ export default function Video({ className = "", src, interactive = true, ...prop
         interactive && paused && "paused",
     ].filter(Boolean).join(" ")
 
-
-
     return (
         <div
-            onMouseEnter={interactive ? null : isMobile ? null : handleMouseEnter}
-            onMouseLeave={interactive ? null : isMobile ? null : handleMouseLeave} ref={viewRef} onClick={interactive ? handleClick : undefined} className={className}>
+            onMouseEnter={interactive ? null : handleMouseEnter}
+            onMouseLeave={interactive ? null : handleMouseLeave} onClick={interactive ? handleClick : undefined} className={className}>
             <video
                 ref={videoRef}
                 className={videoClassName}
@@ -117,7 +86,7 @@ export default function Video({ className = "", src, interactive = true, ...prop
                 </div>
             )}
             {bannerUrl &&
-                <Image ref={bannerRef} className="video__banner" alt={src.title} width={1} height={1} unoptimized src={bannerUrl} />
+                <Image ref={bannerRef} className="video__banner" alt={"Banner"} width={1} height={1} unoptimized src={bannerUrl} />
             }
         </div>
     )

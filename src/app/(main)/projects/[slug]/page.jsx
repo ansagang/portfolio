@@ -19,7 +19,7 @@ export async function generateMetadata({ params }) {
 
     if (!project) return {}
 
-    const banner = await getMedia({media: project.banner})
+    const banner = await getMedia({ media: project.banner })
 
     const metadata = {
         title: project.title,
@@ -45,6 +45,8 @@ export default async function ProjectPage({ params }) {
     const { slug } = await params
     const language = await getLanguage({})
     const { data: project } = await getProject({ lang: language.lang, slug: slug, revalidate: 3600 })
+    const { data: video } = await getMedia({ media: project.video, revalidate: 3600 })
+    const { data: banner } = await getMedia({ media: project.banner, revalidate: 3600 })
 
     if (!project) {
         notFound()
@@ -86,7 +88,7 @@ export default async function ProjectPage({ params }) {
                                 </div>
                             </div>
                         </div>
-                        <Video className="project__video video card" src={project} interactive={true} />
+                        <Video className="project__video video card" videoUrl={video} bannerUrl={banner} interactive={true} />
                     </div>
                     <div className="project__footer">
                         {

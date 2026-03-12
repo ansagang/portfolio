@@ -1,6 +1,6 @@
 "use server"
 
-export async function getSkills({ lang = '', revalidate}) {
+export async function getSkills({ lang = '', revalidate }) {
     try {
         const res = await fetch(`${process.env.URL}/api/skills?lang=${lang}`, {
             method: 'GET',
@@ -22,7 +22,7 @@ export async function getSkills({ lang = '', revalidate}) {
     }
 }
 
-export async function getServices({ lang = '', revalidate}) {
+export async function getServices({ lang = '', revalidate }) {
     try {
         const res = await fetch(`${process.env.URL}/api/services?lang=${lang}`, {
             method: 'GET',
@@ -44,7 +44,7 @@ export async function getServices({ lang = '', revalidate}) {
     }
 }
 
-export async function getExperience({ lang = '', revalidate}) {
+export async function getExperience({ lang = '', revalidate }) {
     try {
         const res = await fetch(`${process.env.URL}/api/experience?lang=${lang}`, {
             method: 'GET',
@@ -73,10 +73,12 @@ export async function postContact({ first_name, last_name, email, message, lang 
             headers: {
                 'x-api-key': process.env.API_KEY
             },
-            body: JSON.stringify({first_name: first_name,
+            body: JSON.stringify({
+                first_name: first_name,
                 last_name: last_name,
                 email: email,
-                message: message})
+                message: message
+            })
         })
 
         const data = await res.json()
@@ -88,10 +90,10 @@ export async function postContact({ first_name, last_name, email, message, lang 
     }
 }
 
-export async function getProjects({ search = '', categories = [], lang = '', limit = '', sort = '', revalidate, favorite = ''}) {
+export async function getProjects({ search = '', categories = [], lang = '', limit = '', sort = '', revalidate, favorite = '' }) {
     try {
         const sortQ = sort ? `${sort.code}.${sort.ascending ? 'asc' : 'desc'}` : ''
-                
+
         const res = await fetch(`${process.env.URL}/api/projects?search=${search}&categories=${categories.join(',')}&lang=${lang}&sort=${sortQ}&limit=${limit}&favorite=${favorite}`, {
             method: 'GET',
             headers: {
@@ -118,7 +120,7 @@ export async function getProject({ lang, slug, revalidate }) {
             method: 'GET',
             headers: {
                 'x-api-key': process.env.API_KEY
-            },                                                                                                                                                                                                                                               
+            },
             next: {
                 revalidate: revalidate,
                 tags: ['project']
@@ -140,7 +142,7 @@ export async function getMedia({ media, revalidate }) {
             method: 'GET',
             headers: {
                 'x-api-key': process.env.API_KEY
-            },                                                                                                                                                                                                                                               
+            },
             next: {
                 revalidate: revalidate,
                 tags: ['media']
@@ -161,7 +163,7 @@ export async function getStatus({ lang, revalidate }) {
             method: 'GET',
             headers: {
                 'x-api-key': process.env.API_KEY
-            },                                                                                                                                                                                                                                               
+            },
             next: {
                 revalidate: revalidate,
                 tags: ['status']
@@ -174,25 +176,6 @@ export async function getStatus({ lang, revalidate }) {
     } catch (err) {
 
 
-    }
-}
-
-export async function getProjectMedia(media) {
-    try {
-        const supabase = createClient()
-        if (media) {
-            const { data } = supabase.storage.from('projects').getPublicUrl(media)
-
-            if (data) {
-                return {
-                    data: data.publicUrl
-                }
-            }
-        }
-    } catch (err) {
-        return {
-            success: false,
-        }
     }
 }
 

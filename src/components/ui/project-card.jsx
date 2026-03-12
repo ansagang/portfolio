@@ -1,27 +1,23 @@
-"use client"
-
 import { TiltCard } from "@/components/ui/tilt-card"
 import Link from "next/link"
-import Chip from "./chip"
 import Video from "./video"
-import { Icons } from "@/config/icons"
-import useIsMobile from "@/hooks/use-is-mobile"
+import { getMedia } from "@/actions/api"
 
-export default function ProjectCard({ project, tilt, ...props }) {
+export default async function ProjectCard({ project, tilt, ...props }) {
 
-    const isMobile = useIsMobile(615)
-    
+    const {data: video} = await getMedia({ media: project.video, revalidate: 3600 })
+    const {data: banner} = await getMedia({media: project.banner, revalidate: 3600})            
 
     return (
         <div className="project-card" {...props}>
             <Link className="card" href={`/projects/${project.slug}`}>
                 {
-                    tilt && !isMobile ?
+                    tilt ?
                         <TiltCard>
-                            <Video className="project-card__visual" interactive={false} src={project} />
+                            <Video className="project-card__visual" interactive={false} videoUrl={video} bannerUrl={banner} />
                         </TiltCard>
                         :
-                        <Video className="project-card__visual" interactive={false} src={project} />
+                        <Video className="project-card__visual" interactive={false} videoUrl={video} bannerUrl={banner} />
                 }
             </Link>
             <div className="project-card__content">

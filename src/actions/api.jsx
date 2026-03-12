@@ -138,20 +138,24 @@ export async function getProject({ lang, slug, revalidate }) {
 
 export async function getMedia({ media, revalidate }) {
     try {
-        const res = await fetch(`${process.env.URL}/api/media/${media}`, {
-            method: 'GET',
-            headers: {
-                'x-api-key': process.env.API_KEY
-            },
-            next: {
-                revalidate: revalidate,
-                tags: ['media']
-            }
-        })
+        if (media) {
+            const res = await fetch(`${process.env.URL}/api/media/${media}`, {
+                method: 'GET',
+                headers: {
+                    'x-api-key': process.env.API_KEY
+                },
+                next: {
+                    revalidate: revalidate,
+                    tags: ['media']
+                }
+            })
 
-        const data = await res.json()
+            const data = await res.json()
 
-        return data
+            return data
+        } else {
+            return {data: null}
+        }
     } catch (err) {
 
     }

@@ -28,7 +28,7 @@ export default function Video({ videoUrl, bannerUrl, className = "", interactive
                 if (bannerRef.current) bannerRef.current.style.display = ''
             }
         }
-    }
+    }    
 
     const handleMouseEnter = () => {
         if (videoUrl) videoRef.current?.play()
@@ -59,22 +59,18 @@ export default function Video({ videoUrl, bannerUrl, className = "", interactive
             <video
                 ref={videoRef}
                 className={videoClassName}
-                src={videoUrl}
                 playsInline
                 preload="auto"
                 muted
-                autoPlay={interactive ? true : false}
                 poster={bannerUrl}
-                loop={interactive}
+                loop
                 onLoadStart={() => setLoading(true)}
-                onLoadedData={() => {
-                    setLoading(false)
-                    if (!interactive && videoRef.current) {
-                        videoRef.current.currentTime = 0.001
-                    }
-                }}
+                onLoadedData={() => setLoading(false)}
+                autoPlay
                 {...props}
-            />
+            >
+                <source src={videoUrl} type="video/mp4"/>
+            </video>
             {interactive && loading && <div className="video__loading" />}
             {interactive && !loading && paused && (
                 <div className="video__paused">

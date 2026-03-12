@@ -6,13 +6,11 @@ export async function GET(request, { params }) {
         const supabase = await createClient()
         const { media } = await params
         if (media) {
-            const { data, error } = await supabase.storage
-                .from('portfolio')
-                .createSignedUrl(`projects/${media}`, 3600)
+             const { error, data } = supabase.storage.from('portfolio').getPublicUrl('projects/'+media)
 
             if (!error) {                
                 return NextResponse.json({
-                    data: data.signedUrl
+                    data: data.publicUrl
                 })
             } else {
                 return NextResponse.json({

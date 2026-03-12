@@ -14,6 +14,8 @@ export async function generateMetadata() {
 
   const language = await getLanguage({})
 
+  const ogLocaleMap = { en: 'en_US', ru: 'ru_RU', kz: 'kz_KZ' }
+
   return {
     title: {
       default: language.app.meta.title,
@@ -30,8 +32,7 @@ export async function generateMetadata() {
     creator: "ansagang",
     openGraph: {
       type: "website",
-      locale: "en_US",
-      //   url: siteConfig.url,
+      locale: ogLocaleMap[language.lang] || 'en_US',
       title: language.app.meta.title,
       description: language.app.meta.description,
       siteName: language.app.meta.title,
@@ -61,8 +62,10 @@ export async function generateMetadata() {
 
 export default async function RootLayout({ children }) {
 
+  const language = await getLanguage({})
+
   return (
-    <html lang="en">
+    <html lang={language.lang}>
       <body className={font.className}>
           <NextTopLoader color='#000' showSpinner={false} shadow={false} height={5} />
           <div className="wrapper__main">

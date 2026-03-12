@@ -56,7 +56,6 @@ export default function Video({ videoUrl, bannerUrl, className = "", interactive
                 ref={videoRef}
                 className={videoClassName}
                 src={videoUrl}
-                preload="auto"
                 playsInline
                 muted
                 loop={interactive}

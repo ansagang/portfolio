@@ -36,7 +36,7 @@ export async function generateMetadata({ params }) {
     if (banner) {
         metadata.openGraph['images'] = [banner]
     } else {
-        ["https://www.angsar-aben.kz/images/banner-one.png"]
+        metadata.openGraph['images'] = ["https://www.angsar-aben.kz/images/banner-one.png"]
     }
 
     

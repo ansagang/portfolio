@@ -1,4 +1,4 @@
-import { getLanguage } from "@/actions/actions";
+import { getLanguage } from "@/lib/get-language";
 import { getProjects } from "@/actions/api";
 
 const BASE_URL = "https://www.angsar-aben.kz"

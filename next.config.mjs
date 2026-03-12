@@ -1,9 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    reactStrictMode: false,
-    experimental: {
-        proxyClientMaxBodySize: '30mb'
-    }
+    reactStrictMode: false
 };
 
 export default nextConfig;

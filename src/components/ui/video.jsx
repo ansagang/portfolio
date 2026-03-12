@@ -54,6 +54,8 @@ export default function Video({ videoUrl, bannerUrl, className = "", interactive
         interactive && paused && "paused",
     ].filter(Boolean).join(" ")
 
+    console.log(bannerUrl);
+
     return (
         <div
             onMouseEnter={interactive ? null : handleMouseEnter}
@@ -76,8 +78,10 @@ export default function Video({ videoUrl, bannerUrl, className = "", interactive
                     <Icons.play />
                 </div>
             )}
-            {bannerUrl &&
+            {bannerUrl ?
                 <Image ref={bannerRef} className="video__banner" alt={"Banner"} width={1} height={1} unoptimized src={bannerUrl} />
+                :
+                null
             }
         </div>
     )

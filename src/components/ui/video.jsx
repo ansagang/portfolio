@@ -67,7 +67,12 @@ export default function Video({ videoUrl, bannerUrl, className = "", interactive
                 poster={bannerUrl}
                 loop={interactive}
                 onLoadStart={() => setLoading(true)}
-                onLoadedData={() => setLoading(false)}
+                onLoadedData={() => {
+                    setLoading(false)
+                    if (!interactive && videoRef.current) {
+                        videoRef.current.currentTime = 0.001
+                    }
+                }}
                 {...props}
             />
             {interactive && loading && <div className="video__loading" />}

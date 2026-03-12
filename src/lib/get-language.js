@@ -6,7 +6,7 @@ import languageDefiner from "./language-definer";
 export async function getLanguage({ locale }) {
   const headersList = await headers();
 
-  const acceptLanguage = headersList.get("accept-language")
+  const acceptLanguage = headersList.get("accept-language");
   if (acceptLanguage) {
     const headerLanguage = acceptLanguage.split(",")[0].split("-")[0];
     const cookiesList = await cookies();
@@ -14,8 +14,16 @@ export async function getLanguage({ locale }) {
       ? cookiesList.get("lang").value
       : headerLanguage;
 
-    return languageDefiner({ locale: locale, headerLanguage: lang });
+    const language = await languageDefiner({
+      locale: locale,
+      headerLanguage: lang,
+    });
+
+    return language;
   } else {
-    return languageDefiner({ locale: "en" });
+    const language = await languageDefiner({
+      locale: "en",
+    });
+    return language;
   }
 }

@@ -1,7 +1,7 @@
 import { getLanguage } from "@/lib/get-language";
 import { getProjects } from "@/actions/api";
 
-const BASE_URL = "https://www.angsar-aben.kz"
+const BASE_URL = process.env.URL
 
 export default async function sitemap() {
     const language = await getLanguage({})

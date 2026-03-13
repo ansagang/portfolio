@@ -3,8 +3,8 @@ export default function robot() {
         rules: {
             userAgent: "*",
             allow: '/',
-            dssallow: '/api'
+            dissallow: ['/api', '/images']
         },
-        sitemap: 'https://www.angsar-aben.kz/sitemap.xml'
+        sitemap: `${process.env.URL}/sitemap.xml`
     }
 }

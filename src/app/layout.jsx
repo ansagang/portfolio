@@ -15,8 +15,10 @@ export async function generateMetadata() {
   const language = await getLanguage({})
 
   const ogLocaleMap = { en: 'en_US', ru: 'ru_RU', kz: 'kz_KZ' }
+  const BASE_URL = process.env.URL
 
   return {
+    metadataBase: new URL(BASE_URL),
     title: {
       default: language.app.meta.title,
       template: `%s | ${language.app.meta.title}`
@@ -36,26 +38,44 @@ export async function generateMetadata() {
       title: language.app.meta.title,
       description: language.app.meta.description,
       siteName: language.app.meta.title,
-      images: ["https://www.angsar-aben.kz/images/banner-one.png"]
+      images: [`${BASE_URL}/images/banner-one.png`]
     },
     twitter: {
       card: "summary_large_image",
       title: language.app.meta.title,
       description: language.app.meta.description,
-      // images: [`${siteConfig.url}/og.jpg`],
+      images: [`${BASE_URL}/images/banner-one.png`],
       creator: "@ansagang",
+    },
+    robots: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+      googleBot: "index, follow"
     },
     icons: {
       icon: [
         {
-          url: '/images/icon_dark.ico',
-          media: '(prefers-color-scheme: light)',
-        },
-        {
-          url: '/images/icon_light.ico',
-          media: '(prefers-color-scheme: dark)',
-        },
+          url: "/favicon.ico",
+          type: "image/x-icon"
+        }
+        // add favicon-32x32.png, favicon-96x96.png, android-chrome-192x192.png
       ],
+      shortcut: [
+        {
+          url: "/favicon.ico",
+          type: "image/x-icon"
+        }
+      ],
+      apple: [
+        {
+          url: "/apple-icon.png",
+          sizes: "57x57",
+          type: "image/png"
+        }
+      ]
     }
   }
 }
@@ -67,13 +87,13 @@ export default async function RootLayout({ children }) {
   return (
     <html lang={language.lang}>
       <body className={font.className}>
-          <NextTopLoader color='#000' showSpinner={false} shadow={false} height={5} />
-          <div className="wrapper__main">
-            <NotificationProvider>
-              {children}
-            </NotificationProvider>
-            <Cursor colors={['white']} pointers={['a', 'button', 'input']} cards={['card']} />
-          </div>
+        <NextTopLoader color='#000' showSpinner={false} shadow={false} height={5} />
+        <div className="wrapper__main">
+          <NotificationProvider>
+            {children}
+          </NotificationProvider>
+          <Cursor colors={['white']} pointers={['a', 'button', 'input']} cards={['card']} />
+        </div>
       </body>
     </html>
   )

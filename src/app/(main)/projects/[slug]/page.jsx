@@ -79,8 +79,8 @@ export default async function ProjectPage({ params }) {
                             <div className="project__header-right">
                                 <div className="project__buttons">
                                     {
-                                        project.github && (
-                                            <Button className={'project__button'} type={'primary'} href={project.github}><Image alt={social.title} width={1} height={1} unoptimized src={social.logo} />Github</Button>
+                                        project.git && (
+                                            <Button className={'project__button'} type={'primary'} href={project.git}><Image alt={social.title} width={1} height={1} unoptimized src={social.logo} />Github</Button>
                                         )
                                     }
                                     {

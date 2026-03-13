@@ -211,4 +211,7 @@ l23 34 0 1520 c0 1168 -3 1529 -12 1561 -16 54 -90 128 -144 144 -32 9 -393
       </g>
     </svg>
   ),
+  validation: () => (
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#e05252" strokeWidth="1.2"></circle><path d="M6 3.5V7" stroke="#e05252" strokeWidth="1.2" strokeLinecap="round"></path><circle cx="6" cy="9" r="0.6" fill="#e05252"></circle></svg>
+  )
 };

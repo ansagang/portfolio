@@ -114,10 +114,10 @@ textarea {
     font-size: $input_font_size;
     background-color: $bg_color;
     color: $primary_color;
-    border: 1px solid $secondary_color_2;
+    border: 1.5px solid $secondary_color_2;
     width: 100%;
     &:focus{
-        border: 1px solid $primary_color;
+        border: 1.5px solid $primary_color;
     }
 
     &:disabled{

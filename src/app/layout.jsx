@@ -7,6 +7,8 @@ import { getLanguage } from '@/lib/get-language'
 import NextTopLoader from 'nextjs-toploader'
 import Cursor from '@/components/ui/cursor'
 import { Suspense } from 'react'
+import { Toaster } from 'sonner'
+import { Icons } from '@/config/icons'
 
 const font = Montserrat({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700', '800'], display: 'swap' })
 
@@ -92,6 +94,19 @@ export default async function RootLayout({ children }) {
           <NotificationProvider>
             {children}
           </NotificationProvider>
+          <Toaster
+            toastOptions={{
+              classNames: {
+                toast: 'toast',
+                title: 'title',
+                description: 'description',
+                actionButton: 'action-button',
+                cancelButton: 'cancel-button',
+                closeButton: 'close-button',
+                icon: 'icon'
+              },
+            }}
+          />
           <Cursor colors={['white']} pointers={['a', 'button', 'input']} cards={['card']} />
         </div>
       </body>

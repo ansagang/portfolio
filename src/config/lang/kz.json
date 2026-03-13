@@ -7,9 +7,12 @@
         "info": "Ақпарат",
         "warning": "Назар аударыңыз",
         "linkCopied": "Сілтеме көшірілді",
-        "messageSuccess": "Хабарлама сәтті жіберілді",
+        "requestSuccess": "Хабарлама сәтті жіберілді",
         "emailInvalidError": "Жарамсыз электрондық пошта",
-        "missingFields": "Барлық өрістерді толтырыңыз"
+        "missingFields": "Барлық өрістерді толтырыңыз",
+        "phoneInvalidError": "Жарамсыз телефон нөмері",
+        "emailMissing": "Электрондың поштаны толтырыңыз",
+        "nameMissing": "Атыңызды толтырыңыз"
     },
     "app": {
         "meta": {
@@ -150,17 +153,17 @@
             "requestProject": "Жоба сұрау",
             "allRightsReserved": "Барлық құқықтар қорғалған.",
             "privacyPolicy": "Құпиялылық саясаты",
-            "firstName": "Аты",
-            "lastName": "Тегі",
+            "name": "Атыңыз",
             "email": "Электрондық пошта",
             "message": "Хабарлама",
-            "firstNamePlaceholder": "Аңсар",
-            "lastNamePlaceholder": "Әбен",
+            "namePlaceholder": "Әбен Аңсар",
+            "phonePlaceholder": "+77010999445",
             "emailPlaceholder": "angsar.aben@gmail.com",
             "messagePlaceholder": "Сәлем!",
             "searchProjects": "Жобаларды іздеу...",
             "sortByNewest": "Жаңасынан бастап",
-            "sortByOldest": "Ескісінен бастап"
+            "sortByOldest": "Ескісінен бастап",
+            "phone": "Телефон нөміріңіз"
         },
         "global": {
             "available": "Жұмысқа дайынмын",

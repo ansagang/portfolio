@@ -7,9 +7,12 @@
         "info": "Info",
         "warning": "Warning",
         "linkCopied": "Link copied",
-        "messageSuccess": "Message has been sent succesfully",
+        "requestSuccess": "Request has been sent succesfully",
         "emailInvalidError": "Invalid email",
-        "missingFields": "Missing fields"
+        "missingFields": "Missing fields",
+        "phoneInvalidError": "Invalid phone number",
+        "emailMissing": "Please fill your email",
+        "nameMissing": "Please fill your name"
     },
     "app": {
         "meta": {
@@ -150,17 +153,17 @@
             "requestProject": "Request a project",
             "allRightsReserved": "All rights reserved.",
             "privacyPolicy": "Privacy policy",
-            "firstName": "First name",
-            "lastName": "Last name",
+            "name": "Name",
             "email": "Email",
             "message": "Message",
-            "firstNamePlaceholder": "Angsar",
-            "lastNamePlaceholder": "Aben",
+            "namePlaceholder": "Angsar Aben",
+            "phonePlaceholder": "+77010999445",
             "emailPlaceholder": "angsar.aben@gmail.com",
             "messagePlaceholder": "Hello!",
             "searchProjects": "Search for projects...",
             "sortByNewest": "Sort by newest",
-            "sortByOldest": "Sort by oldest"
+            "sortByOldest": "Sort by oldest",
+            "phone": "Phone number"
         },
         "global": {
             "available": "Available for work",

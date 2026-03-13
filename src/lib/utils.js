@@ -3,10 +3,10 @@ import { languages } from "@/config/languages";
 export function slugify(str) {
   return str
     .toLowerCase()
-    .replace(/[\/\s]+/g, "-") 
-    .replace(/[^\w\-]+/g, "")   
-    .replace(/\-\-+/g, "-")    
-    .replace(/^-+|-+$/g, ""); 
+    .replace(/[\/\s]+/g, "-")
+    .replace(/[^\w\-]+/g, "")
+    .replace(/\-\-+/g, "-")
+    .replace(/^-+|-+$/g, "");
 }
 
 export function unslugify(str) {
@@ -136,4 +136,11 @@ export function supabaseLoader({ src, width, quality }) {
   url.searchParams.set("width", width.toString());
   url.searchParams.set("quality", (quality || 75).toString());
   return url.href;
+}
+
+
+export function rateLimit(ip, limit = 5, cache) {
+  const count = (cache.get(ip) ?? 0) + 1
+  cache.set(ip, count)
+  return count > limit
 }

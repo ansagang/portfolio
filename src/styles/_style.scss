@@ -2,9 +2,31 @@
 @use 'vars' as *;
 @use 'reset' as *;
 
+.toast{
+    padding: $pd_button;
+    border-radius: $button_radius;
+    margin-bottom: 10px;
+    backdrop-filter: $backdrop_filter;
+    
+    & .title,
+    & .description{
+        font-weight: $light_font_weight !important;
+        font-family: 'Montserrat' !important;
+        font-size: 14px;
+        margin-top: 0;
+    }
+
+    & .icon{
+        & svg{
+            width: 100% !important;
+            height: 100% !important;
+        }
+    }
+}
+
 .notification {
     padding: $pd_button;
-    border-radius: $input_radius;
+    border-radius: $button_radius;
     margin-bottom: 10px;
     animation: left 0.4s;
     animation-fill-mode: forwards;
@@ -36,6 +58,7 @@
     }
     &__info{
         color: $bg_color;
+        font-weight: $light_font_weight ;
         margin-top: 0;
         &.info p{
             margin-top: 0;
@@ -1328,7 +1351,7 @@ body{
     &__form{
         display: flex;
         flex-direction: column;
-        gap: 15px;
+        gap: 20px;
         &-inputs{
             display: flex;
             align-items: center;
@@ -1338,14 +1361,24 @@ body{
         &-input{
             width: 100%;
             text-align: left;
+            position: relative;
             & .input{
                 margin-top: 10px;
+            }
+            & label{
+                svg{
+                    margin-left: 7px;
+                }
             }
             & textarea{
                 margin-top: 10px;
                 min-height: 200px;
                 resize: vertical;
             }
+        }
+        &-error{
+            position: absolute;
+            font-size: 12px;
         }
     }
     &__social{
@@ -1430,7 +1463,7 @@ body{
     border-radius: 50%;
     transform: translate(-50%, -50%);
     pointer-events: none;
-    z-index: $z_modal;
+    z-index: 99999999999999;
     transition: width 0.2s ease, height 0.2s ease;
     display: flex;
     align-items: center;

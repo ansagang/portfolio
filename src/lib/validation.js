@@ -10,15 +10,25 @@ export const loginValidation = ({ email, password, language }) => {
     return errors
 }
 
-export const contactValidation = ({ email, first_name, last_name, message, language }) => {
-    const errors = []
-    if (first_name && email && last_name && message) {
+export const contactValidation = ({ email, name, phone, message, language }) => {
+    const errors = {}
 
-        if (!email.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
-            errors.push(language.res.emailInvalidError)
+    if(!name) {
+        errors['name'] = language.res.nameMissing
+    }
+
+    if (phone) {
+        if (phone.match(/^[+-]?\d+(\.\d+)?$/)) {
+            
+        } else {
+            errors['phone'] = language.res.phoneInvalidError
         }
-    } else {
-        errors.push(language.res.missingFields)
+    }
+        
+    if (!email) {
+        errors['email'] = language.res.emailMissing
+    } else if (!email.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
+        errors['email'] = language.res.emailInvalidError
     }
 
     return errors

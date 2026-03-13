@@ -7,9 +7,12 @@
         "info": "Инфо",
         "warning": "Внимание",
         "linkCopied": "Ссылка скопирована",
-        "messageSuccess": "Сообщение успешно отправлено",
-        "emailInvalidError": "Неверная почта",
-        "missingFields": "Заполните все поля"
+        "requestSuccess": "Сообщение успешно отправлено",
+        "emailInvalidError": "Некорректная почта",
+        "missingFields": "Заполните все поля",
+        "phoneInvalidError": "Заполните свой номер телефона",
+        "emailMissing": "Заполните свою почту",
+        "nameMissing": "Заполните свое имя"
     },
     "app": {
         "meta": {
@@ -155,17 +158,17 @@
             "requestProject": "Запросить проект",
             "allRightsReserved": "Все права защищены.",
             "privacyPolicy": "Политика конфиденциальности",
-            "firstName": "Имя",
-            "lastName": "Фамилия",
+            "name": "Имя",
+            "phone": "Номер телефона",
             "email": "Электронная почта",
             "message": "Сообщение",
-            "firstNamePlaceholder": "Ансар",
-            "lastNamePlaceholder": "Абен",
+            "namePlaceholder": "Абен Ансар",
             "emailPlaceholder": "angsar.aben@gmail.com",
             "messagePlaceholder": "Привет!",
             "searchProjects": "Поиск проектов...",
             "sortByNewest": "Сначала новые",
-            "sortByOldest": "Сначала старые"
+            "sortByOldest": "Сначала старые",
+            "phonePlaceholder": "+77010999445"
         },
         "global": {
             "available": "Доступен для работы",

@@ -12,7 +12,7 @@ const NotificationProvider = (props) => {
             case "ADD_NOTIFICATION":
                 return [...state, { ...action.payload }];
             case "REMOVE_NOTIFICATION":
-                return state.filter(x => x.id !== action.id);
+                return state.filter(x => x.key !== action.key);
             default:
                 return state
         }
@@ -22,8 +22,8 @@ const NotificationProvider = (props) => {
         <NotificationContext.Provider value={dispatch}>
             <div className="notification__list">
                 {
-                    state.map((note) => {
-                        return <Notification dispatch={dispatch} key={note.id} {...note} />
+                    state.map((note, key) => {
+                        return <Notification dispatch={dispatch} key={key} {...note} />
                     })
                 }
             </div>
@@ -39,7 +39,6 @@ export const NotificationGet = () => {
         dispatch({
             type: "ADD_NOTIFICATION",
             payload: {
-                id: Date.now(),
                 ...props
             }
         })

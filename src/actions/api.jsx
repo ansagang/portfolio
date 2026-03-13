@@ -66,7 +66,7 @@ export async function getExperience({ lang = '', revalidate }) {
     }
 }
 
-export async function postContact({ first_name, last_name, email, message, lang }) {
+export async function postContact({ name, phone, email, message, lang }) {
     try {
         const res = await fetch(`${process.env.URL}/api/contact?lang=${lang}`, {
             method: 'POST',
@@ -74,8 +74,8 @@ export async function postContact({ first_name, last_name, email, message, lang 
                 'x-api-key': process.env.API_KEY
             },
             body: JSON.stringify({
-                first_name: first_name,
-                last_name: last_name,
+                name: name,
+                phone: phone,
                 email: email,
                 message: message
             })

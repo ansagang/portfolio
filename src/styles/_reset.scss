@@ -168,6 +168,7 @@ button[type="submit"]{
         top: 0;
         animation: skeleton-loading 1s linear infinite alternate;
         // border-radius: 15px;
+        border-radius: 15px;
     }
     &__paused{
         position: absolute;

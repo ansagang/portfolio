@@ -67,9 +67,9 @@ export default function Video({ videoUrl, bannerUrl, className = "", interactive
                 onLoadStart={() => setLoading(true)}
                 onLoadedData={() => setLoading(false)}
                 autoPlay
+                src={videoUrl}
                 {...props}
             >
-                <source src={videoUrl} type="video/mp4"/>
             </video>
             {interactive && loading && <div className="video__loading" />}
             {interactive && !loading && paused && (
@@ -77,11 +77,11 @@ export default function Video({ videoUrl, bannerUrl, className = "", interactive
                     <Icons.play />
                 </div>
             )}
-            {bannerUrl ?
+            {/* {bannerUrl ?
                 <Image ref={bannerRef} className="video__banner" alt={"Banner"} width={1} height={1} unoptimized src={bannerUrl} />
                 :
                 null
-            }
+            } */}
         </div>
     )
 }

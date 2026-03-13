@@ -1,23 +1,22 @@
 import { TiltCard } from "@/components/ui/tilt-card"
 import Link from "next/link"
-import Video from "./video"
 import { getMedia } from "@/actions/api"
+import Image from "next/image"
 
 export default async function ProjectCard({ project, tilt, ...props }) {
 
-    const {data: video} = await getMedia({ media: project.video, revalidate: 3600 })
     const {data: banner} = await getMedia({media: project.banner, revalidate: 3600})            
 
     return (
         <div className="project-card" {...props}>
             <Link className="card" href={`/projects/${project.slug}`}>
                 {
-                    tilt ?
+                    // tilt ?
                         <TiltCard>
-                            <Video className="project-card__visual" interactive={false} videoUrl={video} bannerUrl={banner} />
+                            {banner && <Image className="project-card__visual" alt="banner" src={banner} width={1} height={1} unoptimized/>}
                         </TiltCard>
-                        :
-                        <Video className="project-card__visual" interactive={false} videoUrl={video} bannerUrl={banner} />
+                        // :
+                        // <Image className="project-card__visual" src={banner} />
                 }
             </Link>
             <div className="project-card__content">

@@ -9,8 +9,8 @@ const languages = {
 export default async function languageDefiner({ locale, headerLanguage }) {
 
     if (locale) {
-        return languages[locale]()
+        return (languages[locale] ?? languages.en)()
     } else {
-        return languages[headerLanguage]()
+         return (languages[headerLanguage] ?? languages.en)()
     }
 }

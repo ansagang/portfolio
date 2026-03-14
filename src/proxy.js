@@ -12,61 +12,55 @@ export async function proxy(request) {
     return NextResponse.next();
   }
 
-  const langCookie = request.cookies.get("lang")?.value;
-  const acceptLanguage = request.headers.get("accept-language");
-  const headerLang = acceptLanguage
-    ? acceptLanguage.split(",")[0].split("-")[0]
-    : "en";
-  const detectedLang =
-    (languages_codes.includes(langCookie) ? langCookie : null) ??
-    (languages_codes.includes(headerLang) ? headerLang : "en");
-
-  const response = NextResponse.next();
-
-  if (!langCookie) {
-    response.cookies.set("lang", detectedLang);
+  // API: key check in production
+  if (pathname.startsWith("/api")) {
+    if (!dev) {
+      const api_key = request.headers.get("x-api-key");
+      if (api_key !== process.env.API_KEY) {
+        return NextResponse.json({ success: false, message: "Invalid api key" });
+      }
+    }
+    return NextResponse.next();
   }
-
-  const matchedLang = languages_codes.find(
-    (l) => pathname === `/${l}` || pathname.startsWith(`/${l}/`),
-  );
 
   const isBot = /bot|crawler|spider|googlebot|bingbot|slurp|duckduckbot/i.test(
-    request.headers.get("user-agent") || "",
+    request.headers.get("user-agent") || ""
   );
 
-  if (pathname.startsWith("/api")) {
-    const api_key = request.headers.get("x-api-key");
-    if (!dev) {
-      if (api_key !== process.env.API_KEY) {
-        return NextResponse.json({
-          success: false,
-          message: "Invalid api key",
-        });
-      } else {
-        return NextResponse.next();
-      }
+  const urlLang = languages_codes.find(
+    (l) => pathname === `/${l}` || pathname.startsWith(`/${l}/`)
+  );
+
+  // URL has a valid locale — always serve directly, it is the source of truth
+  // Bots: pass through as-is, no cookie touching
+  // Users: sync cookie so future "/" redirects stay consistent
+  if (urlLang) {
+    if (isBot) return NextResponse.next();
+    const langCookie = request.cookies.get("lang")?.value;
+    if (langCookie !== urlLang) {
+      const response = NextResponse.next();
+      response.cookies.set("lang", urlLang);
+      return response;
     }
-  } else {
-    if (matchedLang) {
-      if (!isBot && matchedLang !== detectedLang) {
-        const rest = pathname.slice(`/${matchedLang}`.length) || "/";
-        const redirect = NextResponse.redirect(
-          new URL(`/${detectedLang}${rest}`, request.url),
-        );
-        if (!langCookie) redirect.cookies.set("lang", detectedLang);
-        return redirect;
-      } else {
-        return NextResponse.next();
-      }
-    } else {
-      const redirect = NextResponse.redirect(
-        new URL(`/${detectedLang}${pathname === "/" ? "" : pathname}`, request.url),
-      );
-      if (!langCookie) redirect.cookies.set("lang", detectedLang);
-      return redirect;
-    }
+    return NextResponse.next();
   }
+
+  // URL has no locale — detect preferred language and redirect
+  // Bots: always redirect to default "en", no cookie logic
+  // Users: cookie → browser language → fallback "en"
+  const langCookie = request.cookies.get("lang")?.value;
+  const acceptLanguage = request.headers.get("accept-language");
+  const browserLang = acceptLanguage?.split(",")[0].split("-")[0];
+
+  const preferredLang = isBot
+    ? "en"
+    : (languages_codes.includes(langCookie) ? langCookie : null) ??
+      (languages_codes.includes(browserLang) ? browserLang : "en");
+
+  const rest = pathname === "/" ? "" : pathname;
+  const redirect = NextResponse.redirect(new URL(`/${preferredLang}${rest}`, request.url));
+  if (!isBot && !langCookie) redirect.cookies.set("lang", preferredLang);
+  return redirect;
 }
 
 export const config = {

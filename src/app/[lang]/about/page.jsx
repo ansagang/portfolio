@@ -1,33 +1,37 @@
 import { getLanguage } from "@/lib/get-language";
+import { getAlternates } from "@/lib/get-alternates";
 import AboutVisual from "@/components/about/about-visual";
+
 import SkillsList from "@/components/about/skills-list";
-import Dither from "@/components/three/dither";
 import ServicesList from "@/components/about/services-list";
 import ExperienceList from "@/components/about/experience-list";
 import { getExperience } from "@/actions/api";
 
-export async function generateMetadata() {
+export async function generateMetadata({ params }) {
 
-  const language = await getLanguage({})
+  const { lang } = await params
+  const language = await getLanguage({ locale: lang })
 
   return {
     title: language.app.pages.about.meta.title,
     description: language.app.pages.about.meta.description,
     openGraph: {
       type: "website",
-      locale: "en_US",
+      ...getAlternates(lang).openGraph,
       title: language.app.pages.about.meta.title,
       description: language.app.pages.about.meta.description,
       siteName: language.app.meta.title,
-      images: ["https://www.angsar-aben.kz/images/banner-one.png"]
-    }
+      images: [`${process.env.URL}/images/banner-one.png`]
+    },
+    ...getAlternates(lang, '/about'),
   }
 }
 
-export default async function About() {
+export default async function About({ params }) {
 
-  const language = await getLanguage({})
-  const { data: experiences } = await getExperience({ lang: language.lang, revalidate: 3600 })
+  const { lang } = await params
+  const language = await getLanguage({ locale: lang })
+  const { data: experiences } = await getExperience({ lang, revalidate: 3600 })
 
   return (
     <>

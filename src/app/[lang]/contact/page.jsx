@@ -1,31 +1,36 @@
 import { getStatus } from "@/actions/api";
 import ContactForm from "@/components/contact/contact-form";
+
+import { getAlternates } from "@/lib/get-alternates";
 import ContactSocials from "@/components/contact/contact-socials";
 import Chip from "@/components/ui/chip";
 import { getLanguage } from "@/lib/get-language";
 
-export async function generateMetadata() {
+export async function generateMetadata({ params }) {
 
-  const language = await getLanguage({})
+  const { lang } = await params
+  const language = await getLanguage({ locale: lang })
 
   return {
     title: language.app.pages.contact.meta.title,
     description: language.app.pages.contact.meta.description,
     openGraph: {
       type: "website",
-      locale: "en_US",
+      ...getAlternates(lang).openGraph,
       title: language.app.pages.contact.meta.title,
       description: language.app.pages.contact.meta.description,
       siteName: language.app.meta.title,
-      images: ["https://www.angsar-aben.kz/images/banner-one.png"]
-    }
+      images: [`${process.env.URL}/images/banner-one.png`]
+    },
+    ...getAlternates(lang, '/contact'),
   }
 }
 
-export default async function Contact() {
+export default async function Contact({ params }) {
 
-  const language = await getLanguage({})
-  const { data: status } = await getStatus({ lang: language.lang, revalidate: 3600 })
+  const { lang } = await params
+  const language = await getLanguage({ locale: lang })
+  const { data: status } = await getStatus({ lang, revalidate: 3600 })
 
   return (
     <section className="contact">

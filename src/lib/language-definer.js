@@ -1,16 +1,11 @@
-"use server"
+"use server";
 
 const languages = {
-    en: () => import('../config/lang/en.json').then((module) => module.default),
-    ru: () => import('../config/lang/ru.json').then((module) => module.default),
-    kz: () => import('../config/lang/kz.json').then((module) => module.default)
-}
+  en: () => import("../config/lang/en.json").then((module) => module.default),
+  ru: () => import("../config/lang/ru.json").then((module) => module.default),
+  kk: () => import("../config/lang/kk.json").then((module) => module.default),
+};
 
-export default async function languageDefiner({ locale, headerLanguage }) {
-
-    if (locale) {
-        return (languages[locale] ?? languages.en)()
-    } else {
-         return (languages[headerLanguage] ?? languages.en)()
-    }
+export default async function languageDefiner({ locale }) {
+  return languages[locale]();
 }

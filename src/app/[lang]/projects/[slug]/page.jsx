@@ -1,59 +1,63 @@
 import { getProjectMedia } from "@/actions/actions"
 import { getMedia, getProject, getProjects } from "@/actions/api"
-import Project from "@/components/sections/project.project"
 import Button from "@/components/ui/button"
 import Chip from "@/components/ui/chip"
 import Video from "@/components/ui/video"
 import { Icons } from "@/config/icons"
 import { socials } from "@/config/socials"
 import { getLanguage } from "@/lib/get-language"
+import { getAlternates } from "@/lib/get-alternates"
 import Image from "next/image"
+
 import Link from "next/link"
 import { notFound } from "next/navigation"
 
 export async function generateMetadata({ params }) {
 
-    const { slug } = await params
-    const language = await getLanguage({})
-    const { data: project } = await getProject({ lang: language.lang, slug: slug, revalidate: 3600 })
+    const { lang, slug } = await params
+    const language = await getLanguage({ locale: lang })
+    const projectResult = await getProject({ lang, slug, revalidate: 3600 })
+    const project = projectResult?.data
 
     if (!project) return {}
 
-    const {data: banner} = await getMedia({ media: project.banner })
+    const { data: banner } = await getMedia({ media: project.banner })
 
     const metadata = {
         title: project.title,
         description: project.description,
         openGraph: {
             type: "website",
-            locale: "en_US",
+            ...getAlternates(lang).openGraph,
             title: project.title,
             description: project.description,
             siteName: language.app.meta.title
-        }
+        },
+        ...getAlternates(lang, `/projects/${slug}`),
     }
 
     if (banner) {
         metadata.openGraph['images'] = [banner]
     } else {
-        metadata.openGraph['images'] = ["https://www.angsar-aben.kz/images/banner-one.png"]
+        metadata.openGraph['images'] = [`${process.env.URL}/images/banner-one.png`]
     }
-
-    
 
     return metadata
 }
 
 export default async function ProjectPage({ params }) {
-    const { slug } = await params
-    const language = await getLanguage({})
-    const { data: project } = await getProject({ lang: language.lang, slug: slug, revalidate: 3600 })
-    const { data: video } = await getMedia({ media: project.video, revalidate: 3600 })
-    const { data: banner } = await getMedia({ media: project.banner, revalidate: 3600 })
+    const { lang, slug } = await params
+        
+    const language = await getLanguage({ locale: lang })
+    const projectResult = await getProject({ lang, slug, revalidate: 3600 })
+    const project = projectResult?.data
 
     if (!project) {
         notFound()
     }
+
+    const { data: video } = await getMedia({ media: project.video, revalidate: 3600 })
+    const { data: banner } = await getMedia({ media: project.banner, revalidate: 3600 })
 
     const social = socials.find((x) => x.title == 'Github')
 
@@ -62,7 +66,7 @@ export default async function ProjectPage({ params }) {
             <div className="container">
                 <div className="project__inner inner">
                     <div className="project__breadcrump info">
-                        <p><Link href={'/projects'}>{language.app.pages.projects.meta.title}</Link></p>
+                        <p><Link href={`/${lang}/projects`}>{language.app.pages.projects.meta.title}</Link></p>
                         <Icons.arrow />
                         <p>{project.title}</p>
                     </div>

@@ -79,18 +79,18 @@ export default function Header({ language }) {
                 <div className="container__fluid">
                     <div className="header__inner">
                         <div className="header__nav">
-                            <Link href={'/'} className="header__nav-logo link"><span>{language.app.meta.title}</span></Link>
+                            <Link href={`/${language.lang}`} className="header__nav-logo link"><span>{language.app.meta.title}</span></Link>
                         </div>
                         <nav className="header__nav">
                             <ol className="header__nav-ol links">
                                 <li className="header__nav-li">
-                                    <NavLink href={'/about'}><span>{language.app.pages.about.meta.title}</span></NavLink>
+                                    <NavLink href={`/${language.lang}/about`}><span>{language.app.pages.about.meta.title}</span></NavLink>
                                 </li>
                                 <li className="header__nav-li">
-                                    <NavLink href={'/projects'}><span>{language.app.pages.projects.meta.title}</span></NavLink>
+                                    <NavLink href={`/${language.lang}/projects`}><span>{language.app.pages.projects.meta.title}</span></NavLink>
                                 </li>
                                 <li className="header__nav-li">
-                                    <NavLink href={'/contact'}><span>{language.app.pages.contact.meta.title}</span></NavLink>
+                                    <NavLink href={`/${language.lang}/contact`}><span>{language.app.pages.contact.meta.title}</span></NavLink>
                                 </li>
                             </ol>
                         </nav>
@@ -117,13 +117,13 @@ export default function Header({ language }) {
                                 <DownloadLink file={'/files/' + language.app.files.cv}><span>{language.app.labels.downloadCV}</span></DownloadLink>
                             </li>
                             <li className="menu__nav-li">
-                                <NavLink onClick={() => setShow(false)} href={'/about'}><span>{language.app.pages.about.meta.title}</span></NavLink>
+                                <NavLink onClick={() => setShow(false)} href={`/${language.lang}/about`}><span>{language.app.pages.about.meta.title}</span></NavLink>
                             </li>
                             <li className="menu__nav-li">
-                                <NavLink onClick={() => setShow(false)} href={'/projects'}><span>{language.app.pages.projects.meta.title}</span></NavLink>
+                                <NavLink onClick={() => setShow(false)} href={`/${language.lang}/projects`}><span>{language.app.pages.projects.meta.title}</span></NavLink>
                             </li>
                             <li className="menu__nav-li">
-                                <NavLink onClick={() => setShow(false)} href={'/contact'}><span>{language.app.pages.contact.meta.title}</span></NavLink>
+                                <NavLink onClick={() => setShow(false)} href={`/${language.lang}/contact`}><span>{language.app.pages.contact.meta.title}</span></NavLink>
                             </li>
                         </ol>
                     </nav>

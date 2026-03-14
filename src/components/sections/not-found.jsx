@@ -18,7 +18,9 @@ export default function NotFound({ language }) {
                         <div className="not-found__visual-digit">
                             <h1>4</h1>
                         </div>
-                        <div className="not-found__visual-circle"><Words count={5} radius={14} language={language} /></div>
+                        <div className="not-found__visual-digit">
+                            <h1>0</h1>
+                        </div>
                         <div className="not-found__visual-digit">
                             <h1>4</h1>
                         </div>
@@ -28,7 +30,7 @@ export default function NotFound({ language }) {
                             <h2>{language.app.pages.notFound.meta.title}</h2>
                         </div>
                         <div className="not-found__info info">
-                            <p>{language.app.pages.notFound.meta.description}: <code>{pathname}</code></p>
+                            <p>{language.app.pages.notFound.meta.description}: <code>{pathname.slice(`/${language.lang}`.length) || "/"}</code></p>
                         </div>
                         <Button onClick={() => router.back()} type={'primary'}>{language.app.buttons.goBack}</Button>
                     </div>

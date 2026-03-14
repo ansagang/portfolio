@@ -13,7 +13,19 @@ export const languages = [
     },
     {
         title: 'Қазақ тілі',
-        code: 'kz',
+        code: 'kk',
         title_short: "Қаз"
     }
 ]
+
+export const languages_codes = [
+    'en',
+    'ru',
+    'kk'
+]
+
+export const languages_og = {
+    en: "en_US",
+    ru: "ru_RU",
+    kk: "kk_KZ"
+}

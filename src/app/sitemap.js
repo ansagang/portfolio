@@ -1,22 +1,28 @@
-import { getLanguage } from "@/lib/get-language";
 import { getProjects } from "@/actions/api";
-
-const BASE_URL = process.env.URL
+import { languages_codes } from "@/config/languages";
 
 export default async function sitemap() {
-    const language = await getLanguage({})
+    const staticRoutes = ['', '/about', '/projects', '/contact']
 
-    const {data: projects} = await getProjects({lang: language.lang})
-    const projectEntries = projects?.map((project) => ({
-        url: `${BASE_URL}/projects/${project.slug}`,
-        lastModified: project.createdAt, changeFrequency: "daily", priority: 0.5
-    })) ?? []
+    const staticEntries = languages_codes.flatMap(lang =>
+        staticRoutes.map(route => ({
+            url: `${process.env.URL}${lang}${route}`,
+            lastModified: new Date(),
+            changeFrequency: "daily",
+            priority: route === '' ? 1 : 0.7
+        }))
+    )
 
-    return [
-        { url: `${BASE_URL}`, lastModified: new Date(), changeFrequency: "daily", priority: 1 },
-        { url: `${BASE_URL}/about`, lastModified: new Date(), changeFrequency: "daily", priority: 0.7 },
-        { url: `${BASE_URL}/projects`, lastModified: new Date(), changeFrequency: "daily", priority: 0.7 },
-        { url: `${BASE_URL}/contact`, lastModified: new Date(), changeFrequency: "daily", priority: 0.7 },
-        ...projectEntries
-    ]
+    const { data: projects } = await getProjects({ lang: 'en' })
+
+    const projectEntries = languages_codes.flatMap(lang =>
+        (projects ?? []).map(project => ({
+            url: `${process.env.URL}${lang}/projects/${project.slug}`,
+            lastModified: project.createdAt ?? new Date(),
+            changeFrequency: "daily",
+            priority: 0.5
+        }))
+    )
+
+    return [...staticEntries, ...projectEntries]
 }

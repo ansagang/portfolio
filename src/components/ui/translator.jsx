@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation"
 export default function Translator({ language }) {
 
     const pathname = usePathname()
-    
+
     return (
         <div className="translator">
             <div className="translator__options">
@@ -16,9 +16,9 @@ export default function Translator({ language }) {
                     {
                         languages.map((lang, key) => (
                             <span key={key} onClick={() => {
-                               changeLanguage({lang: lang.code, path: pathname}).then(() => {
-                                    window.location.reload()
-                               })
+                                const segments = pathname.split('/').slice(2).join('/')
+                                const pathWithoutLang = segments ? `/${segments}` : '/'
+                                changeLanguage({ lang: lang.code, path: pathWithoutLang })
                             }} className={language.lang === lang.code ? "active" : null}>{lang.title_short}</span>
                         ))
                     }

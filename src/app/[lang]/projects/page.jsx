@@ -4,28 +4,33 @@ import ProjectsSearch from "@/components/projects/projects-search";
 import SkeletonProjects from "@/components/skeletons/skeleton-projects";
 import SkeletonCategories from "@/components/ui/skeleton-categories";
 import { getLanguage } from "@/lib/get-language";
+import { getAlternates } from "@/lib/get-alternates";
 import { Suspense } from "react";
 
-export async function generateMetadata() {
+export async function generateMetadata({ params }) {
 
-  const language = await getLanguage({})
+  const { lang } = await params
+  const language = await getLanguage({ locale: lang })
 
   return {
     title: language.app.pages.projects.meta.title,
     description: language.app.pages.projects.meta.description,
     openGraph: {
       type: "website",
-      locale: "en_US",
+      ...getAlternates(lang).openGraph,
       title: language.app.pages.projects.meta.title,
       description: language.app.pages.projects.meta.description,
       siteName: language.app.meta.title,
-      images: ["https://www.angsar-aben.kz/images/banner-one.png"]
-    }
+      images: [`${process.env.URL}/images/banner-one.png`]
+    },
+    ...getAlternates(lang, '/projects'),
   }
 }
-export default async function Projects({ searchParams }) {
 
-  const language = await getLanguage({})
+export default async function Projects({ params, searchParams }) {
+
+  const { lang } = await params
+  const language = await getLanguage({ locale: lang })
 
   const searchQuery = await searchParams
 

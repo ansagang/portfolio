@@ -7,17 +7,17 @@ import Button from "@/components/ui/button";
 import ContactBanner from "@/components/home/contact-banner";
 import { Suspense } from "react";
 import SkeletonProjects from "@/components/skeletons/skeleton-projects";
-import Currently from "@/components/home/experience";
 import Experience from "@/components/home/experience";
 
-export default async function Home() {
+export default async function Home({ params }) {
 
-  const language = await getLanguage({})
+  const { lang } = await params
+  const language = await getLanguage({ locale: lang })
 
   return (
     <>
       <section className="landing">
-        <Scene quantity={50} />
+        <Scene quantity={70} />
         <div className="container__mini">
           <div className="landing__inner inner__big">
             <div className="landing__signature">
@@ -72,7 +72,7 @@ export default async function Home() {
               <Suspense fallback={<SkeletonProjects className={'list__mini'} number={4} />}>
                 <ProjectsList language={language} />
               </Suspense>
-              <Button href={'/projects'} type={'secondary'} className={'block__content-button'}>{language.app.buttons.otherProjects}<Icons.arrow /></Button>
+              <Button href={`/${lang}/projects`} type={'secondary'} className={'block__content-button'}>{language.app.buttons.otherProjects}<Icons.arrow /></Button>
             </div>
           </div>
         </div>

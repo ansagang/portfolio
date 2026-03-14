@@ -1,5 +1,7 @@
 "use server"
 
+import { createClient } from "@/lib/supabase/server"
+
 export async function getSkills({ lang = '', revalidate }) {
     try {
         const res = await fetch(`${process.env.URL}/api/skills?lang=${lang}`, {
@@ -138,23 +140,21 @@ export async function getProject({ lang, slug, revalidate }) {
 
 export async function getMedia({ media, revalidate }) {
     try {
+        const supabase = await createClient()
         if (media) {
-            const res = await fetch(`${process.env.URL}/api/media/${media}`, {
-                method: 'GET',
-                headers: {
-                    'x-api-key': process.env.API_KEY
-                },
-                next: {
-                    revalidate: revalidate,
-                    tags: ['media']
+            const { error, data } = supabase.storage.from('portfolio').getPublicUrl('projects/' + media)
+
+            if (!error) {
+                return {
+                    data: data.publicUrl
                 }
-            })
-
-            const data = await res.json()
-
-            return data
+            } else {
+                return {
+                    data: data
+                }
+            }
         } else {
-            return {data: null}
+            return { data: null }
         }
     } catch (err) {
 

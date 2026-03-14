@@ -53,21 +53,21 @@ export async function getProjectMedia(media) {
     }
 }
 
-export async function getCV(cv) {
-    try {
-        const supabase = await createClient()
-        if (cv) {
-            const { data } = supabase.storage.from('portfolio').getPublicUrl('assets/'+cv)
+// export async function getCV(cv) {
+//     try {
+//         const supabase = await createClient()
+//         if (cv) {
+//             const { data } = supabase.storage.from('portfolio').getPublicUrl('assets/'+cv)
 
-            if (data) {
-                return {
-                    data: data.publicUrl
-                }
-            }
-        }
-    } catch (err) {
-        return {
-            success: false,
-        }
-    }
-}
+//             if (data) {
+//                 return {
+//                     data: data.publicUrl
+//                 }
+//             }
+//         }
+//     } catch (err) {
+//         return {
+//             success: false,
+//         }
+//     }
+// }

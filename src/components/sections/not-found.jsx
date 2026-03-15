@@ -1,6 +1,5 @@
 "use client"
 
-import Words from "../three/words"
 import Button from "../ui/button"
 import { usePathname } from "next/navigation"
 import { useRouter } from "next/navigation"
@@ -32,7 +31,7 @@ export default function NotFound({ language }) {
                         <div className="not-found__info info">
                             <p>{language.app.pages.notFound.meta.description}: <code>{pathname.slice(`/${language.lang}`.length) || "/"}</code></p>
                         </div>
-                        <Button onClick={() => router.back()} type={'primary'}>{language.app.buttons.goBack}</Button>
+                        <Button onClick={router.push('/')} type={'primary'}>{language.app.buttons.goBack}</Button>
                     </div>
                 </div>
             </div>

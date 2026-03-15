@@ -31,7 +31,7 @@ export default function NotFound({ language }) {
                         <div className="not-found__info info">
                             <p>{language.app.pages.notFound.meta.description}: <code>{pathname.slice(`/${language.lang}`.length) || "/"}</code></p>
                         </div>
-                        <Button onClick={router.push('/')} type={'primary'}>{language.app.buttons.goBack}</Button>
+                        <Button onClick={() => router.push('/')} type={'primary'}>{language.app.buttons.goBack}</Button>
                     </div>
                 </div>
             </div>

@@ -7,6 +7,7 @@ import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
 import NavLink from "../ui/nav-link"
 import Chip from "../ui/chip"
+import { Icons } from "@/config/icons"
 
 function ExperienceItem({ experience }) {
     const [itemRef, inView] = useInView(false, 1, '0px 0px -200px 0px')
@@ -18,31 +19,62 @@ function ExperienceItem({ experience }) {
             <div className="experience__card-date">
                 <span>{experience.year}</span>
             </div>
-            <div className="experience__card">
-                <div className="experience__card-content">
-                    <div className="experience__card-title title">
-                        <h3>
-                            {experience.title}
-                        </h3>
-                    </div>
-                    {
-                        experience.organization ?
-                            experience.link ?
-                                <NavLink href={experience.link} className="experience__card-org">
-                                    {experience.organization}
-                                </NavLink>
-                                :
+            {
+                experience.link ?
+                    <Link href={experience.link}>
+                        <div className="experience__card">
+                            {
+                                experience.link &&
+                                <div className="experience__card-icon">
+                                    <Icons.link />
+                                </div>
+                            }
+                            <div className="experience__card-content">
+                                <div className="experience__card-title title">
+                                    <h3>
+                                        {experience.title}
+                                    </h3>
+                                </div>
+                                {
+                                    experience.organization &&
+                                    <div className="experience__card-org">
+                                        <p>{experience.organization}</p>
+                                    </div>
+
+                                }
+                                <div className="experience__card-info info">
+                                    <p>{experience.description}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </Link>
+                    :
+                    <div className="experience__card">
+                        {
+                            experience.link &&
+                            <div className="experience__card-icon">
+                                <Icons.link />
+                            </div>
+                        }
+                        <div className="experience__card-content">
+                            <div className="experience__card-title title">
+                                <h3>
+                                    {experience.title}
+                                </h3>
+                            </div>
+                            {
+                                experience.organization &&
                                 <div className="experience__card-org">
                                     <p>{experience.organization}</p>
                                 </div>
-                            :
-                            null
-                    }
-                    <div className="experience__card-info info">
-                        <p>{experience.description}</p>
+
+                            }
+                            <div className="experience__card-info info">
+                                <p>{experience.description}</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
+            }
         </div>
     )
 }

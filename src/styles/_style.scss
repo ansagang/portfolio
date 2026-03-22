@@ -1118,6 +1118,14 @@ body{
             text-decoration: underline;
             text-decoration-thickness: 1px;
         }
+        &-icon{
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: 30px;
+            top: 30px;
+            opacity: 0.2;
+        }
     }
 }
 

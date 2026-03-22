@@ -18,12 +18,16 @@ export async function GET(request) {
             })
         } else {
             const res = supabaseErrors({ error })
-            return NextResponse.json(res)
+            return NextResponse.json({
+                message: res,
+                data: []
+            })
         }
 
     } catch (err) {
         return NextResponse.json({
-            message: err.message
+            message: err.message,
+            data: []
         })
     }
 }

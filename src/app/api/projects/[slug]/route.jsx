@@ -17,7 +17,10 @@ export async function GET(request, {params}) {
             })
         } else {
             const res = supabaseErrors({ error })
-            return NextResponse.json(res)
+            return NextResponse.json({
+                message: res,
+                data: {}
+            })
         }
 
     } catch (err) {

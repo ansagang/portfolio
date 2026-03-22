@@ -19,8 +19,7 @@ export async function getSkills({ lang = '', revalidate }) {
 
         return data
     } catch (err) {
-
-
+        return { data: null }
     }
 }
 
@@ -41,7 +40,7 @@ export async function getServices({ lang = '', revalidate }) {
 
         return data
     } catch (err) {
-
+        return { data: null }
 
     }
 }
@@ -63,8 +62,7 @@ export async function getExperience({ lang = '', revalidate }) {
 
         return data
     } catch (err) {
-
-
+        return { data: null }
     }
 }
 
@@ -87,7 +85,7 @@ export async function postContact({ name, phone, email, message, lang }) {
 
         return data
     } catch (err) {
-
+        return { data: null }
 
     }
 }
@@ -111,7 +109,7 @@ export async function getProjects({ search = '', categories = [], lang = '', lim
 
         return data
     } catch (err) {
-
+        return { data: null }
 
     }
 }
@@ -133,7 +131,7 @@ export async function getProject({ lang, slug, revalidate }) {
 
         return data
     } catch (err) {
-
+        return { data: null }
 
     }
 }
@@ -157,7 +155,7 @@ export async function getMedia({ media, revalidate }) {
             return { data: null }
         }
     } catch (err) {
-
+        return { data: null }
     }
 }
 
@@ -179,7 +177,7 @@ export async function getStatus({ lang, revalidate }) {
         return data
     } catch (err) {
 
-
+        return { data: null }
     }
 }
 
@@ -213,7 +211,7 @@ export async function getBlogs({ search, category, lang, limit, sort }) {
         }
 
     } catch (err) {
-
+        return { data: null }
     }
 }
 

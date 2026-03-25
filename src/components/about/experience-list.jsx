@@ -10,7 +10,7 @@ import Chip from "../ui/chip"
 import { Icons } from "@/config/icons"
 
 function ExperienceItem({ experience }) {
-    const [itemRef, inView] = useInView(false, 1, '0px 0px -200px 0px')
+    const [itemRef, inView] = useInView(false, 0.5, '0px 0px -140px 0px')
 
     return (
         <div ref={itemRef} className={inView ? "experience__item active" : "experience__item"}>

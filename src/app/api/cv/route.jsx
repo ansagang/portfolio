@@ -12,11 +12,19 @@ export async function GET(request) {
 
         const { data, error } = await supabase.storage
             .from("portfolio")
-            .createSignedUrl("assets/"+language.app.files.cv, 60)
+            .download("assets/"+language.app.files.cv)
 
         if (error) throw error
 
-        return Response.redirect(data.signedUrl)
+        const bytes = await data.arrayBuffer()
+
+        return new Response(bytes, {
+            headers: {
+                "Content-Type": "application/pdf",
+                "Content-Disposition": 'attachment; filename="CV.pdf"',
+                "Cache-Control": "public, max-age=3600, s-maxage=3600",
+            },
+        })
     } catch (err) {
         return new Response(JSON.stringify({ message: err.message }), {
             status: 500,

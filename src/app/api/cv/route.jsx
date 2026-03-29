@@ -1,7 +1,7 @@
 import { getLanguage } from "@/lib/get-language"
 import { createClient } from "@/lib/supabase/server"
 
-export const revalidate = 3600
+export const dynamic = 'force-dynamic'
 
 export async function GET(request) {
     try {

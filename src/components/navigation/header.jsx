@@ -114,7 +114,7 @@ export default function Header({ language }) {
                     <nav className="menu__nav">
                         <ol className="menu__nav-ol links">
                             <li className="menu__nav-li">
-                                <DownloadLink file={'/files/' + language.app.files.cv}><span>{language.app.labels.downloadCV}</span></DownloadLink>
+                                <DownloadLink download={'CV.pdf'} href={`/api/cv?lang=${language.lang}`}><span>{language.app.labels.downloadCV}</span></DownloadLink>
                             </li>
                             <li className="menu__nav-li">
                                 <NavLink onClick={() => setShow(false)} href={`/${language.lang}/about`}><span>{language.app.pages.about.meta.title}</span></NavLink>

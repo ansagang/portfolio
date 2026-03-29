@@ -12,9 +12,8 @@ export async function proxy(request) {
     return NextResponse.next();
   }
 
-  // API: key check in production
   if (pathname.startsWith("/api")) {
-    if (!dev) {
+    if (!dev && !pathname.startsWith("/api/cv")) {
       const api_key = request.headers.get("x-api-key");
       if (api_key !== process.env.API_KEY) {
         return NextResponse.json({ success: false, message: "Invalid api key" });

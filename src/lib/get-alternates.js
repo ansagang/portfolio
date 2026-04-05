@@ -17,6 +17,7 @@ export function getAlternates(lang, path = '') {
             locale: languages_og[lang] || 'en_US',
         },
         alternates: {
+            canonical: `${BASE_URL}/${lang}${path}`,
             languages,
         },
     }

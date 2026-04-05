@@ -6,7 +6,7 @@ export default async function sitemap() {
 
     const staticEntries = languages_codes.flatMap(lang =>
         staticRoutes.map(route => ({
-            url: `${process.env.URL}${lang}${route}`,
+            url: `${process.env.URL}/${lang}${route}`,
             lastModified: new Date(),
             changeFrequency: "daily",
             priority: route === '' ? 1 : 0.7
@@ -17,7 +17,7 @@ export default async function sitemap() {
 
     const projectEntries = languages_codes.flatMap(lang =>
         (projects ?? []).map(project => ({
-            url: `${process.env.URL}${lang}/projects/${project.slug}`,
+            url: `${process.env.URL}/${lang}/projects/${project.slug}`,
             lastModified: project.createdAt ?? new Date(),
             changeFrequency: "daily",
             priority: 0.5

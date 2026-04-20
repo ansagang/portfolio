@@ -1,6 +1,5 @@
 import { languages_codes, languages_og } from "@/config/languages"
-
-const BASE_URL = process.env.URL
+import { BASE_URL } from "@/lib/base-url"
 
 /**
  * @param {string} lang - current lang segment (e.g. 'en')

@@ -7,6 +7,7 @@ import { Icons } from "@/config/icons"
 import { socials } from "@/config/socials"
 import { getLanguage } from "@/lib/get-language"
 import { getAlternates } from "@/lib/get-alternates"
+import { BASE_URL } from "@/lib/base-url"
 import Image from "next/image"
 
 import Link from "next/link"
@@ -39,7 +40,7 @@ export async function generateMetadata({ params }) {
     if (banner) {
         metadata.openGraph['images'] = [banner]
     } else {
-        metadata.openGraph['images'] = [`${process.env.URL}/images/banner-one.png`]
+        metadata.openGraph['images'] = [`${BASE_URL}/images/banner-one.png`]
     }
 
     return metadata

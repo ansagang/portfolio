@@ -1,5 +1,6 @@
 import { getLanguage } from "@/lib/get-language";
 import { getAlternates } from "@/lib/get-alternates";
+import { BASE_URL } from "@/lib/base-url";
 import AboutVisual from "@/components/about/about-visual";
 
 import SkillsList from "@/components/about/skills-list";
@@ -21,7 +22,7 @@ export async function generateMetadata({ params }) {
       title: language.app.pages.about.meta.title,
       description: language.app.pages.about.meta.description,
       siteName: language.app.meta.title,
-      images: [`${process.env.URL}/images/banner-one.png`]
+      images: [`${BASE_URL}/images/banner-one.png`]
     },
     ...getAlternates(lang, '/about'),
   }

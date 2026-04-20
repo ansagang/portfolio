@@ -1,10 +1,13 @@
+import { BASE_URL } from "@/lib/base-url";
+
 export default function robot() {
     return {
         rules: {
             userAgent: "*",
             allow: '/',
-            dissallow: ['/api', '/images']
+            disallow: ['/api']
         },
-        sitemap: `${process.env.URL}/sitemap.xml`
+        sitemap: `${BASE_URL}/sitemap.xml`,
+        host: BASE_URL,
     }
 }

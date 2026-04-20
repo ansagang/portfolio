@@ -3,6 +3,7 @@ import '@/styles/adaptive.scss'
 import { Montserrat } from 'next/font/google'
 
 import { getLanguage } from '@/lib/get-language'
+import { BASE_URL } from '@/lib/base-url'
 import NextTopLoader from 'nextjs-toploader'
 import Cursor from '@/components/ui/cursor'
 import { Toaster } from 'sonner'
@@ -10,7 +11,7 @@ import { Toaster } from 'sonner'
 const font = Montserrat({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700', '800'], display: 'swap' })
 
 export const metadata = {
-  metadataBase: new URL(process.env.URL),
+  metadataBase: new URL(BASE_URL),
   authors: [{ name: "ansagang", url: "https://github.com/ansagang" }],
   creator: "ansagang",
   robots: {

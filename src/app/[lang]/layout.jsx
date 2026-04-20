@@ -4,6 +4,7 @@ import Translator from "@/components/ui/translator";
 import { getLanguage } from "@/lib/get-language";
 import { languages_codes } from "@/config/languages";
 import { getAlternates } from "@/lib/get-alternates";
+import { BASE_URL } from "@/lib/base-url";
 
 export function generateStaticParams() {
     return languages_codes.map(lang => ({ lang }))
@@ -26,13 +27,13 @@ export async function generateMetadata({ params }) {
             title: language.app.meta.title,
             description: language.app.meta.description,
             siteName: language.app.meta.title,
-            images: [`${process.env.URL}/images/banner-one.png`]
+            images: [`${BASE_URL}/images/banner-one.png`]
         },
         twitter: {
             card: "summary_large_image",
             title: language.app.meta.title,
             description: language.app.meta.description,
-            images: [`${process.env.URL}/images/banner-one.png`],
+            images: [`${BASE_URL}/images/banner-one.png`],
             creator: "@ansagang",
         },
         ...getAlternates(lang),

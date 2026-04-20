@@ -5,6 +5,7 @@ import SkeletonProjects from "@/components/skeletons/skeleton-projects";
 import SkeletonCategories from "@/components/ui/skeleton-categories";
 import { getLanguage } from "@/lib/get-language";
 import { getAlternates } from "@/lib/get-alternates";
+import { BASE_URL } from "@/lib/base-url";
 import { Suspense } from "react";
 
 export async function generateMetadata({ params }) {
@@ -21,7 +22,7 @@ export async function generateMetadata({ params }) {
       title: language.app.pages.projects.meta.title,
       description: language.app.pages.projects.meta.description,
       siteName: language.app.meta.title,
-      images: [`${process.env.URL}/images/banner-one.png`]
+      images: [`${BASE_URL}/images/banner-one.png`]
     },
     ...getAlternates(lang, '/projects'),
   }

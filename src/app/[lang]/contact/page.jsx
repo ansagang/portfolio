@@ -2,6 +2,7 @@ import { getStatus } from "@/actions/api";
 import ContactForm from "@/components/contact/contact-form";
 
 import { getAlternates } from "@/lib/get-alternates";
+import { BASE_URL } from "@/lib/base-url";
 import ContactSocials from "@/components/contact/contact-socials";
 import Chip from "@/components/ui/chip";
 import { getLanguage } from "@/lib/get-language";
@@ -20,7 +21,7 @@ export async function generateMetadata({ params }) {
       title: language.app.pages.contact.meta.title,
       description: language.app.pages.contact.meta.description,
       siteName: language.app.meta.title,
-      images: [`${process.env.URL}/images/banner-one.png`]
+      images: [`${BASE_URL}/images/banner-one.png`]
     },
     ...getAlternates(lang, '/contact'),
   }
